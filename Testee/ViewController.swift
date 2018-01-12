@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
+    
+    var handle: AuthStateDidChangeListenerHandle?
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +22,22 @@ class ViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        handle = Auth.auth().addStateDidChangeListener{(auth, user) in
+        }
+        
+        Auth.auth().createUser(withEmail: "emombay@uci.edu", password: "password") {(user, error) in
+            if let error = error {
+                print(error)
+                return
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
 
 
