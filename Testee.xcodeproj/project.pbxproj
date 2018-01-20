@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		152D8E563062C3ECC34423A7 /* Pods_Testee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D478CA7F10E5AEC65828D7 /* Pods_Testee.framework */; };
+		6C9575582011906F000263E4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9575572011906F000263E4 /* LoginController.swift */; };
+		6C9575622012DFD6000263E4 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9575612012DFD6000263E4 /* night.png */; };
 		6CEA19672008480F0072E501 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA19662008480F0072E501 /* AppDelegate.swift */; };
 		6CEA19692008480F0072E501 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA19682008480F0072E501 /* ViewController.swift */; };
 		6CEA196C2008480F0072E501 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CEA196A2008480F0072E501 /* Main.storyboard */; };
@@ -44,6 +46,8 @@
 		1EB2A1B7FED7B49F305A929C /* Pods-Testee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Testee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Testee/Pods-Testee.release.xcconfig"; sourceTree = "<group>"; };
 		427682A4ED74EB7FA8043A8B /* Pods_TesteeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesteeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFF3CCE8DC3EF2656C2E82A /* Pods-TesteeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TesteeUITests/Pods-TesteeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6C9575572011906F000263E4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		6C9575612012DFD6000263E4 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night.png; sourceTree = SOURCE_ROOT; };
 		6CEA19632008480F0072E501 /* Testee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEA19662008480F0072E501 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CEA19682008480F0072E501 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -103,6 +107,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		6C9575562011902F000263E4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6C9575612012DFD6000263E4 /* night.png */,
+				6C9575572011906F000263E4 /* LoginController.swift */,
+				6CEA19682008480F0072E501 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		6CEA195A2008480F0072E501 = {
 			isa = PBXGroup;
 			children = (
@@ -128,9 +142,9 @@
 		6CEA19652008480F0072E501 /* Testee */ = {
 			isa = PBXGroup;
 			children = (
+				6C9575562011902F000263E4 /* Controller */,
 				6CEA1994200849000072E501 /* GoogleService-Info.plist */,
 				6CEA19662008480F0072E501 /* AppDelegate.swift */,
-				6CEA19682008480F0072E501 /* ViewController.swift */,
 				6CEA196A2008480F0072E501 /* Main.storyboard */,
 				6CEA196D2008480F0072E501 /* Assets.xcassets */,
 				6CEA196F2008480F0072E501 /* LaunchScreen.storyboard */,
@@ -289,6 +303,7 @@
 				6CEA19712008480F0072E501 /* LaunchScreen.storyboard in Resources */,
 				6CEA1995200849010072E501 /* GoogleService-Info.plist in Resources */,
 				6CEA196E2008480F0072E501 /* Assets.xcassets in Resources */,
+				6C9575622012DFD6000263E4 /* night.png in Resources */,
 				6CEA196C2008480F0072E501 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -473,6 +488,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CEA19692008480F0072E501 /* ViewController.swift in Sources */,
+				6C9575582011906F000263E4 /* LoginController.swift in Sources */,
 				6CEA19672008480F0072E501 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
