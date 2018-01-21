@@ -182,7 +182,15 @@ class RegistrationController: UIViewController {
     }
     
     func setupInputsContainerView(){
+        
+        //this box is the main container box which we put other things inside of
+        //sort of like a div in CSS
+        
         //need  x, y, width, height constraints
+        //this constraint stuff is more or less just a way to position things on the page.
+        //you can get anchors relative to the view of some object for example
+        //the view.centerXAnchor refers
+        
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -70).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
