@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension UITextField {
     func setLeftPaddingPoints(_ amount:CGFloat){
@@ -44,18 +45,46 @@ class LoginController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+ 
         return button
     }()
     
+    @objc func handleLogin() {
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
+            if (error != nil) {
+                self.errorLabel.text = "ERROR: " + (error?.localizedDescription)!
+                return
+            }
+            //Else login successful
+            self.switchToMainScreen();
+        }
+    }
+    
+    func switchToMainScreen() {
+        let viewController = ViewController()
+        present(viewController, animated: true, completion: nil)
+    }
+
     let newAccountButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("New user? Create an account.", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
+        
+        button.addTarget(self, action: #selector(switchToRegisterScreen), for: .touchUpInside)
+        
         return button
     }()
     
-    let nameTextField: UITextField = {
+    @objc func switchToRegisterScreen() {
+        //@objc is somehow required when usimg #selector
+        let registrationController = RegistrationController()
+        present(registrationController, animated: true, completion: nil)
+    }
+    
+    let emailTextField: UITextField = {
         let tf = UITextField()
         //tf.placeholder = "Name"
         tf.attributedPlaceholder = NSAttributedString(string: "Emil", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
@@ -68,6 +97,10 @@ class LoginController: UIViewController {
         tf.setRightPaddingPoints(20)
         tf.textColor = UIColor.white
     
+        //disable autocapitalization and autocorrect for this text field
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        
         return tf
     }()
     
@@ -99,6 +132,19 @@ class LoginController: UIViewController {
         return welcome
     }()
     
+    let errorLabel: UILabel = {
+        let el = UILabel()
+        el.translatesAutoresizingMaskIntoConstraints = false
+        el.textColor = UIColor.white
+        el.font = UIFont(name: el.font.fontName, size: 15)
+        el.textAlignment = .center
+        el.lineBreakMode = .byWordWrapping
+        el.numberOfLines = 3
+    
+        return el
+    }()
+    
+    
 
     
     override func viewDidLoad(){
@@ -106,8 +152,8 @@ class LoginController: UIViewController {
         
         //view.backgroundColor = UIColor(r: 180, g: 119, b: 206)
         view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
-        view.addSubview(loginRegisterButton)
         view.addSubview(inputsContainerView)
+        view.addSubview(loginRegisterButton)
         view.addSubview(newAccountButton)
         //view.addSubview(backgroundImage)
         
@@ -123,27 +169,33 @@ class LoginController: UIViewController {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalToConstant: 500).isActive = true
         
-        inputsContainerView.addSubview(nameTextField)
+        inputsContainerView.addSubview(emailTextField)
         //inputsContainerView.addSubview(backgroundImage)
-        nameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        nameTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 150).isActive = true
-        nameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 150).isActive = true
+        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
         
         inputsContainerView.addSubview(passwordTextField)
         //inputsContainerView.addSubview(backgroundImage)
         passwordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        passwordTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 15).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
 
         inputsContainerView.addSubview(welcomeLabel)
         welcomeLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        welcomeLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: -140).isActive = true
+        welcomeLabel.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: -140).isActive = true
         welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         welcomeLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        inputsContainerView.addSubview(errorLabel)
+        errorLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        errorLabel.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 15).isActive = true
+        errorLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        errorLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     func setupLoginRegisterButton(){
@@ -162,7 +214,7 @@ class LoginController: UIViewController {
     
     func setupLabel(){
         welcomeLabel.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
-//        welcomeLabel.topAnchor.constraint(equalTo: nameTextField.topAnchor, constant: 15).isActive = true
+//        welcomeLabel.topAnchor.constraint(equalTo: emailTextField.topAnchor, constant: 15).isActive = true
 //        welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
 //        welcomeLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
         

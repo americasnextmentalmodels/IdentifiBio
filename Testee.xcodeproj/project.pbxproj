@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		152D8E563062C3ECC34423A7 /* Pods_Testee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 95D478CA7F10E5AEC65828D7 /* Pods_Testee.framework */; };
+		6C3EE6A7201419FA00943AE2 /* RegistrationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3EE6A6201419FA00943AE2 /* RegistrationController.swift */; };
 		6C9575582011906F000263E4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9575572011906F000263E4 /* LoginController.swift */; };
 		6C9575622012DFD6000263E4 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9575612012DFD6000263E4 /* night.png */; };
 		6CEA19672008480F0072E501 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA19662008480F0072E501 /* AppDelegate.swift */; };
@@ -46,6 +47,7 @@
 		1EB2A1B7FED7B49F305A929C /* Pods-Testee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Testee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Testee/Pods-Testee.release.xcconfig"; sourceTree = "<group>"; };
 		427682A4ED74EB7FA8043A8B /* Pods_TesteeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesteeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DFF3CCE8DC3EF2656C2E82A /* Pods-TesteeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TesteeUITests/Pods-TesteeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6C3EE6A6201419FA00943AE2 /* RegistrationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationController.swift; sourceTree = "<group>"; };
 		6C9575572011906F000263E4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		6C9575612012DFD6000263E4 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night.png; sourceTree = SOURCE_ROOT; };
 		6CEA19632008480F0072E501 /* Testee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testee.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +114,7 @@
 			children = (
 				6C9575612012DFD6000263E4 /* night.png */,
 				6C9575572011906F000263E4 /* LoginController.swift */,
+				6C3EE6A6201419FA00943AE2 /* RegistrationController.swift */,
 				6CEA19682008480F0072E501 /* ViewController.swift */,
 			);
 			path = Controller;
@@ -489,6 +492,7 @@
 			files = (
 				6CEA19692008480F0072E501 /* ViewController.swift in Sources */,
 				6C9575582011906F000263E4 /* LoginController.swift in Sources */,
+				6C3EE6A7201419FA00943AE2 /* RegistrationController.swift in Sources */,
 				6CEA19672008480F0072E501 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
