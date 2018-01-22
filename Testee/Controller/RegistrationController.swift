@@ -57,6 +57,17 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    let agreeTosButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Agree to Terms of Service", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.white, for: .normal)
+        
+        button.addTarget(self, action: #selector(switchToLoginScreen), for: .touchUpInside)
+        
+        return button
+    }()
+    
     
     @objc func handleRegistration() {
         print("Attempting to handle registration")
@@ -176,8 +187,6 @@ class RegistrationController: UIViewController {
         return welcome
     }()
     
-    
-    
     override func viewDidLoad(){
         super.viewDidLoad()
         
@@ -186,13 +195,14 @@ class RegistrationController: UIViewController {
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
         view.addSubview(returnToLoginButton)
+        view.addSubview(agreeTosButton)
         //view.addSubview(backgroundImage)
         
         
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupReturnToLoginButton()
- 
+        setupTosButton()
         //setupLabel()
     }
     
@@ -249,16 +259,23 @@ class RegistrationController: UIViewController {
     
     func setupLoginRegisterButton(){
         loginRegisterButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
-        loginRegisterButton.topAnchor.constraint(equalTo: referralCodeTextField.bottomAnchor, constant: 30).isActive = true
+        loginRegisterButton.topAnchor.constraint(equalTo: referralCodeTextField.bottomAnchor, constant: 50).isActive = true
         loginRegisterButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
     func setupReturnToLoginButton(){
         returnToLoginButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
-        returnToLoginButton.topAnchor.constraint(equalTo: referralCodeTextField.bottomAnchor, constant: 70).isActive = true
+        returnToLoginButton.topAnchor.constraint(equalTo: referralCodeTextField.bottomAnchor, constant: 90).isActive = true
         returnToLoginButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         returnToLoginButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
+    
+    func setupTosButton(){
+        agreeTosButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
+        agreeTosButton.topAnchor.constraint(equalTo: referralCodeTextField.bottomAnchor, constant: 1).isActive = true
+        agreeTosButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        agreeTosButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
     }
     
     func setupLabel(){
@@ -266,7 +283,6 @@ class RegistrationController: UIViewController {
         //        welcomeLabel.topAnchor.constraint(equalTo: nameTextField.topAnchor, constant: 15).isActive = true
         //        welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         //        welcomeLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        
     }
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
