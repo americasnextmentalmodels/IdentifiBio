@@ -87,7 +87,7 @@ class LoginController: UIViewController {
     let emailTextField: UITextField = {
         let tf = UITextField()
         //tf.placeholder = "Name"
-        tf.attributedPlaceholder = NSAttributedString(string: "Emil", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.layer.borderColor = UIColor.white.cgColor
         tf.layer.borderWidth = 1

@@ -19,8 +19,10 @@ class ViewController: UITableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
                                                            action: #selector(handleLogout))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self,
+                                                           action: #selector(handleMenu))
    
         
     }
@@ -30,6 +32,12 @@ class ViewController: UITableViewController {
         present(loginController, animated: true, completion: nil)
 //        let regController = RegistrationController();
 //        present(regController, animated: true, completion: nil)
+    }
+    
+    @objc func handleMenu() {
+        //        Stuff
+        //        let regController = RegistrationController();
+        //        present(regController, animated: true, completion: nil)
     }
 
     

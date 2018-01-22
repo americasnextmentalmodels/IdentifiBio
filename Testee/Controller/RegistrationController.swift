@@ -46,6 +46,18 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    let returnToLoginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Already have account? Login.", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.white, for: .normal)
+        
+        button.addTarget(self, action: #selector(switchToLoginScreen), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    
     @objc func handleRegistration() {
         print("Attempting to handle registration")
         //the guard I don't this is required, but supposedly it's supposed to make the code cleaner
@@ -59,6 +71,7 @@ class RegistrationController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if (error != nil) {
                 print("Other failure, user account couldn't be created")
+                print(error)
                 return
             }
             //otherwise, user is created
@@ -74,7 +87,7 @@ class RegistrationController: UIViewController {
 
     }
     
-    func switchToLoginScreen() {
+    @objc func switchToLoginScreen() {
         //@objc is somehow required when usimg #selector
         let loginController = LoginController()
         present(loginController, animated: true, completion: nil)
@@ -84,7 +97,7 @@ class RegistrationController: UIViewController {
     let nameTextField: UITextField = {
         let tf = UITextField()
         //tf.placeholder = "Name"
-        tf.attributedPlaceholder = NSAttributedString(string: "Emil", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.layer.borderColor = UIColor.white.cgColor
         tf.layer.borderWidth = 1
@@ -172,11 +185,13 @@ class RegistrationController: UIViewController {
         view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         view.addSubview(inputsContainerView)
         view.addSubview(loginRegisterButton)
+        view.addSubview(returnToLoginButton)
         //view.addSubview(backgroundImage)
         
         
         setupInputsContainerView()
         setupLoginRegisterButton()
+        setupReturnToLoginButton()
  
         //setupLabel()
     }
@@ -239,7 +254,12 @@ class RegistrationController: UIViewController {
         loginRegisterButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     
-
+    func setupReturnToLoginButton(){
+        returnToLoginButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
+        returnToLoginButton.topAnchor.constraint(equalTo: referralCodeTextField.bottomAnchor, constant: 70).isActive = true
+        returnToLoginButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        returnToLoginButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
     
     func setupLabel(){
         welcomeLabel.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
