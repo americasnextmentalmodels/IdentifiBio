@@ -125,7 +125,7 @@ class LoginController: UIViewController {
     let welcomeLabel: UILabel = {
         let welcome = UILabel()
         welcome.translatesAutoresizingMaskIntoConstraints = false
-        welcome.text = "Girl, Yudalicious."
+        welcome.text = "Welcome"
         welcome.textColor = UIColor.white
         welcome.font = UIFont(name: welcome.font.fontName, size: 40)
         welcome.textAlignment = .center
