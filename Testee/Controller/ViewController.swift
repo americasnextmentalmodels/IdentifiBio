@@ -20,18 +20,21 @@ class ViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        print("VC load")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
                                                            action: #selector(handleLogout))
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Menu", style: .plain, target: self,
                                                            action: #selector(handleMenu))
+        
+        // take this code out when signing in normally
+        handleLogout()
    
         
     }
     
     @objc func handleLogout() {
         let loginController = LoginController()
-        present(loginController, animated: true, completion: nil)
+        present(loginController, animated: false, completion: nil)
 //        let regController = RegistrationController();
 //        present(regController, animated: true, completion: nil)
     }
@@ -58,7 +61,10 @@ class ViewController: UITableViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
 //        Auth.auth().removeStateDidChangeListener(handle!)
+         print("view disappeared")
     }
+    
+    
 
 
 }

@@ -64,7 +64,10 @@ class LoginController: UIViewController {
     
     func switchToMainScreen() {
         let viewController = ViewController()
-        present(viewController, animated: true, completion: nil)
+        print("switching to main screen")
+        print(presentedViewController)
+        //present(viewController, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 
     let newAccountButton: UIButton = {

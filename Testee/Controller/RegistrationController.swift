@@ -100,8 +100,9 @@ class RegistrationController: UIViewController {
     
     @objc func switchToLoginScreen() {
         //@objc is somehow required when usimg #selector
-        let loginController = LoginController()
-        present(loginController, animated: true, completion: nil)
+        //let loginController = LoginController()
+        //present(loginController, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     
