@@ -57,15 +57,14 @@ class LoginController: UIViewController {
                 self.errorLabel.text = "ERROR: " + (error?.localizedDescription)!
                 return
             }
+            
             //Else login successful
             self.switchToMainScreen();
         }
     }
     
     func switchToMainScreen() {
-        let viewController = ViewController()
         print("switching to main screen")
-        print(presentedViewController)
         //present(viewController, animated: true, completion: nil)
         dismiss(animated: true, completion: nil)
     }
@@ -99,7 +98,10 @@ class LoginController: UIViewController {
         tf.setLeftPaddingPoints(20)
         tf.setRightPaddingPoints(20)
         tf.textColor = UIColor.white
-    
+        
+        //For testing purposes, remove for development build.
+        tf.text = "ndigeron@uci.edu"
+        
         //disable autocapitalization and autocorrect for this text field
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
@@ -121,6 +123,9 @@ class LoginController: UIViewController {
         tf.setLeftPaddingPoints(20)
         tf.setRightPaddingPoints(20)
         tf.textColor = UIColor.white
+        
+        //For testing purposes, remove for development build.
+        tf.text = "qqqqqq"
         
         return tf
     }()
@@ -210,9 +215,9 @@ class LoginController: UIViewController {
     
     func setupNewAccountButton() {
         newAccountButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
-        newAccountButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 70).isActive = true
+        newAccountButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 90).isActive = true
         newAccountButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        newAccountButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        newAccountButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     func setupLabel(){
