@@ -72,8 +72,9 @@ class RegistrationController: UIViewController {
     @objc func handleRegistration() {
         print("Attempting to handle registration")
         //the guard I don't this is required, but supposedly it's supposed to make the code cleaner
-        guard let email = nameTextField.text, let password = passwordTextField.text, let referralCode = referralCodeTextField.text else {
-            print("The fields are not present for some reason.");
+        guard let email = emailTextField.text, let password = passwordTextField.text, let referralCode = referralCodeTextField.text,
+        let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else {
+            print("PROBLEM (nick's): The fields are not present for some reason.");
             return //we can't do anything if this is true
         }
         
@@ -82,7 +83,6 @@ class RegistrationController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if (error != nil) {
                 print("Other failure, user account couldn't be created")
-                print(error)
                 return
             }
             //otherwise, user is created
@@ -90,9 +90,16 @@ class RegistrationController: UIViewController {
                 //adding our referral code / email into the Firebase database (see Firebase console)
                 var ref: DatabaseReference!
                 ref = Database.database().reference()
-                ref.child("users").child((user?.uid)!).setValue(["referralCode": referralCode, "email": email])
+            print("UID: " + (user?.uid)!)
+            ref.child("users").child((user?.uid)!).setValue(["referralCode": referralCode, "email": email, "firstName": firstName, "lastName": lastName],  withCompletionBlock: { (error, dbref) in
+                print("In completion block for registration controller")
+                if (error == nil) {
+                    self.switchToLoginScreen()
+                } else {
+                    print(error)
+                }
+            })
             
-                self.switchToLoginScreen()
             
         }
 
@@ -100,12 +107,51 @@ class RegistrationController: UIViewController {
     
     @objc func switchToLoginScreen() {
         //@objc is somehow required when usimg #selector
-        let loginController = LoginController()
-        present(loginController, animated: true, completion: nil)
+        //let loginController = LoginController()
+        //present(loginController, animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
+    let firstNameTextField: UITextField = {
+        let tf = UITextField()
+        //tf.placeholder = "Name"
+        tf.attributedPlaceholder = NSAttributedString(string: "First name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.layer.borderColor = UIColor.white.cgColor
+        tf.layer.borderWidth = 1
+        tf.layer.backgroundColor = UIColor.clear.cgColor
+        tf.frame.size.width = tf.intrinsicContentSize.width + 10
+        tf.setLeftPaddingPoints(20)
+        tf.setRightPaddingPoints(20)
+        tf.textColor = UIColor.white
+        
+        //disable autocapitalization and autocorrect for this text field
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        return tf
+    }()
     
-    let nameTextField: UITextField = {
+    let lastNameTextField: UITextField = {
+        let tf = UITextField()
+        //tf.placeholder = "Name"
+        tf.attributedPlaceholder = NSAttributedString(string: "Last name", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.layer.borderColor = UIColor.white.cgColor
+        tf.layer.borderWidth = 1
+        tf.layer.backgroundColor = UIColor.clear.cgColor
+        tf.frame.size.width = tf.intrinsicContentSize.width + 10
+        tf.setLeftPaddingPoints(20)
+        tf.setRightPaddingPoints(20)
+        tf.textColor = UIColor.white
+        
+        //disable autocapitalization and autocorrect for this text field
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        return tf
+    }()
+    
+    
+    let emailTextField: UITextField = {
         let tf = UITextField()
         //tf.placeholder = "Name"
         tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
@@ -217,23 +263,45 @@ class RegistrationController: UIViewController {
         //the view.centerXAnchor refers
         
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
-        inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -70).isActive = true
+        inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -10).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 400).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalToConstant: 600).isActive = true
         
-        inputsContainerView.addSubview(nameTextField)
+        inputsContainerView.addSubview(welcomeLabel)
+        welcomeLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        welcomeLabel.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 0).isActive = true
+        welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        welcomeLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        
+        inputsContainerView.addSubview(firstNameTextField)
         //inputsContainerView.addSubview(backgroundImage)
-        nameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        nameTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 150).isActive = true
-        nameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        nameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        firstNameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        firstNameTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 15).isActive = true
+        firstNameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        firstNameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
+        
+        
+        inputsContainerView.addSubview(lastNameTextField)
+        //inputsContainerView.addSubview(backgroundImage)
+        lastNameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 15).isActive = true
+        lastNameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        lastNameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
+        
+        inputsContainerView.addSubview(emailTextField)
+        //inputsContainerView.addSubview(backgroundImage)
+        emailTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        emailTextField.topAnchor.constraint(equalTo: lastNameTextField.bottomAnchor, constant: 15).isActive = true
+        emailTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        emailTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
         
         inputsContainerView.addSubview(passwordTextField)
         //inputsContainerView.addSubview(backgroundImage)
         passwordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        passwordTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 15).isActive = true
+        passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 15).isActive = true
         passwordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        passwordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
         
         
         inputsContainerView.addSubview(confirmPasswordTextField)
@@ -241,20 +309,15 @@ class RegistrationController: UIViewController {
         confirmPasswordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
         confirmPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 15).isActive = true
         confirmPasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        confirmPasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        confirmPasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
         
         inputsContainerView.addSubview(referralCodeTextField)
         referralCodeTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
         referralCodeTextField.topAnchor.constraint(equalTo: confirmPasswordTextField.bottomAnchor, constant: 15).isActive = true
         referralCodeTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        referralCodeTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        referralCodeTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
         
-        inputsContainerView.addSubview(welcomeLabel)
-        welcomeLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        welcomeLabel.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: -140).isActive = true
-        welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        welcomeLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
-        
+
     }
     
     func setupLoginRegisterButton(){
@@ -280,11 +343,12 @@ class RegistrationController: UIViewController {
     
     func setupLabel(){
         welcomeLabel.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
-        //        welcomeLabel.topAnchor.constraint(equalTo: nameTextField.topAnchor, constant: 15).isActive = true
+        //        welcomeLabel.topAnchor.constraint(equalTo: emailTextField.topAnchor, constant: 15).isActive = true
         //        welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         //        welcomeLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
     }
     override var preferredStatusBarStyle: UIStatusBarStyle{
+        //changes the UI bar in iOS to be light instead of dark
         return .lightContent
     }
 }
