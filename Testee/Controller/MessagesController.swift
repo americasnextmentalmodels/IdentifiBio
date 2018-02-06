@@ -14,7 +14,7 @@ import Firebase
 class MessagesController: UITableViewController {
     
     var handle: AuthStateDidChangeListenerHandle?
-    
+    let cellId = "cellIdMessages"
     
 
     override func viewDidLoad() {
@@ -29,10 +29,67 @@ class MessagesController: UITableViewController {
                                                            action: #selector(handleNewMessage))
         
 
-        
+        view.addSubview(chatTextField)
+        chatTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        chatTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 260).isActive = true
+        chatTextField.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
+        chatTextField.heightAnchor.constraint(equalToConstant: 30).isActive = true
     
+        tableView.separatorStyle = .none;
+        
         checkIfUserIsLoggedIn()
     }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 7
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //This function override is required to prevent a crash
+        //I'm not sure why it is needed, but I need to work on
+        //other things so I am moving on for now //^Nick
+        
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellId)
+        
+        //not sure how this line works, or really what it does
+        //but somehow it gets us a reference to a cell and
+        //we use that cell reference to modify our table //^Nick
+        print("tableView cell call")
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
+        cell.textLabel?.text = "Hello"
+        
+        return cell
+    }
+    
+    
+    
+    /////TEMP PLEASE DELETE////////////
+    
+    let chatTextField: UITextField = {
+        let tf = UITextField()
+        //tf.placeholder = "Name"
+        tf.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.layer.borderColor = UIColor.black.cgColor
+        tf.layer.borderWidth = 1
+        //tf.layer.backgroundColor = UIColor.clear.cgColor
+        tf.frame.size.width = tf.intrinsicContentSize.width + 10
+        tf.setLeftPaddingPoints(20)
+        tf.setRightPaddingPoints(20)
+        tf.textColor = UIColor.black
+        
+        //For testing purposes, remove for development build.
+        tf.text = "ndigeron@uci.edu"
+        
+        //disable autocapitalization and autocorrect for this text field
+        tf.autocapitalizationType = .none
+        tf.autocorrectionType = .no
+        
+        return tf
+    }()
+    
+    //////////
     
     @objc func handleNewMessage() {
         let newMessageController = NewMessageController()

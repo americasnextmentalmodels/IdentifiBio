@@ -19,8 +19,6 @@
 		6C484B5B201952A7009BF017 /* UI.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C484B5A201952A7009BF017 /* UI.storyboard */; };
 		6C9575582011906F000263E4 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9575572011906F000263E4 /* LoginController.swift */; };
 		6C9575622012DFD6000263E4 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9575612012DFD6000263E4 /* night.png */; };
-		6CCC59C4201FAB2600FE716A /* unCheckedBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CCC59C3201FAB2600FE716A /* unCheckedBox.png */; };
-		6CCC59C6201FABEF00FE716A /* checkBox.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CCC59C5201FABEF00FE716A /* checkBox.png */; };
 		6CCC59C8201FACBA00FE716A /* checkBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC59C7201FACBA00FE716A /* checkBox.swift */; };
 		6CEA19672008480F0072E501 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA19662008480F0072E501 /* AppDelegate.swift */; };
 		6CEA19692008480F0072E501 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA19682008480F0072E501 /* MessagesController.swift */; };
@@ -65,8 +63,6 @@
 		6C9575572011906F000263E4 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		6C9575612012DFD6000263E4 /* night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = night.png; sourceTree = SOURCE_ROOT; };
 		6CBA0446201FB6B700456C7D /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
-		6CCC59C3201FAB2600FE716A /* unCheckedBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = unCheckedBox.png; path = ../../../../Downloads/unCheckedBox.png; sourceTree = "<group>"; };
-		6CCC59C5201FABEF00FE716A /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = checkBox.png; path = ../../../../Downloads/checkBox.png; sourceTree = "<group>"; };
 		6CCC59C7201FACBA00FE716A /* checkBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkBox.swift; sourceTree = "<group>"; };
 		6CEA19632008480F0072E501 /* Testee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEA19662008480F0072E501 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -137,8 +133,6 @@
 		6C9575562011902F000263E4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6CCC59C5201FABEF00FE716A /* checkBox.png */,
-				6CCC59C3201FAB2600FE716A /* unCheckedBox.png */,
 				6C9575612012DFD6000263E4 /* night.png */,
 				6C9575572011906F000263E4 /* LoginController.swift */,
 				6C3EE6A6201419FA00943AE2 /* RegistrationController.swift */,
@@ -340,8 +334,6 @@
 				6C484B5B201952A7009BF017 /* UI.storyboard in Resources */,
 				6C1A8CEF202536A5004E58BA /* Assets.xcassets in Resources */,
 				6C9575622012DFD6000263E4 /* night.png in Resources */,
-				6CCC59C4201FAB2600FE716A /* unCheckedBox.png in Resources */,
-				6CCC59C6201FABEF00FE716A /* checkBox.png in Resources */,
 				6CEA196C2008480F0072E501 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
