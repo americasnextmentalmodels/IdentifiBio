@@ -23,11 +23,10 @@ class MessagesController: UITableViewController {
         print("VC load")
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
                                                            action: #selector(handleLogout))
-        //This is still broken and needs to be fixed.
-        let image = UIImage(named: "newMessageIcon")
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self,
+       
+        //This is still broken and needs to be fixed with an image added
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "New Message", style: .plain, target: self,
                                                            action: #selector(handleNewMessage))
-        navigationItem.leftBarButtonItem?.tintColor = UIColor.red
         
 
         

@@ -83,7 +83,6 @@ class RegistrationController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if (error != nil) {
                 print("Other failure, user account couldn't be created")
-                print(error!)
                 return
             }
             //otherwise, user is created
@@ -91,9 +90,16 @@ class RegistrationController: UIViewController {
                 //adding our referral code / email into the Firebase database (see Firebase console)
                 var ref: DatabaseReference!
                 ref = Database.database().reference()
-            ref.child("users").child((user?.uid)!).setValue(["referralCode": referralCode, "email": email, "firstName": firstName, "lastName": lastName])
+            print("UID: " + (user?.uid)!)
+            ref.child("users").child((user?.uid)!).setValue(["referralCode": referralCode, "email": email, "firstName": firstName, "lastName": lastName],  withCompletionBlock: { (error, dbref) in
+                print("In completion block for registration controller")
+                if (error == nil) {
+                    self.switchToLoginScreen()
+                } else {
+                    print(error)
+                }
+            })
             
-                self.switchToLoginScreen()
             
         }
 
