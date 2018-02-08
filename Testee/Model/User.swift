@@ -13,4 +13,5 @@ class User: NSObject {
     var lastName: String?
     var email: String?
     var referralCode: String?
+    var uid: String?
 }

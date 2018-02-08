@@ -14,7 +14,6 @@ class NewMessageController: UITableViewController {
     let cellId = "cellId"
     var users = [User]() //I think let is immutable //^Nick
     var currentUser = User();
-    var tableRowSize = 0;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +22,28 @@ class NewMessageController: UITableViewController {
         
         //Hiding the default separators between table cells //^Nick
         tableView.separatorStyle = .none;
-
-        fetchUsers()
-        
+        intializeData()
+    }
+    
+    func intializeData() {
+        Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
+            // Get user value
+            let value = snapshot.value as? NSDictionary
+            self.currentUser.firstName = value?["firstName"] as? String ?? ""
+            self.currentUser.lastName = value?["lastName"] as? String ?? ""
+            self.currentUser.referralCode = value?["referralCode"] as? String ?? ""
+            self.currentUser.uid = snapshot.key
+            
+            print("snap key in intialize")
+            print(snapshot.key)
+            
+            //Now we can begin to do the things we need to do
+            //since our data is safely loaded into the variables
+            self.fetchUsers()
+            // ...
+        }) { (error) in
+            print(error.localizedDescription)
+        }
     }
     
 
@@ -44,14 +62,8 @@ class NewMessageController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let user = users[indexPath.row]
         
-        if (currentUser.referralCode == user.referralCode && currentUser != user) {
-            //we only want to add new cells that have
-            //a matching referral code, also people
-            //cannot message themselves that's the
-            //other condition in the if statement
-            print(">>>>>>>>>>>>ref code match!!" + String(indexPath.row))
-            cell.textLabel?.text = user.firstName
-        }
+        cell.textLabel?.text = user.firstName
+
         
 
         return cell
@@ -59,7 +71,7 @@ class NewMessageController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         //since a user cannot start a message thread with themself
-        return tableRowSize
+        return users.count
     }
 
     func fetchUsers() {
@@ -78,6 +90,8 @@ class NewMessageController: UITableViewController {
 
         }
         
+
+        
         Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
             print(snapshot)
 
@@ -89,27 +103,22 @@ class NewMessageController: UITableViewController {
             //in the snapshot. Maybe it's because of the "in" earlier
             //^Nick
             
+            print(">>>REFERRAL CODE")
+            print(snapshot.key)
             
-            let user = User()
-            user.firstName = dictionary["firstName"]
-            user.lastName = dictionary["lastName"]
-            user.email = dictionary["email"]
-            user.referralCode = dictionary["referralCode"]
-            self.users.append(user)
-            
-            if (snapshot.key == Auth.auth().currentUser?.uid) {
-                self.currentUser = user;
+            if (self.currentUser.referralCode == dictionary["referralCode"] && self.currentUser.uid != snapshot.key) {
+                print("-->adding a matching user")
+                let user = User()
+                user.firstName = dictionary["firstName"]
+                user.lastName = dictionary["lastName"]
+                user.email = dictionary["email"]
+                user.referralCode = dictionary["referralCode"]
+                self.users.append(user)
             }
             
-            self.tableRowSize += 1
-            
             self.tableView.reloadData()
-            
-            
-            print("The users: " )
+
             print(self.users)
-            print(self.currentUser)
-            
             
         }, withCancel: { (err) in
             print("Inside withCancel error handler: ")
