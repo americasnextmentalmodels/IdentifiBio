@@ -82,8 +82,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate{
     }
     
     
-    @objc func handleSend(){
-            if (Auth.auth().currentUser?.uid != nil) {
+    @objc func handleSend() {
                 let ref = Database.database().reference().child("messages")
                 let childRef = ref.childByAutoId()
                 let toId = user!.uid!
@@ -95,11 +94,17 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate{
                 //^Nick
                 let timestamp: Int = Int(Date().timeIntervalSince1970)
                 let values = ["text": inputTextField.text!, "toId": toId, "fromId": fromId, "timestamp": timestamp] as [String : Any]
-                childRef.updateChildValues(values)
-            } else {
-                print(">>>>ERROR: Message did not send")
+        childRef.updateChildValues(values) { (error, ref) in
+            if error != nil {
+                print(error)
+                return
             }
+            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId)
+            let messageId = childRef.key
+            userMessagesRef.updateChildValues([messageId: 1])
         }
+            }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         handleSend()

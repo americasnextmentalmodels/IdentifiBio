@@ -30,14 +30,14 @@ class MessagesController: UITableViewController {
         tableView.separatorStyle = .none;
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
 
-        Auth.auth().addStateDidChangeListener { (auth, user) in
-            if (user?.uid != nil) {
-                self.observeMessages()
-            }
-        }
-        
+        checkIfUserIsLoggedIn()
     
         
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print("cleaning up the existing Auth handle...")
+        Auth.auth().removeStateDidChangeListener(handle!)
     }
     
     func observeMessages() {
@@ -203,28 +203,19 @@ class MessagesController: UITableViewController {
         self.navigationController?.pushViewController(chatLogController, animated: true)
     }
     
-    func checkIfUserIsLoggedIn() -> Bool {
+    func checkIfUserIsLoggedIn() {
         //I didn't follow the tutorial for this exactly
         //Since I think Firebase has changed since then ^Nick
         
-        if Auth.auth().currentUser?.uid == nil {
-            print(">>>>>ERROR USER NOT SIGNED IN")
-            perform(#selector(handleLogout), with: nil, afterDelay: 0)
-            return false
-        } else {
-            print("+++++OK USER IS SIGNED IN")
-            Database.database().reference().child("users").child((Auth.auth().currentUser?.uid)!).observeSingleEvent(of: .value, with: { (snapshot) in
-            
-                let value = snapshot.value as? NSDictionary
-                let username = value?["firstName"] as? String ?? "" //?? "" means if nil default the variable to ""
-                
-                print("username: " + username)
-                
-            }) { (error) in
-                print("There was some error and the data you are attempting to access could not be read.")
-                print(error.localizedDescription)
+        handle = Auth.auth().addStateDidChangeListener { (auth, user) in
+            if (user?.uid != nil) {
+                print("+++++OK USER IS SIGNED IN")
+                self.observeMessages()
+
+            } else {
+                print(">>>>>ERROR USER NOT SIGNED IN")
+                self.perform(#selector(self.handleLogout), with: nil, afterDelay: 0)
             }
-            return true
         }
     }
     
@@ -238,6 +229,7 @@ class MessagesController: UITableViewController {
         }
         
         let loginController = LoginController();
+        dismiss(animated: true, completion: nil)
         present(loginController, animated: true, completion: nil)
     }
     
