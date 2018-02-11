@@ -70,7 +70,7 @@ class RegistrationController: UIViewController {
     
     
     @objc func handleRegistration() {
-        print("Attempting to handle registration")
+        //print("Attempting to handle registration")
         //the guard I don't this is required, but supposedly it's supposed to make the code cleaner
         guard let email = emailTextField.text, let password = passwordTextField.text, let referralCode = referralCodeTextField.text,
         let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else {
@@ -78,8 +78,8 @@ class RegistrationController: UIViewController {
             return //we can't do anything if this is true
         }
         
-        print(email)
-        print(password)
+//        print(email)
+//        print(password)
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if (error != nil) {
                 print("Other failure, user account couldn't be created")
