@@ -14,4 +14,14 @@ class User: NSObject {
     var email: String?
     var referralCode: String?
     var uid: String?
+    
+    
+    init(dictionary: [String: AnyObject]){
+        self.uid = dictionary["uid"] as? String
+        self.firstName = dictionary["firstname"] as? String
+        self.lastName = dictionary["lastName"] as? String
+        self.referralCode = dictionary["referralCode"] as? String
+        self.email = dictionary["email"] as? String
+        
+    }
 }

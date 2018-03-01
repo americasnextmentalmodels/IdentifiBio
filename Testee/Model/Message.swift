@@ -7,10 +7,27 @@
 //
 
 import UIKit
+import Firebase
 
 class Message: NSObject {
     var fromId: String?
     var toId: String?
     var timestamp: NSNumber?
     var text: String?
+    var referralCode: String?
+    
+    init(dictionary: [String: Any]) {
+        self.fromId = dictionary["fromId"] as? String
+        self.text = dictionary["text"] as? String
+        self.toId = dictionary["toId"] as? String
+        self.timestamp = dictionary["timestamp"] as? NSNumber
+        self.referralCode = dictionary["referralCode"] as? String 
+    }
+    
+    func chatPartnerId() -> String? {
+//        print("toId: " + toId!)
+//        print("fromId: " + fromId!)
+//        print("uid: " + (Auth.auth().currentUser?.uid)!)
+        return fromId == Auth.auth().currentUser?.uid ? toId : fromId
+    }
 }
