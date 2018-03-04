@@ -47,10 +47,39 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         //collectionView?.reloadData()
         setupInputComponents()
 
-
+        setupKeyBoardObservers()
     }
     
+    func setupKeyBoardObservers(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func handleKeyboardWillShow(notification: Notification){
+        let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+        
+        containerViewBottomAnchor?.constant = -keyboardFrame!.height
+        UIView.animate(withDuration: keyboardDuration!, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    @objc func handleKeyboardWillHide(_ notification: Notification) {
+        let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
+        
+        containerViewBottomAnchor?.constant = 0
+        UIView.animate(withDuration: keyboardDuration!, animations: {
+            self.view.layoutIfNeeded()
+        })
+    }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return messages.count
@@ -62,15 +91,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let message = messages[indexPath.item]
         cell.textView.text = message.text
         
-        if message.fromId == Auth.auth().currentUser?.uid {
-            cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
-        }
-        else{
-            cell.bubbleView.backgroundColor = UIColor.gray
-        }
+        setUpCell(cell: cell, message: message)
         
         cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.text!).width + 32
-
 
 
         return cell
@@ -78,17 +101,38 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     private func setUpCell(cell: ChatMessageCell, message: Message){
         if message.fromId == Auth.auth().currentUser?.uid {
+            //The message is from us
+            //anchor this to the right
+            
             cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
             cell.textView.textColor = UIColor.white
+            cell.bubbleViewRightAnchor?.isActive = true
+            cell.bubbleViewLeftAnchor?.isActive = false
         }
         else{
-            // gray
-            cell.bubbleView.backgroundColor = UIColor(r: 240, g: 240, b: 240)
-            cell.textView.textColor = UIColor.black
+            //The message is from the person chatting with us
+            //anchor this to the left
             
+            cell.bubbleView.backgroundColor = ChatMessageCell.grayColor
+            cell.textView.textColor = UIColor.black
             cell.bubbleViewRightAnchor?.isActive = false
             cell.bubbleViewLeftAnchor?.isActive = true
+
         }
+        
+        
+//        if message.fromId == message.chatPartnerId() {
+//            cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
+//            cell.textView.textColor = UIColor.white
+//        }
+//        else{
+//            // gray
+//            cell.bubbleView.backgroundColor = ChatMessageCell.grayColor
+//            cell.textView.textColor = UIColor.black
+//
+//            cell.bubbleViewRightAnchor?.isActive = false
+//            cell.bubbleViewLeftAnchor?.isActive = true
+//        }
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator){
@@ -135,7 +179,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             let messageId = snapshot.key
             let messagesRef = Database.database().reference().child("messages").child(messageId)
             messagesRef.observeSingleEvent(of: .value, with: {(snapshot) in
-                print("attempting to observe all messages")
+                //print("attempting to observe all messages")
                 
                 guard let dictionary = snapshot.value as? [String: AnyObject] else{
                     return
@@ -148,8 +192,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 
                 if message.chatPartnerId() == self.user?.uid {
                     self.messages.append(message)
-                    print("message array: ")
-                    print(self.messages)
+//                    print("message array: ")
+//                    print(self.messages)
                     DispatchQueue.main.async(execute: {
                         self.collectionView?.reloadData()
                     })
@@ -179,6 +223,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             }, withCancel: nil)
     }
     
+    var containerViewBottomAnchor: NSLayoutConstraint?
+    
+    
+    
     func setupInputComponents(){
         let containerView = UIView()
         containerView.backgroundColor = UIColor.white
@@ -187,7 +235,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         view.addSubview(containerView)
         
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        containerViewBottomAnchor = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        containerViewBottomAnchor?.isActive = true
+        
+        
         containerView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
