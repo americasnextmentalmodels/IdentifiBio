@@ -6,31 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/MessagesController.swift"
-            timestampString = "541837933.8983409"
+            timestampString = "541917466.711019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
-            landmarkName = "observeUserMessages()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Testee/Controller/MessagesController.swift"
-            timestampString = "541837933.899578"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "69"
-            endingLineNumber = "69"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
             landmarkName = "observeUserMessages()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/MessagesController.swift"
-            timestampString = "541837933.9004411"
+            timestampString = "541917466.7116081"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "observeUserMessages()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,45 +42,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/MessagesController.swift"
-            timestampString = "541837933.901845"
+            timestampString = "541917466.712097"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "observeUserMessages()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Testee.MessagesController.observeUserMessages() -&gt; ()"
-                  moduleName = "Testee"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mentalmodelstwo/Desktop/Testee/Testee/Controller/MessagesController.swift"
-                  timestampString = "541805386.3262399"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "57"
-                  endingLineNumber = "57"
-                  offsetFromSymbolStart = "435">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in Testee.MessagesController.observeUserMessages() -&gt; ()"
-                  moduleName = "Testee"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mentalmodelstwo/Desktop/Testee/Testee/Controller/MessagesController.swift"
-                  timestampString = "541805386.328766"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "31">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -106,45 +58,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/MessagesController.swift"
-            timestampString = "541837933.902836"
+            timestampString = "541917466.712541"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "observeUserMessages()"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
+            landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in Testee.MessagesController.observeUserMessages() -&gt; ()"
-                  moduleName = "Testee"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mentalmodelstwo/Desktop/Testee/Testee/Controller/MessagesController.swift"
-                  timestampString = "541837285.559356"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "113"
-                  endingLineNumber = "113"
-                  offsetFromSymbolStart = "1551">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 () -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in closure #1 (__ObjC.DataSnapshot) -&gt; () in Testee.MessagesController.observeUserMessages() -&gt; ()"
-                  moduleName = "Testee"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mentalmodelstwo/Desktop/Testee/Testee/Controller/MessagesController.swift"
-                  timestampString = "541837285.570123"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "114"
-                  endingLineNumber = "114"
-                  offsetFromSymbolStart = "36">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Testee/Controller/MessagesController.swift"
+            timestampString = "541917466.7129461"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "292"
+            endingLineNumber = "292"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

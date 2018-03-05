@@ -20,9 +20,8 @@ class MessagesController: UITableViewController {
     var handle: AuthStateDidChangeListenerHandle?
     let cellId = "cellIdMessages"
     var messages = [Message]()
-    var users = [User]()
     var messagesDictionary = [String: Message?]()
-    var recentMessageCells = [RecentMessageCell]()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,7 +38,20 @@ class MessagesController: UITableViewController {
 
         checkIfUserIsLoggedIn()
      
+        print("---------------->>>>>>>>>>>>> VIEW DID LOAD CALLED")
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        messages.removeAll()
+        messagesDictionary.removeAll()
+        
+    
+        tableView.separatorStyle = .none;
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+
+    
+        checkIfUserIsLoggedIn()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -59,12 +71,17 @@ class MessagesController: UITableViewController {
 
             let currentUserReferralCode = snapshot.value as! String
             Database.database().reference().child("user-referral-codes").child(currentUserReferralCode).observeSingleEvent(of: .value, with: { (snapshot) in
+                //var potentialChatPartnersDictionary = [String: AnyObject]()
+                
                 if var potentialChatPartnersDictionary = snapshot.value as? [String :  AnyObject] {
                     //TODO: Fix!! Temp fix to fix the issue when there are no messages and nothing is display
                     //^Nick
-                    
+
                     self.messages.removeAll() //this is a temp fix
+                    print("current uid: " + uid)
                     potentialChatPartnersDictionary.removeValue(forKey: uid)
+                    print("potential chat part dict: ", terminator: "")
+                    print(potentialChatPartnersDictionary)
                     for kv in potentialChatPartnersDictionary {
                         print("KV RES:")
                         print(kv.key)
@@ -80,8 +97,8 @@ class MessagesController: UITableViewController {
                             //but the handler is never called if a user has not sent a single message
                             //so there for no data will be displayed
                             //needs to be fixed --Nick
-                            //                        self.messages.append(Message(dictionary: ["toId": kv.key, "fromId": uid, "timestamp": -100, "text": "-", "referralCode": -100]))
-                            //                        self.tableView.reloadData()
+                                                    self.messages.append(Message(dictionary: ["toId": kv.key, "fromId": uid, "timestamp": -100, "text": "-", "referralCode": -100]))
+                                                    self.tableView.reloadData()
                             //////Delete the above code eventually, it's a temp fix. //^Nick
 
                         }
@@ -110,6 +127,7 @@ class MessagesController: UITableViewController {
                                     print(">>>>nil problem")
                                 }
                                 //
+                            
                                 
                                 DispatchQueue.main.async (execute: {
                                     var messagesDictionaryCopy = self.messagesDictionary
@@ -123,15 +141,15 @@ class MessagesController: UITableViewController {
                                         self.messages.append((result?.value)!)
                                         } else {
                                             //print("A nil was found")
+                                        print("result.key (should be the potential chat partner, not a duplicate: ")
+                                        print(result?.key)
                                         self.messages.append(Message(dictionary: ["toId": result?.key, "fromId": uid, "timestamp": -100, "text": "---", "referralCode": -100]))
-                                        
-                                        
-                                        
+
                                         }
                                         
                                     }
                                     self.tableView.reloadData()
-                                })
+                               })
                                 
                             }
                             
@@ -233,19 +251,35 @@ class MessagesController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        //bug is probably not here since multiple IDs appear
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let message = messages[indexPath.row]
-
+        
+        print("messages array:")
+        for message in messages {
+            print("-------Message--------")
+            print("fromId: " + message.fromId!)
+            print("toId: " + message.toId!)
+            print("text: " + message.text!)
+            //print("timestamp: " + String(message.timestamp))
+            print("----------------------")
+        }
+        
         if let chatPartnerId = message.chatPartnerId() {
             let ref = Database.database().reference().child("users").child(chatPartnerId)
             ref.observeSingleEvent(of: .value, with: ({ (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject] {
+                    print("first name is: " + (dictionary["firstName"] as? String)!)
                     cell.textLabel?.text = dictionary["firstName"] as? String
                     cell.detailTextLabel?.text = message.text
                 }
             }))
         }
         
+        
+
+        //print("cell details: " + (cell.textLabel?.text)! + " Subtitle: " + (cell.detailTextLabel?.text)!)
+    
         return cell
     }
     
@@ -253,15 +287,8 @@ class MessagesController: UITableViewController {
         //        method handles a table view row is clicked
         //        using IndexPath instead of NSIndexPath used in video
         //        otherwise the override will fail //^Nick
-        for message in self.messages {
-                                                        print("-------Message--------")
-                                                        print("fromId: " + message.fromId!)
-                                                        print("toId: " + message.toId!)
-                                                        print("text: " + message.text!)
-                                                        //print("timestamp: " + String(message.timestamp))
-                                                        print("----------------------")
-        }
 
+        
         
         if let userToMessageID = messages[indexPath.row].chatPartnerId() {
             Database.database().reference().child("users").child(userToMessageID).observeSingleEvent(of: .value, with: { (snapshot) in
