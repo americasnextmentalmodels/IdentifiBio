@@ -99,6 +99,7 @@ class RegistrationController: UIViewController {
                     print(error)
                 }
             })
+            ref.child("user-referral-codes").child(referralCode).updateChildValues([user!.uid: 1])
             
             
         }

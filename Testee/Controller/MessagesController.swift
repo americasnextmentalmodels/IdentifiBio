@@ -38,15 +38,15 @@ class MessagesController: UITableViewController {
 
         checkIfUserIsLoggedIn()
      
-        print("---------------->>>>>>>>>>>>> VIEW DID LOAD CALLED")
+        //print("---------------->>>>>>>>>>>>> VIEW DID LOAD CALLED")
         
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //reset the variables since the same view is left open
         messages.removeAll()
         messagesDictionary.removeAll()
-        
-    
+
         tableView.separatorStyle = .none;
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
 
@@ -55,7 +55,7 @@ class MessagesController: UITableViewController {
     }
     
     override func viewDidDisappear(_ animated: Bool) {
-        ////print("cleaning up the existing Auth handle...")
+        //////print("cleaning up the existing Auth handle...")
         //Auth.auth().removeStateDidChangeListener(handle!)
     }
 
@@ -63,7 +63,7 @@ class MessagesController: UITableViewController {
     func observeUserMessages() {
         self.messagesDictionary.removeAll()
         guard let uid = Auth.auth().currentUser?.uid else {
-            print("")
+            //print("")
             return
         }
 
@@ -78,13 +78,13 @@ class MessagesController: UITableViewController {
                     //^Nick
 
                     self.messages.removeAll() //this is a temp fix
-                    print("current uid: " + uid)
+                    //print("current uid: " + uid)
                     potentialChatPartnersDictionary.removeValue(forKey: uid)
-                    print("potential chat part dict: ", terminator: "")
-                    print(potentialChatPartnersDictionary)
+                    //print("potential chat part dict: ", terminator: "")
+                    //print(potentialChatPartnersDictionary)
                     for kv in potentialChatPartnersDictionary {
-                        print("KV RES:")
-                        print(kv.key)
+                        //print("KV RES:")
+                        //print(kv.key)
                         if kv.key != Auth.auth().currentUser?.uid {
                             //hack to allow adding nil values
                             let v : Message? = nil
@@ -98,19 +98,22 @@ class MessagesController: UITableViewController {
                             //so there for no data will be displayed
                             //needs to be fixed --Nick
                                                     self.messages.append(Message(dictionary: ["toId": kv.key, "fromId": uid, "timestamp": -100, "text": "-", "referralCode": -100]))
-                                                    self.tableView.reloadData()
+                            self.tableView.reloadData()
                             //////Delete the above code eventually, it's a temp fix. //^Nick
 
                         }
                     }
                     
+                    
+                    
                     let ref = Database.database().reference().child("user-messages").child(uid)
                     //let ref = Database.database().reference().child("users").child(uid)
+
                     ref.observe(.childAdded, with: {(snapshot) in
                         
                         
                         let messageId = snapshot.key
-                        ////print("messageId: " + messageId)
+                        //////print("messageId: " + messageId)
                         let messagesReference = Database.database().reference().child("messages").child(messageId)
 
                         messagesReference.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -119,12 +122,12 @@ class MessagesController: UITableViewController {
                             
                             if let dictionary = snapshot.value as? [String : AnyObject] {
                                 let message = Message(dictionary: dictionary)
-                                ////print("Text: '" + message.text! + "' ID of message: " + snapshot.key)
+                                //////print("Text: '" + message.text! + "' ID of message: " + snapshot.key)
                                 
                                 if let chatPartnerId = message.chatPartnerId() {
                                     self.messagesDictionary[chatPartnerId] = message
                                 } else {
-                                    print(">>>>nil problem")
+                                    //print(">>>>nil problem")
                                 }
                                 //
                             
@@ -132,34 +135,34 @@ class MessagesController: UITableViewController {
                                 DispatchQueue.main.async (execute: {
                                     var messagesDictionaryCopy = self.messagesDictionary
                                     self.messages.removeAll()
-                                    print("dict: ", terminator: "")
-                                    print(messagesDictionaryCopy)
+                                    //print("dict: ", terminator: "")
+                                    //print(messagesDictionaryCopy)
                                     while (messagesDictionaryCopy.count >= 1) {
                                         let result = messagesDictionaryCopy.popFirst()
                                     
                                        if result?.value != nil {
                                         self.messages.append((result?.value)!)
                                         } else {
-                                            //print("A nil was found")
-                                        print("result.key (should be the potential chat partner, not a duplicate: ")
-                                        print(result?.key)
+                                            ////print("A nil was found")
+                                        //print("result.key (should be the potential chat partner, not a duplicate: ")
+                                        //print(result?.key)
                                         self.messages.append(Message(dictionary: ["toId": result?.key, "fromId": uid, "timestamp": -100, "text": "---", "referralCode": -100]))
-
                                         }
                                         
                                     }
-                                    self.tableView.reloadData()
+                                                                          self.tableView.reloadData()
                                })
                                 
                             }
                             
                         }, withCancel: nil)
-                        ////print("Messages array:")
-                        ////print(self.messages)
+
+                        //////print("Messages array:")
+                        //////print(self.messages)
                     }, withCancel: nil)
                     
                     /////////////////////
-                    //print("obtained chat partner dictionary")
+                    ////print("obtained chat partner dictionary")
                     
                 }
                 
@@ -194,12 +197,12 @@ class MessagesController: UITableViewController {
     
     
     @objc func handleLogout() {
-        ////print("!!!!!!!!HANDLE LOGOUT CALLED")
+        //////print("!!!!!!!!HANDLE LOGOUT CALLED")
         do {
             try Auth.auth().signOut()
-            print("Sign out probably OK")
+            //print("Sign out probably OK")
         } catch let logoutError {
-            print(logoutError)
+            //print(logoutError)
         }
         
         
@@ -210,7 +213,7 @@ class MessagesController: UITableViewController {
         
         
 //        dismiss(animated: true, completion: {
-//            //print("attempt dismissal")
+//            ////print("attempt dismissal")
 //           //present(loginController, animated: true, completion: nil)
 //        })
     }
@@ -227,7 +230,7 @@ class MessagesController: UITableViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         //        Auth.auth().removeStateDidChangeListener(handle!)
-        ////print("view disappeared")
+        //////print("view disappeared")
     }
     
     class UserCell: UITableViewCell {
@@ -255,21 +258,21 @@ class MessagesController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath)
         let message = messages[indexPath.row]
         
-        print("messages array:")
+        //print("messages array:")
         for message in messages {
-            print("-------Message--------")
-            print("fromId: " + message.fromId!)
-            print("toId: " + message.toId!)
-            print("text: " + message.text!)
-            //print("timestamp: " + String(message.timestamp))
-            print("----------------------")
+            //print("-------Message--------")
+            //print("fromId: " + message.fromId!)
+            //print("toId: " + message.toId!)
+            //print("text: " + message.text!)
+            ////print("timestamp: " + String(message.timestamp))
+            //print("----------------------")
         }
         
         if let chatPartnerId = message.chatPartnerId() {
             let ref = Database.database().reference().child("users").child(chatPartnerId)
             ref.observeSingleEvent(of: .value, with: ({ (snapshot) in
                 if let dictionary = snapshot.value as? [String: AnyObject] {
-                    print("first name is: " + (dictionary["firstName"] as? String)!)
+                    //print("first name is: " + (dictionary["firstName"] as? String)!)
                     cell.textLabel?.text = dictionary["firstName"] as? String
                     cell.detailTextLabel?.text = message.text
                 }
@@ -278,18 +281,19 @@ class MessagesController: UITableViewController {
         
         
 
-        //print("cell details: " + (cell.textLabel?.text)! + " Subtitle: " + (cell.detailTextLabel?.text)!)
+        ////print("cell details: " + (cell.textLabel?.text)! + " Subtitle: " + (cell.detailTextLabel?.text)!)
     
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //        method handles a table view row is clicked
         //        using IndexPath instead of NSIndexPath used in video
         //        otherwise the override will fail //^Nick
-
         
-        
+        //TODO: Fix mutliple row crash selection.
+        //print("The index path")
+        //print(indexPath.row)
         if let userToMessageID = messages[indexPath.row].chatPartnerId() {
             Database.database().reference().child("users").child(userToMessageID).observeSingleEvent(of: .value, with: { (snapshot) in
                 
@@ -309,7 +313,7 @@ class MessagesController: UITableViewController {
                 //JSON in users since that refers to the user ID
                 user.uid = snapshot.key
                 //}
-                
+
                 self.showChatControllerForUser(user: user)
                 
             })
@@ -418,7 +422,7 @@ class MessagesController: UITableViewController {
 
 //        let message = Message()
 //        ref.observe(.childAdded, with: { (snapshot) in
-//        ////print(snapshot)
+//        //////print(snapshot)
 //        let dictionary = snapshot.value as? [String : String] ?? [:]
 //        message.fromId = dictionary[]
 //        message.toId = ""
@@ -427,7 +431,7 @@ class MessagesController: UITableViewController {
 
 //            if let dictionary = snapshot.value as? [String: AnyObject] ?? [:] {
 //                let message = Message()
-//                ////print(dictionary)
+//                //////print(dictionary)
 //
 //                //The tutorial wants to use this
 //                //but it causes a crash because
@@ -448,8 +452,8 @@ class MessagesController: UITableViewController {
 ////                message.text = dictionary["text"]
 //
 //                self.messages.append(message)
-//                ////print("In observe messages")
-//                ////print(self.messages)
+//                //////print("In observe messages")
+//                //////print(self.messages)
 //                self.tableView.reloadData()
 //            }
 
@@ -473,7 +477,7 @@ class MessagesController: UITableViewController {
 
 
 //    func getUserId() {
-//        ////print("current auth")
+//        //////print("current auth")
 //
 //        if (Auth.auth().currentUser?.uid == nil) {
 //            //Check if our currentUser is not uid is not yet available if
@@ -482,10 +486,10 @@ class MessagesController: UITableViewController {
 //            handle = Auth.auth().addStateDidChangeListener { (auth, user) in
 //                //this is in the   the ID takes time to be assigned
 //                if (user?.uid == nil) {
-//                    ////print("userID null failure")
+//                    //////print("userID null failure")
 //                    return;
 //                } else {
-//                    ////print("USER ID OK")
+//                    //////print("USER ID OK")
 //                    self.currentUser.uid = (user?.uid)!
 //                }
 //                self.getCurrentUser()
@@ -510,10 +514,10 @@ class MessagesController: UITableViewController {
 //                self.fetchUsers()
 //                // ...
 //            }) { (error) in
-//                ////print(error.localizedDescription)
+//                //////print(error.localizedDescription)
 //            }
 //        } else {
-//            ////print(">>>>>>There was a failure to obtain the currentUser")
+//            //////print(">>>>>>There was a failure to obtain the currentUser")
 //        }
 //    }
 
@@ -521,7 +525,7 @@ class MessagesController: UITableViewController {
 //        users.removeAll()
 //
 //        Database.database().reference().child("users").observe(.childAdded, with: { (snapshot) in
-//            ////print(snapshot)
+//            //////print(snapshot)
 //
 //
 //            let dictionary = snapshot.value as? [String : String] ?? [:]
@@ -533,7 +537,7 @@ class MessagesController: UITableViewController {
 //
 //
 //            if (self.currentUser.referralCode == dictionary["referralCode"] && self.currentUser.uid != snapshot.key) {
-//                ////print("-->adding a matching user")
+//                //////print("-->adding a matching user")
 //                let user = User()
 //                //I do this a little different from this video
 //                //because this is a little more clear
@@ -548,15 +552,15 @@ class MessagesController: UITableViewController {
 //
 //            self.tableView.reloadData()
 //
-//            ////print(">>>>>>>>>>users array:")
-//            ////print(self.users)
+//            //////print(">>>>>>>>>>users array:")
+//            //////print(self.users)
 //
 //
 //
 //
 //        }, withCancel: { (err) in
-//            ////print("Inside withCancel error handler: ")
-//            ////print(err);
+//            //////print("Inside withCancel error handler: ")
+//            //////print(err);
 //        })
 //
 //
@@ -565,7 +569,7 @@ class MessagesController: UITableViewController {
 
 //    func getMessageableUsers() {
 //        guard let uid = Auth.auth().currentUser?.uid else {
-//            ////print("user id not available")
+//            //////print("user id not available")
 //            return
 //        }
 //        var allUsersReference = Database.database().reference().child("users")
@@ -578,21 +582,21 @@ class MessagesController: UITableViewController {
 //
 //
 //                                    //userMessageIDList.append(snapshot.key)
-//                                    //////print(userMessageIDList)
+//                                    ////////print(userMessageIDList)
 //                                Database.database().reference().child("messages").child(snapshot.key).observeSingleEvent(of: .childAdded, with: { (subtitle) in
-//                                    ////print("Subtitle")
-//                                    ////print(subtitle)
+//                                    //////print("Subtitle")
+//                                    //////print(subtitle)
 //                                    if let littleDict = subtitle.value as? [String: AnyObject] {
 //                                        Database.database().reference().child("users").child(uid).child("referralCode").observeSingleEvent(of: .value, with: { (snapshot) in
-//                                        ////print("Refcode: ")
-//                                        ////print(snapshot)
+//                                        //////print("Refcode: ")
+//                                        //////print(snapshot)
 //                                        if bigDict["referralCode"] as? String == snapshot.value as? String {
 //                                            var argumentDictionary = [String: String]()
 //                                            argumentDictionary["cellTitle"] = bigDict["firstName"] as? String
 //                                            argumentDictionary["cellSubtitle"] = littleDict["text"] as? String
 //                                            let cell = RecentMessageCell(dictionary: argumentDictionary)
-//                                            ////print("cell to append")
-//                                            ////print(cell.cellSubtitle)
+//                                            //////print("cell to append")
+//                                            //////print(cell.cellSubtitle)
 //                                            self.recentMessageCells.append(cell)
 //                                            self.tableView.reloadData()
 //                                        }

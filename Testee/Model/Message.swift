@@ -25,11 +25,11 @@ class Message: NSObject {
     }
     
     func chatPartnerId() -> String? {
-        print("-------CPI TESTING---------")
-        print("toId: " + toId!)
-        print("fromId: " + fromId!)
-        print("uid: " + (Auth.auth().currentUser?.uid)!)
-        print("-------END CPI TESTING---------")
+//        print("-------CPI TESTING---------")
+//        print("toId: " + toId!)
+//        print("fromId: " + fromId!)
+//        print("uid: " + (Auth.auth().currentUser?.uid)!)
+//        print("-------END CPI TESTING---------")
         
         return fromId == Auth.auth().currentUser?.uid ? toId : fromId
     }

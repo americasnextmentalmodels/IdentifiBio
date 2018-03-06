@@ -40,7 +40,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         super.viewDidLoad()
         
         collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
-        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 50, right: 0)
+//        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: anotherID)
@@ -48,12 +48,25 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         setupInputComponents()
 
         setupKeyBoardObservers()
+        
+        
     }
     
     func setupKeyBoardObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let rect = CGRect(x: 0, y: 0, width: 300, height: 6000)
+        self.collectionView?.setContentOffset(CGPoint(x: 0, y: (collectionView?.collectionViewLayout.collectionViewContentSize.height)!), animated: false)
+        self.collectionView?.backgroundColor = UIColor.red
+        
+        
+
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -70,6 +83,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         UIView.animate(withDuration: keyboardDuration!, animations: {
             self.view.layoutIfNeeded()
         })
+        
+        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 200, right: 0)
+        //scrollToBottom()
     }
     
     @objc func handleKeyboardWillHide(_ notification: Notification) {
@@ -79,6 +95,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         UIView.animate(withDuration: keyboardDuration!, animations: {
             self.view.layoutIfNeeded()
         })
+        
+        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
+        //scrollToBottom()
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -196,7 +215,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 //                    print(self.messages)
                     DispatchQueue.main.async(execute: {
                         self.collectionView?.reloadData()
+                        
+                        //self.scrollToLastItem()
+                    
                     })
+                    
                 }
                 
 //                let lastItemIndex = IndexPath(index: self.messages.count - 1)
@@ -225,7 +248,18 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     var containerViewBottomAnchor: NSLayoutConstraint?
     
+//    func viewScrollButton() {
+//        let lastItem = collectionView(, numberOfRowsInSection: 0) - 1
+//        let indexPath: NSIndexPath = NSIndexPath.init(item: lastItem, section: 0)
+//        self.collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: false)
+//    }
     
+    func scrollToBottom() {
+        self.collectionView?.alwaysBounceVertical = false
+        let rect = CGRect(x: 0, y: 0, width: 300, height: 10000)
+        self.collectionView?.scrollRectToVisible(rect, animated: false)
+        self.collectionView?.alwaysBounceVertical = true
+    }
     
     func setupInputComponents(){
         let containerView = UIView()
@@ -255,6 +289,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         sendButton.setTitleColor(UIColor.purple, for: .normal)
     
         containerView.addSubview(inputTextField)
+        //containerView.backgroundColor = UIColor.cyan
         
         inputTextField.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 8).isActive = true
         inputTextField.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
