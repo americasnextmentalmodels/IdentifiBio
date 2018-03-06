@@ -39,8 +39,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     override func viewDidLoad(){
         super.viewDidLoad()
         
+        //58 reset
         collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
-//        collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
+        //collectionView?.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         collectionView?.alwaysBounceVertical = true
         collectionView?.backgroundColor = UIColor.white
         collectionView?.register(ChatMessageCell.self, forCellWithReuseIdentifier: anotherID)
@@ -48,6 +49,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         setupInputComponents()
 
         setupKeyBoardObservers()
+        
+        //scrollToBottom()
         
         
     }
@@ -61,10 +64,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        let rect = CGRect(x: 0, y: 0, width: 300, height: 6000)
-        self.collectionView?.setContentOffset(CGPoint(x: 0, y: (collectionView?.collectionViewLayout.collectionViewContentSize.height)!), animated: false)
-        self.collectionView?.backgroundColor = UIColor.red
         
+       // scrollToBottom()
+    
+
         
 
     }
@@ -79,25 +82,27 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
-        containerViewBottomAnchor?.constant = -keyboardFrame!.height
+        //50 is guess on size of input text field
+        containerViewBottomAnchor?.constant = -(keyboardFrame!.height)
+        //collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
         UIView.animate(withDuration: keyboardDuration!, animations: {
             self.view.layoutIfNeeded()
         })
+        self.scrollToBottom()
         
-        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 200, right: 0)
-        //scrollToBottom()
+        
     }
     
     @objc func handleKeyboardWillHide(_ notification: Notification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
-        
+        //collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
         containerViewBottomAnchor?.constant = 0
         UIView.animate(withDuration: keyboardDuration!, animations: {
             self.view.layoutIfNeeded()
         })
         
-        collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
-        //scrollToBottom()
+
+  
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -105,6 +110,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: anotherID, for: indexPath) as! ChatMessageCell
         
         let message = messages[indexPath.item]
@@ -113,11 +119,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         setUpCell(cell: cell, message: message)
         
         cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: message.text!).width + 32
-
-
+        
         return cell
     }
     
+    
+
     private func setUpCell(cell: ChatMessageCell, message: Message){
         if message.fromId == Auth.auth().currentUser?.uid {
             //The message is from us
@@ -191,15 +198,20 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         
         
-        
+        var currentMessageCount = 1; //Firebase counts from 1
+
         let userMessagesRef = Database.database().reference().child("user-messages").child(uid)
+        userMessagesRef.observeSingleEvent(of: .value, with: { (snapshotForKeyChildCount) in
+        
         userMessagesRef.observe(.childAdded, with: {(snapshot) in
             
             let messageId = snapshot.key
+            
             let messagesRef = Database.database().reference().child("messages").child(messageId)
             messagesRef.observeSingleEvent(of: .value, with: {(snapshot) in
                 //print("attempting to observe all messages")
-                
+
+               
                 guard let dictionary = snapshot.value as? [String: AnyObject] else{
                     return
                 }
@@ -213,12 +225,9 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                     self.messages.append(message)
 //                    print("message array: ")
 //                    print(self.messages)
-                    DispatchQueue.main.async(execute: {
-                        self.collectionView?.reloadData()
-                        
-                        //self.scrollToLastItem()
+
                     
-                    })
+
                     
                 }
                 
@@ -233,6 +242,21 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 
 //                if message.chatPartnerId() == self.user?.uid {
 //                    self.messages.append(message)
+                DispatchQueue.main.async(execute: {
+                    print("currentMessageCount: ", terminator: "> ")
+                    print(currentMessageCount)
+                    //self.collectionView?.reloadData()
+                    if (currentMessageCount >= snapshotForKeyChildCount.childrenCount){
+                        self.collectionView?.reloadData()
+                        DispatchQueue.main.async(execute: {
+                            self.scrollToBottom()
+                        })
+                    } else {
+                        print("da fuc")
+                    }
+                    print("nice: " + String(snapshotForKeyChildCount.childrenCount))
+                    currentMessageCount = currentMessageCount + 1
+                })
                 
             }, withCancel: nil)
                 
@@ -241,9 +265,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 
                 
                 //print(message.text)
-                
-                
+            
+
+
             }, withCancel: nil)
+        })
     }
     
     var containerViewBottomAnchor: NSLayoutConstraint?
@@ -255,10 +281,11 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 //    }
     
     func scrollToBottom() {
-        self.collectionView?.alwaysBounceVertical = false
-        let rect = CGRect(x: 0, y: 0, width: 300, height: 10000)
-        self.collectionView?.scrollRectToVisible(rect, animated: false)
-        self.collectionView?.alwaysBounceVertical = true
+        let cgHeight = (self.collectionView?.collectionViewLayout.collectionViewContentSize.height)! + 58
+        print("collection view height HERE: ")
+        print(cgHeight)
+        let rect = CGRect(x: 0, y: 0, width: 300, height: cgHeight)
+        self.collectionView?.scrollRectToVisible(rect, animated: true)
     }
     
     func setupInputComponents(){
@@ -268,6 +295,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         view.addSubview(containerView)
         
+        containerView.backgroundColor = UIColor.clear
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         containerViewBottomAnchor = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         containerViewBottomAnchor?.isActive = true
@@ -314,6 +342,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     
     @objc func handleSend() {
+        
         guard let uid = Auth.auth().currentUser?.uid else {
             //uid not available so do nothing
             return
@@ -332,6 +361,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
             let timestamp: Int = Int(Date().timeIntervalSince1970)
             let values = ["text": self.inputTextField.text!, "toId": toId, "fromId": fromId, "timestamp": timestamp, "referralCode": currentUserReferralCode] as [String : Any]
             childRef.updateChildValues(values) { (error, ref) in
+                
                 if error != nil {
                     print(error!)
                     return
