@@ -1,5 +1,5 @@
 //
-//  ProfileController.swift
+//  HomeViewController.swift
 //  Testee
 //
 //  Created by Mental ModelsThree on 3/7/18.
@@ -9,36 +9,26 @@
 import UIKit
 import Firebase
 
-class ProfileController: UITableViewController {
-
+class HomeViewController: UIViewController {
+    
     var handle: AuthStateDidChangeListenerHandle?
     
     @objc func handleLogout() {
-        //////print("!!!!!!!!HANDLE LOGOUT CALLED")
         do {
             try Auth.auth().signOut()
-            //print("Sign out probably OK")
         } catch let logoutError {
             //print(logoutError)
         }
-        
-        
         //loginController.messagesController = self
         let loginController = LoginController()
         //dismiss(animated: false, completion: nil)
         present(loginController, animated: true, completion: nil)
-        
-        
-        //        dismiss(animated: true, completion: {
-        //            ////print("attempt dismissal")
-        //           //present(loginController, animated: true, completion: nil)
-        //        })
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBar()
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         
         //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
         //                                                    action: #selector(handleLogout))
@@ -47,7 +37,7 @@ class ProfileController: UITableViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -83,15 +73,4 @@ class ProfileController: UITableViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
