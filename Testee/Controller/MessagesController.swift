@@ -28,7 +28,10 @@ class MessagesController: UITableViewController {
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
                                                            action: #selector(handleLogout))
-        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self,
+                                                            action: #selector(handleProfile))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
+        //                                                   action: #selector(handleProfile))
         self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
        
         
@@ -58,7 +61,6 @@ class MessagesController: UITableViewController {
         //////print("cleaning up the existing Auth handle...")
         //Auth.auth().removeStateDidChangeListener(handle!)
     }
-
     
     func observeUserMessages() {
         self.messagesDictionary.removeAll()
@@ -224,6 +226,12 @@ class MessagesController: UITableViewController {
         //        present(regController, animated: true, completion: nil)
     }
 
+    @objc func handleProfile() {
+        //        Stuff
+        let proController = ProfileController();
+        present(proController, animated: true, completion: nil)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         
