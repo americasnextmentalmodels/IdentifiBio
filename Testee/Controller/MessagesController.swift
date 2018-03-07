@@ -294,6 +294,10 @@ class MessagesController: UITableViewController {
         //TODO: Fix mutliple row crash selection.
         //print("The index path")
         //print(indexPath.row)
+        if (indexPath.row > messages.count) {
+            print("index path out of range crash prevention")
+            return
+        }
         if let userToMessageID = messages[indexPath.row].chatPartnerId() {
             Database.database().reference().child("users").child(userToMessageID).observeSingleEvent(of: .value, with: { (snapshot) in
                 

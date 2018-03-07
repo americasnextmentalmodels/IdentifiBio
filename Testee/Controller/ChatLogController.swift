@@ -22,6 +22,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     var currentUserReferralCode = ""
     var messages = [Message]()
+    var isMessageInsertionAnimated = false
     
     lazy var inputTextField: UITextField = {
         let textField = UITextField()
@@ -64,10 +65,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-       // scrollToBottom()
-    
-
+        //Intitally let's not animate the scrolling down
+        //when the controller is first loaded since it looks
+        //a little odd
+        isMessageInsertionAnimated = false
         
 
     }
@@ -79,29 +80,32 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     }
     
     @objc func handleKeyboardWillShow(notification: Notification){
+        print("current height: ", terminator: "")
+        print(collectionView?.contentSize.height)
         let keyboardFrame = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
         
         //50 is guess on size of input text field
         containerViewBottomAnchor?.constant = -(keyboardFrame!.height)
-        //collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
         UIView.animate(withDuration: keyboardDuration!, animations: {
             self.view.layoutIfNeeded()
         })
-        self.scrollToBottom()
         
+        //45 is chosen as a offset that sort of looks OK, but this ideally should
+        //be replaced using scrolling code that calculates exactly how much offset we need
+        //either here or in the scroll view
+        self.scrollToBottom(offset: 40, isAnimated: true)
         
     }
     
     @objc func handleKeyboardWillHide(_ notification: Notification) {
         let keyboardDuration = (notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as AnyObject).doubleValue
-        //collectionView?.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 58, right: 0)
         containerViewBottomAnchor?.constant = 0
         UIView.animate(withDuration: keyboardDuration!, animations: {
             self.view.layoutIfNeeded()
         })
         
-
+        //self.scrollToBottom(offset: 0  , isAnimated: true)
   
     }
 
@@ -242,14 +246,14 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
                 
 //                if message.chatPartnerId() == self.user?.uid {
 //                    self.messages.append(message)
+                
                 DispatchQueue.main.async(execute: {
                     print("currentMessageCount: ", terminator: "> ")
                     print(currentMessageCount)
-                    //self.collectionView?.reloadData()
+                    self.collectionView?.reloadData()
                     if (currentMessageCount >= snapshotForKeyChildCount.childrenCount){
-                        self.collectionView?.reloadData()
                         DispatchQueue.main.async(execute: {
-                            self.scrollToBottom()
+                            self.scrollToBottom(offset: 0, isAnimated: self.isMessageInsertionAnimated)
                         })
                     } else {
                         print("da fuc")
@@ -280,12 +284,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 //        self.collectionView.scrollToItem(at: indexPath as IndexPath, at: .bottom, animated: false)
 //    }
     
-    func scrollToBottom() {
-        let cgHeight = (self.collectionView?.collectionViewLayout.collectionViewContentSize.height)! + 58
+    func scrollToBottom(offset: CGFloat, isAnimated: Bool) {
+        let cgHeight = (collectionView?.contentSize.height)! + offset
         print("collection view height HERE: ")
-        print(cgHeight)
+        print((collectionView?.contentSize.height)!)
         let rect = CGRect(x: 0, y: 0, width: 300, height: cgHeight)
-        self.collectionView?.scrollRectToVisible(rect, animated: true)
+        self.collectionView?.scrollRectToVisible(rect, animated: isAnimated)
     }
     
     func setupInputComponents(){
@@ -295,7 +299,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
         view.addSubview(containerView)
         
-        containerView.backgroundColor = UIColor.clear
+        containerView.backgroundColor = UIColor.white
         containerView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         containerViewBottomAnchor = containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         containerViewBottomAnchor?.isActive = true
@@ -342,6 +346,8 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     
     @objc func handleSend() {
+        //reenable animation on the insertion (it was disable for when the view first loads)
+         self.isMessageInsertionAnimated = true
         
         guard let uid = Auth.auth().currentUser?.uid else {
             //uid not available so do nothing
