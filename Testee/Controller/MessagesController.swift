@@ -22,16 +22,15 @@ class MessagesController: UITableViewController {
     var messages = [Message]()
     var messagesDictionary = [String: Message?]()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
                                                            action: #selector(handleLogout))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self,
-                                                            action: #selector(handleProfile))
-        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
-        //                                                   action: #selector(handleProfile))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self,
+        //                                                    action: #selector(handleProfile))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
+                                                           action: #selector(handleHome))
         self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
        
         
@@ -226,6 +225,12 @@ class MessagesController: UITableViewController {
         //        present(regController, animated: true, completion: nil)
     }
 
+    @objc func handleHome() {
+        //        Stuff
+        let homeController = HomeViewController();
+        present(homeController, animated: true, completion: nil)
+    }
+    
     @objc func handleProfile() {
         //        Stuff
         let proController = ProfileController();
