@@ -189,12 +189,19 @@ class HomeViewController: UIViewController {
         navItem.rightBarButtonItem = logoutItem
         navItem.leftBarButtonItem = messagesItem*/
         
-        let logoutButton = UIBarButtonItem(title: "Logout",  style: .plain, target: nil, action: #selector(handleLogout))
-        let messagesButton = UIBarButtonItem(title: "Messages",  style: .plain, target: nil, action: #selector(handleMessages))
-        let dateButton = UIBarButtonItem(title: "Date Selection",  style: .plain, target: nil, action: #selector(handleDate))
-        let profileButton = UIBarButtonItem(title: "Profile",  style: .plain, target: nil, action: #selector(handleProfile))
+        let logoutImage = UIImage(named: "logoutBtn.png")!
+        let messagesImage = UIImage(named: "chatBtn.png")!
+        let profileImage = UIImage(named: "profileBtn.png")!
+        let dateImage = UIImage(named: "dateBtn.png")!
+        let homeImage = UIImage(named: "homeBtn.png")!
         
-        navItem.rightBarButtonItems = [logoutButton, messagesButton]
+        let logoutButton = UIBarButtonItem(image: logoutImage,  style: .plain, target: nil, action: #selector(handleLogout))
+        let messagesButton = UIBarButtonItem(image: messagesImage,  style: .plain, target: nil, action: #selector(handleMessages))
+        let dateButton = UIBarButtonItem(image: dateImage,  style: .plain, target: nil, action: #selector(handleDate))
+        let profileButton = UIBarButtonItem(image: profileImage,  style: .plain, target: nil, action: #selector(handleProfile))
+        let homeButton = UIBarButtonItem(image: homeImage,  style: .plain, target: nil, action: nil)
+        
+        navItem.rightBarButtonItems = [logoutButton, messagesButton, homeButton]
         navItem.leftBarButtonItems = [profileButton, dateButton]
         
         //navItem.setRightBarButtonItems(buttons, animated: true)
@@ -204,9 +211,9 @@ class HomeViewController: UIViewController {
     }
     
     @objc func handleMessages() {
-        dismiss(animated: true, completion: nil)
-        //let megController = MessagesController();
-        //present(megController, animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
+        let megController = MessagesController();
+        present(megController, animated: true, completion: nil)
     }
     
     @objc func handleDate() {
