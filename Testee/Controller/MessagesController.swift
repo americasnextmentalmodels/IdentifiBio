@@ -25,14 +25,14 @@ class MessagesController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
-                                                           action: #selector(handleLogout))
+        //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
+        //                                                   action: #selector(handleLogout))
         //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .plain, target: self,
         //                                                    action: #selector(handleProfile))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
-                                                           action: #selector(handleHome))
+        //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
+        //                                                   action: #selector(handleHome))
         self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
-       
+        self.setNavigationBar()
         
     
         tableView.separatorStyle = .none;
@@ -174,8 +174,42 @@ class MessagesController: UITableViewController {
     }
     
     
+    func setNavigationBar() {
+        let screenSize: CGRect = UIScreen.main.bounds
+        let navBar = UINavigationBar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 105, width: screenSize.width, height: 300))
+        let navItem = UINavigationItem(title: "")
+        
+        let logoutImage = UIImage(named: "logoutBtn.png")!
+        let messagesImage = UIImage(named: "chatBtn.png")!
+        let profileImage = UIImage(named: "profileBtn.png")!
+        let dateImage = UIImage(named: "dateBtn.png")!
+        let homeImage = UIImage(named: "homeBtn.png")!
+        
+        let logoutButton = UIBarButtonItem(image: logoutImage,  style: .plain, target: nil, action: #selector(handleLogout))
+        let messagesButton = UIBarButtonItem(image: messagesImage,  style: .plain, target: nil, action: nil)
+        let dateButton = UIBarButtonItem(image: dateImage,  style: .plain, target: nil, action: #selector(handleDate))
+        let profileButton = UIBarButtonItem(image: profileImage,  style: .plain, target: nil, action: #selector(handleProfile))
+        let homeButton = UIBarButtonItem(image: homeImage,  style: .plain, target: nil, action: #selector(handleHome))
+        
+        navItem.rightBarButtonItems = [logoutButton, messagesButton, homeButton]
+        navItem.leftBarButtonItems = [profileButton, dateButton]
+        
+        //navItem.setRightBarButtonItems(buttons, animated: true)
+        navBar.setItems([navItem], animated: false)
+        navBar.tintColor = UIColor(r: 145, g: 0, b: 123)
+        self.view.addSubview(navBar)
+    }
     
+    @objc func handleMessages() {
+        dismiss(animated: true, completion: nil)
+        //let megController = MessagesController();
+        //present(megController, animated: true, completion: nil)
+    }
     
+    @objc func handleDate() {
+        let dateController = DateViewController()
+        present(dateController, animated: true, completion: nil)
+    }
     
     func showChatControllerForUser(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
@@ -219,7 +253,7 @@ class MessagesController: UITableViewController {
 //        })
     }
     
-    func handleMenu() {
+    @objc func handleMenu() {
         //        Stuff
         //        let regController = RegistrationController();
         //        present(regController, animated: true, completion: nil)
