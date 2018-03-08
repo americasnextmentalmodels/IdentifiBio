@@ -36,11 +36,11 @@
 		AD3ACFC020509599005F6E19 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ACFBF20509599005F6E19 /* ProfileController.swift */; };
 		AD3ACFC22050A71B005F6E19 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ACFC12050A71B005F6E19 /* HomeViewController.swift */; };
 		AD3ACFC42050DF44005F6E19 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ACFC32050DF44005F6E19 /* DateViewController.swift */; };
-		AD3ACFE0205120EC005F6E19 /* profileBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFDB205120EB005F6E19 /* profileBtn.png */; };
-		AD3ACFE1205120EC005F6E19 /* dateBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFDC205120EB005F6E19 /* dateBtn.png */; };
-		AD3ACFE2205120EC005F6E19 /* logoutBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFDD205120EB005F6E19 /* logoutBtn.png */; };
-		AD3ACFE3205120EC005F6E19 /* chatBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFDE205120EC005F6E19 /* chatBtn.png */; };
-		AD3ACFE4205120EC005F6E19 /* homeBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFDF205120EC005F6E19 /* homeBtn.png */; };
+		AD3ACFEA2051E3A2005F6E19 /* chatBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFE52051E3A2005F6E19 /* chatBtn.png */; };
+		AD3ACFEB2051E3A2005F6E19 /* profileBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFE62051E3A2005F6E19 /* profileBtn.png */; };
+		AD3ACFEC2051E3A2005F6E19 /* dateBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFE72051E3A2005F6E19 /* dateBtn.png */; };
+		AD3ACFED2051E3A2005F6E19 /* homeBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFE82051E3A2005F6E19 /* homeBtn.png */; };
+		AD3ACFEE2051E3A2005F6E19 /* logoutBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFE92051E3A2005F6E19 /* logoutBtn.png */; };
 		BBD60788CC1209162F701217 /* Pods_TesteeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD74C38C00D3BADB660B44CF /* Pods_TesteeTests.framework */; };
 		FC305B91982B09056D106599 /* Pods_TesteeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 427682A4ED74EB7FA8043A8B /* Pods_TesteeUITests.framework */; };
 /* End PBXBuildFile section */
@@ -99,11 +99,11 @@
 		AD3ACFBF20509599005F6E19 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		AD3ACFC12050A71B005F6E19 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AD3ACFC32050DF44005F6E19 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
-		AD3ACFDB205120EB005F6E19 /* profileBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = profileBtn.png; path = ../../../../Downloads/profileBtn.png; sourceTree = "<group>"; };
-		AD3ACFDC205120EB005F6E19 /* dateBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dateBtn.png; path = ../../../../Downloads/dateBtn.png; sourceTree = "<group>"; };
-		AD3ACFDD205120EB005F6E19 /* logoutBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logoutBtn.png; path = ../../../../Downloads/logoutBtn.png; sourceTree = "<group>"; };
-		AD3ACFDE205120EC005F6E19 /* chatBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = chatBtn.png; path = ../../../../Downloads/chatBtn.png; sourceTree = "<group>"; };
-		AD3ACFDF205120EC005F6E19 /* homeBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = homeBtn.png; path = ../../../../Downloads/homeBtn.png; sourceTree = "<group>"; };
+		AD3ACFE52051E3A2005F6E19 /* chatBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chatBtn.png; sourceTree = SOURCE_ROOT; };
+		AD3ACFE62051E3A2005F6E19 /* profileBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileBtn.png; sourceTree = SOURCE_ROOT; };
+		AD3ACFE72051E3A2005F6E19 /* dateBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dateBtn.png; sourceTree = SOURCE_ROOT; };
+		AD3ACFE82051E3A2005F6E19 /* homeBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeBtn.png; sourceTree = SOURCE_ROOT; };
+		AD3ACFE92051E3A2005F6E19 /* logoutBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoutBtn.png; sourceTree = SOURCE_ROOT; };
 		AD74C38C00D3BADB660B44CF /* Pods_TesteeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesteeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCB61A0F718AC167D0392174 /* Pods-TesteeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesteeTests/Pods-TesteeTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -169,11 +169,11 @@
 			isa = PBXGroup;
 			children = (
 				6C9575612012DFD6000263E4 /* night.png */,
-				AD3ACFDE205120EC005F6E19 /* chatBtn.png */,
-				AD3ACFDC205120EB005F6E19 /* dateBtn.png */,
-				AD3ACFDF205120EC005F6E19 /* homeBtn.png */,
-				AD3ACFDD205120EB005F6E19 /* logoutBtn.png */,
-				AD3ACFDB205120EB005F6E19 /* profileBtn.png */,
+				AD3ACFE52051E3A2005F6E19 /* chatBtn.png */,
+				AD3ACFE72051E3A2005F6E19 /* dateBtn.png */,
+				AD3ACFE82051E3A2005F6E19 /* homeBtn.png */,
+				AD3ACFE92051E3A2005F6E19 /* logoutBtn.png */,
+				AD3ACFE62051E3A2005F6E19 /* profileBtn.png */,
 				6C9575572011906F000263E4 /* LoginController.swift */,
 				6C3EE6A6201419FA00943AE2 /* RegistrationController.swift */,
 				6CEA19682008480F0072E501 /* MessagesController.swift */,
@@ -373,17 +373,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD3ACFE1205120EC005F6E19 /* dateBtn.png in Resources */,
-				AD3ACFE0205120EC005F6E19 /* profileBtn.png in Resources */,
-				AD3ACFE2205120EC005F6E19 /* logoutBtn.png in Resources */,
 				6CEA19712008480F0072E501 /* LaunchScreen.storyboard in Resources */,
-				AD3ACFE3205120EC005F6E19 /* chatBtn.png in Resources */,
 				6CEA1995200849010072E501 /* GoogleService-Info.plist in Resources */,
 				6C484B5B201952A7009BF017 /* UI.storyboard in Resources */,
+				AD3ACFEE2051E3A2005F6E19 /* logoutBtn.png in Resources */,
 				6C1A8CEF202536A5004E58BA /* Assets.xcassets in Resources */,
+				AD3ACFEA2051E3A2005F6E19 /* chatBtn.png in Resources */,
+				AD3ACFED2051E3A2005F6E19 /* homeBtn.png in Resources */,
 				6C9575622012DFD6000263E4 /* night.png in Resources */,
+				AD3ACFEB2051E3A2005F6E19 /* profileBtn.png in Resources */,
 				6CEA196C2008480F0072E501 /* Main.storyboard in Resources */,
-				AD3ACFE4205120EC005F6E19 /* homeBtn.png in Resources */,
+				AD3ACFEC2051E3A2005F6E19 /* dateBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
