@@ -92,7 +92,7 @@ class ProfileController: UITableViewController {
             objectArray.append(Objects(sectionName: key, sectionObjects: value))
         }
         self.tableView.tableFooterView = UIView()
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
+
 
         //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
         //                                                    action: #selector(handleLogout))
@@ -154,16 +154,15 @@ class ProfileController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = UIView()
-        let label  = UILabel()
-        label.text = "Text"
-        label.layer.backgroundColor = UIColor.gray.cgColor
-        label.textColor = UIColor.black
-        label.font = UIFont (name: "OpenSans-Semibold", size: 18)
-        view.addSubview(label)
-        //view.backgroundColor = UIColor.gray
+        let label = UILabel()
+        label.textAlignment = .left
+        label.backgroundColor = UIColor.init(r: 247, g: 247, b: 247)
+        label.text = "  " + objectArray[section].sectionName
         
-        return view
+
+        label.textColor = UIColor(r: 145, g: 0, b: 123)
+        label.font = UIFont(name: "Avenir", size: 18)
+        return label
 
     }
 
@@ -172,16 +171,36 @@ class ProfileController: UITableViewController {
         // Configure the cell...
         cell.backgroundColor = UIColor.clear
         cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row]
-        cell.textLabel?.textColor = UIColor.white
+        cell.textLabel?.textColor = UIColor.black
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return objectArray[section].sectionName
-    }
-//
 
-    
+//
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if !objectArray.indices.contains(indexPath.section) {
+            //safeguard to prevent multiple row selection
+            //crash bug
+            print("Row click could not be processed, index out of range.")
+            return
+        }
+        let screenString = objectArray[indexPath.section].sectionObjects[indexPath.row]
+        print("ss: " + screenString)
+        switch screenString {
+        case "Edit signature":
+            present(HomeViewController(), animated: true)
+        case "Upload ID":
+            present(HomeViewController(), animated: true)
+        case "Upload Insurance":
+            present(HomeViewController(), animated: true)
+        case "Change Password":
+            present(HomeViewController(), animated: true)
+        default:
+            print("Table cell not recognized. Is the string correct?")
+        }
+
+
+    }
 
 }
 
