@@ -9,10 +9,25 @@
 import UIKit
 import Firebase
 
+
+
 class ProfileController: UITableViewController {
+    
+
 
     var handle: AuthStateDidChangeListenerHandle?
+    var cells = [ProfileViewCell]()
+    let cellId = "profileViewCellID"
+    let headerId = "profileViewHeaderID"
+    var names = ["Signature": ["Edit signature"], "Official Documents": ["Upload ID", "Upload Insurance"], "Account": ["Change Password"]]
+    struct Objects {
+        
+        var sectionName : String!
+        var sectionObjects : [String]!
+    }
     
+    var objectArray = [Objects]()
+
     @objc func handleLogout() {
         //////print("!!!!!!!!HANDLE LOGOUT CALLED")
         do {
@@ -21,38 +36,77 @@ class ProfileController: UITableViewController {
         } catch let logoutError {
             //print(logoutError)
         }
-        
-        
+
+
         //loginController.messagesController = self
         let loginController = LoginController()
         //dismiss(animated: false, completion: nil)
         present(loginController, animated: true, completion: nil)
-        
-        
+
+
         //        dismiss(animated: true, completion: {
         //            ////print("attempt dismissal")
         //           //present(loginController, animated: true, completion: nil)
         //        })
     }
-    
+
+    class UserCell: UITableViewCell {
+        override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+            super .init(style: .subtitle , reuseIdentifier: reuseIdentifier)
+        }
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+
+    class HeaderCell: UITableViewHeaderFooterView {
+        
+        override init(reuseIdentifier: String?) {
+            super.init(reuseIdentifier: reuseIdentifier)
+        }
+        
+        let nameLabel: UILabel = {
+            let label = UILabel()
+            label.text = "Sample Question"
+            label.font = UIFont.boldSystemFont(ofSize: 14)
+            label.translatesAutoresizingMaskIntoConstraints = false
+            return label
+        }()
+        
+        
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+        
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setNavigationBar()
-        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         
+        // Do any additional setup after loading the view in viewDidLoad
+        tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
+        tableView.register(HeaderCell.self, forHeaderFooterViewReuseIdentifier: headerId)
+        for (key, value) in names {
+            print("\(key) -> \(value)")
+            objectArray.append(Objects(sectionName: key, sectionObjects: value))
+        }
+        self.tableView.tableFooterView = UIView()
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
+
         //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
         //                                                    action: #selector(handleLogout))
-        
+
         //self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
-        
-        // Do any additional setup after loading the view.
+
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
     func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 40, width: screenSize.width, height: 300))
@@ -67,31 +121,78 @@ class ProfileController: UITableViewController {
         navBar.tintColor = UIColor(r: 145, g: 0, b: 123)
         self.view.addSubview(navBar)
     }
-    
+
     @objc func handleMessages() {
         dismiss(animated: true, completion: nil)
         //let megController = MessagesController();
         //present(megController, animated: true, completion: nil)
     }
-    
+
     @objc func handleHome() {
         //        Stuff
         let megController = MessagesController();
         present(megController, animated: true, completion: nil)
     }
-    
+
     override var preferredStatusBarStyle: UIStatusBarStyle{
         return .lightContent
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return objectArray.count
     }
-    */
+    
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return objectArray[section].sectionObjects.count
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 30
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView()
+        let label  = UILabel()
+        label.text = "Text"
+        label.layer.backgroundColor = UIColor.gray.cgColor
+        label.textColor = UIColor.black
+        label.font = UIFont (name: "OpenSans-Semibold", size: 18)
+        view.addSubview(label)
+        //view.backgroundColor = UIColor.gray
+        
+        return view
+
+    }
+
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath as IndexPath) as! UserCell
+        // Configure the cell...
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.text = objectArray[indexPath.section].sectionObjects[indexPath.row]
+        cell.textLabel?.textColor = UIColor.white
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return objectArray[section].sectionName
+    }
+//
+
+    
 
 }
+
+
+
+ 
+
+
+/////////////Table view control stuff methods//////////////////
+
+
+
+
+
