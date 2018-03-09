@@ -105,11 +105,11 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBar()
+        //self.setNavigationBar()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         
         //circle stuff
-        
+        self.title = "Home"
         let shaperLayer = CAShapeLayer()
         let center = view.center
         let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
@@ -126,9 +126,9 @@ class HomeViewController: UIViewController {
         view.bringSubview(toFront: daysLabel)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         //called every time the view appears
-        
+        super.viewWillAppear(animated)
         let calendar = NSCalendar.current
         let firstDate = Date()
         let secondDate = Date().tomorrow
@@ -179,7 +179,7 @@ class HomeViewController: UIViewController {
         //return name
     }
     
-    func setNavigationBar() {
+    /*func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 40, width: screenSize.width, height: 300))
         let navItem = UINavigationItem(title: "")
@@ -208,7 +208,7 @@ class HomeViewController: UIViewController {
         navBar.setItems([navItem], animated: false)
         navBar.tintColor = UIColor(r: 145, g: 0, b: 123)
         self.view.addSubview(navBar)
-    }
+    }*/
     
     @objc func handleMessages() {
         //dismiss(animated: true, completion: nil)

@@ -82,8 +82,8 @@ class ProfileController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setNavigationBar()
-        
+        //self.setNavigationBar()
+        self.title = "Profile"
         // Do any additional setup after loading the view in viewDidLoad
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         tableView.register(HeaderCell.self, forHeaderFooterViewReuseIdentifier: headerId)
@@ -102,12 +102,16 @@ class ProfileController: UITableViewController {
 
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
 
-    func setNavigationBar() {
+    /*func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 40, width: screenSize.width, height: 300))
         let navItem = UINavigationItem(title: "")
@@ -120,7 +124,7 @@ class ProfileController: UITableViewController {
         navBar.setItems([navItem], animated: false)
         navBar.tintColor = UIColor(r: 145, g: 0, b: 123)
         self.view.addSubview(navBar)
-    }
+    }*/
 
     @objc func handleMessages() {
         dismiss(animated: true, completion: nil)

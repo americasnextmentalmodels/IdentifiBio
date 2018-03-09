@@ -31,10 +31,10 @@ class MessagesController: UITableViewController {
         //                                                    action: #selector(handleProfile))
         //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
         //                                                   action: #selector(handleHome))
-        self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
-        self.setNavigationBar()
+        //self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
+        //self.setNavigationBar()
         
-    
+        self.title = "Messages"
         tableView.separatorStyle = .none;
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
 
@@ -46,6 +46,7 @@ class MessagesController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         //reset the variables since the same view is left open
+        super.viewWillAppear(animated)
         messages.removeAll()
         messagesDictionary.removeAll()
 
@@ -174,7 +175,7 @@ class MessagesController: UITableViewController {
     }
     
     
-    func setNavigationBar() {
+    /*func setNavigationBar() {
         let screenSize: CGRect = UIScreen.main.bounds
         let navBar = UINavigationBar(frame: CGRect(x: 0, y: UIScreen.main.bounds.height - 105, width: screenSize.width, height: 300))
         let navItem = UINavigationItem(title: "")
@@ -197,8 +198,8 @@ class MessagesController: UITableViewController {
         //navItem.setRightBarButtonItems(buttons, animated: true)
         navBar.setItems([navItem], animated: false)
         navBar.tintColor = UIColor(r: 145, g: 0, b: 123)
-        self.view.addSubview(navBar)
-    }
+        //self.view.addSubview(navBar)
+    }*/
     
     @objc func handleMessages() {
         dismiss(animated: true, completion: nil)
@@ -214,7 +215,7 @@ class MessagesController: UITableViewController {
     func showChatControllerForUser(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
-        self.navigationController?.pushViewController(chatLogController, animated: true)
+        //self.navigationController?.pushViewController(chatLogController, animated: true)
     }
     
     func checkIfUserIsLoggedIn() {
@@ -272,7 +273,7 @@ class MessagesController: UITableViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        super.viewWillAppear(animated)
         
     }
     override func viewWillDisappear(_ animated: Bool) {
@@ -397,7 +398,7 @@ class MessagesController: UITableViewController {
     func showChatControllerForUser(_ user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
-        navigationController?.pushViewController(chatLogController, animated: true)
+        //navigationController?.pushViewController(chatLogController, animated: true)
     }
 }
 
