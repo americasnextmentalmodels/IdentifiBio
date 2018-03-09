@@ -12,13 +12,23 @@ import Firebase
 class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     var handle: AuthStateDidChangeListenerHandle?
+    var freshLaunch = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         //handleLogout()
         self.delegate = self
+        
         UITabBar.appearance().tintColor = UIColor(r: 145, g: 0, b: 123)
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if freshLaunch == true {
+            freshLaunch = false
+            handleLogout()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
