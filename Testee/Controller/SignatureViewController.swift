@@ -74,14 +74,14 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
             // Saving signatureImage from the line above to the Photo Roll.
             // The first time you do this, the app asks for access to your pictures.
             UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
-            //uploadImage(signatureImage: signatureImage)
+            uploadImage(signatureImage: signatureImage)
             // Since the Signature is now saved to the Photo Roll, the View can be cleared anyway.
             self.signatureView.clear()
             dismiss(animated: true, completion: nil)
         }
     }
     
-    /*func uploadImage(signatureImage: UIImage) {
+    func uploadImage(signatureImage: UIImage) {
         print("ui image: ", terminator: "")
         print(signatureImage)
         
@@ -90,13 +90,13 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
             return
         }
 
-        //let storageRef = Storage.storage().reference()
+        let storageRef = Storage.storage().reference()
         // Data in memory
         var data = Data()
         data = UIImagePNGRepresentation(signatureImage)!
 
         // Create a reference to the file you want to upload
-        //let databaseSaveRef = storageRef.child("signatures/" + uid + ".png")
+        let databaseSaveRef = storageRef.child("signatures/" + uid + ".png")
 
         // Upload the file to the path "images/rivers.jpg"
         let uploadTask = databaseSaveRef.putData(data, metadata: nil) { (metadata, error) in
@@ -110,7 +110,7 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
         
         //Possible to monitor the progress using Firebase if time permits
         
-    }*/
+    }
     @objc func clearFunc(){
         signatureView.clear()
     }
@@ -137,8 +137,6 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
         clearButton.widthAnchor.constraint(equalTo: saveButton.widthAnchor).isActive = true
         clearButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
         clearButton.centerXAnchor.constraint(equalTo: signatureView.centerXAnchor).isActive = true
-        
-        
     }
     
     func didStart() {
