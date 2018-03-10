@@ -197,9 +197,9 @@ class ProfileController: UITableViewController {
             self.present(controller, animated: true, completion: nil)
             //present(SignatureViewController(), animated: true)
         case "Upload ID":
-            present(HomeViewController(), animated: true)
+            self.navigationController?.pushViewController(UploadImagesController(), animated: true)
         case "Upload Insurance":
-            present(HomeViewController(), animated: true)
+            self.navigationController?.pushViewController(UploadImagesController(), animated: true)
         case "Change Password":
             self.navigationController?.pushViewController(ChangePasswordController(), animated: true)
         default:

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SignatureViewController: UIViewController, YPSignatureDelegate {
 
@@ -73,13 +74,44 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
             // Saving signatureImage from the line above to the Photo Roll.
             // The first time you do this, the app asks for access to your pictures.
             UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
-            
+            uploadImage(signatureImage: signatureImage)
             // Since the Signature is now saved to the Photo Roll, the View can be cleared anyway.
             self.signatureView.clear()
             dismiss(animated: true, completion: nil)
         }
     }
     
+    func uploadImage(signatureImage: UIImage) {
+        print("ui image: ", terminator: "")
+        print(signatureImage)
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            //Handle error here if save failure (also add error handling in uploadTask below uid)
+            return
+        }
+        
+
+        let storageRef = Storage.storage().reference()
+        // Data in memory
+        var data = Data()
+        data = UIImagePNGRepresentation(signatureImage)!
+
+        // Create a reference to the file you want to upload
+        let databaseSaveRef = storageRef.child("signatures/" + uid + ".png")
+
+        // Upload the file to the path "images/rivers.jpg"
+        let uploadTask = databaseSaveRef.putData(data, metadata: nil) { (metadata, error) in
+            guard let metadata = metadata else {
+                //Handle error here if save failure (also add error handling in guard uid)
+                return
+            }
+            // Metadata contains file metadata such as size, content-type, and download URL.
+            let downloadURL = metadata.downloadURL
+        }
+        
+        //Possible to monitor the progress using Firebase if time permits
+        
+    }
     @objc func clearFunc(){
         signatureView.clear()
     }

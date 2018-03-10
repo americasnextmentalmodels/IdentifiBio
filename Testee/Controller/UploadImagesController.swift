@@ -1,5 +1,5 @@
 //
-//  UploadImagesController.swift
+//  ChangePasswordController.swift
 //  Testee
 //
 //  Created by Mental ModelsTwo on 3/8/18.
@@ -10,76 +10,132 @@ import UIKit
 import Firebase
 
 
-class UploadImageController: UIViewController{
+class UploadImagesController: UIViewController{
+    //let purple = UIColor(r: 247, g: 247, b: 247)
     
     let inputsContainerView: UIView = {
         let inputsContainerView = UIView()
         
-        inputsContainerView.backgroundColor = UIColor(white: 1, alpha : 0)
+        inputsContainerView.backgroundColor = UIColor(r: 247, g: 247, b: 247)
         inputsContainerView.translatesAutoresizingMaskIntoConstraints = false
         //inputsContainerView.layer.cornerRadius = 5
         inputsContainerView.layer.masksToBounds = true
         return inputsContainerView
     }()
     
-    let loginRegisterButton: UIButton = {
+    let TakePhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = UIColor(r: 112, g: 47, b: 139)
-        button.setTitle("Login", for: .normal)
+        //button.backgroundColor = UIColor(r: 247, g: 247, b: 247)
+        button.backgroundColor = UIColor.purple
+        button.setTitle("Take Photo", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(UIColor.white, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        //button.setTitleColor(UIColor(r: 145, g: 0, b: 123), for: .normal)
         
-        //button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 18)
+        
+        button.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
         
         return button
     }()
     
-//    @objc func handleLogin() {
-//        //Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
-//            if (error != nil) {
-//                self.errorLabel.text = "ERROR: " + (error?.localizedDescription)!
-//                return
-//            }
-//
-//            //Else login successful
-//            self.switchToMainScreen();
-//        }
-    
-    
-    func switchToMainScreen() {
-        print("switching to main screen")
-        //present(viewController, animated: true, completion: nil)
-        dismiss(animated: true, completion: nil)
-    }
-    
-    let newAccountButton: UIButton = {
+    let SelectPhotoButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("New user? Create an account.", for: .normal)
+        //button.backgroundColor = UIColor(r: 247, g: 247, b: 247)
+        button.backgroundColor = UIColor.purple
+        button.setTitle("Select Photo", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitleColor(UIColor.white, for: .normal)
+        //button.setTitleColor(UIColor(r: 145, g: 0, b: 123), for: .normal)
         
-        button.addTarget(self, action: #selector(switchToRegisterScreen), for: .touchUpInside)
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont(name: "Avenir", size: 18)
+        
+        button.addTarget(self, action: #selector(takePhoto), for: .touchUpInside)
         
         return button
     }()
     
-    @objc func switchToRegisterScreen() {
-        //@objc is somehow required when usimg #selector
-        let registrationController = RegistrationController()
-        present(registrationController, animated: true, completion: nil)
+    
+    @objc func takePhoto() {
+        
+    }
+    
+    @objc func selectPhoto() {
+        
+    }
+    
+    func comparePasswords(pw1: String, pw2: String) -> Bool{
+        return pw1 == pw2
     }
     
     
+    let currentPasswordTextField: UITextField = {
+        let tf = UITextField()
+        //tf.placeholder = "Name"
+        tf.isSecureTextEntry = true
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.layer.borderColor = UIColor.init(r: 230, g: 230, b: 230).cgColor
+        tf.layer.borderWidth = 1
+        tf.layer.backgroundColor = UIColor.white.cgColor
+        tf.frame.size.width = tf.intrinsicContentSize.width + 10
+        tf.setLeftPaddingPoints(20)
+        tf.setRightPaddingPoints(20)
+        tf.textColor = UIColor.gray
+        
+        //For testing purposes, remove for development build.
+        tf.attributedPlaceholder = NSAttributedString(string: "Current Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor.init(r: 230, g: 230, b: 230)])
+        
+        return tf
+    }()
+    
+    
+    let newPasswordTextField: UITextField = {
+        let tf = UITextField()
+        //tf.placeholder = "Name"
+        tf.isSecureTextEntry = true
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.layer.borderColor = UIColor(r: 230, g: 230, b: 230).cgColor
+        tf.layer.borderWidth = 1
+        tf.layer.backgroundColor = UIColor.white.cgColor
+        tf.frame.size.width = tf.intrinsicContentSize.width + 10
+        tf.setLeftPaddingPoints(20)
+        tf.setRightPaddingPoints(20)
+        tf.textColor = UIColor.gray
+        
+        //For testing purposes, remove for development build.
+        tf.attributedPlaceholder = NSAttributedString(string: "New Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(r: 230, g: 230, b: 230)])
+        
+        return tf
+    }()
+    
+    let confirmNewPasswordTextField: UITextField = {
+        let tf = UITextField()
+        //tf.placeholder = "Name"
+        tf.isSecureTextEntry = true
+        tf.translatesAutoresizingMaskIntoConstraints = false
+        tf.layer.borderColor = UIColor(r: 230, g: 230, b: 230).cgColor
+        tf.layer.borderWidth = 1
+        tf.layer.backgroundColor = UIColor.white.cgColor
+        tf.frame.size.width = tf.intrinsicContentSize.width + 10
+        tf.setLeftPaddingPoints(20)
+        tf.setRightPaddingPoints(20)
+        tf.textColor = UIColor.gray
+        
+        //For testing purposes, remove for development build.
+        tf.attributedPlaceholder = NSAttributedString(string: "ConfrimNew Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(r: 230, g: 230, b: 230)])
+        
+        return tf
+    }()
     
     
     
-    let welcomeLabel: UILabel = {
+    let uploadItemHeaderLabel: UILabel = {
         let welcome = UILabel()
         welcome.translatesAutoresizingMaskIntoConstraints = false
-        welcome.text = "Welcome"
-        welcome.textColor = UIColor.white
-        welcome.font = UIFont(name: welcome.font.fontName, size: 40)
+        welcome.text = "Upload Identification"
+        welcome.numberOfLines = 2
+        welcome.textColor = UIColor(r: 230, g: 230, b: 230)
+        welcome.font = UIFont(name: welcome.font.fontName, size: 20)
         welcome.textAlignment = .center
         return welcome
     }()
@@ -87,7 +143,7 @@ class UploadImageController: UIViewController{
     let errorLabel: UILabel = {
         let el = UILabel()
         el.translatesAutoresizingMaskIntoConstraints = false
-        el.textColor = UIColor.white
+        el.textColor = UIColor.red
         el.font = UIFont(name: el.font.fontName, size: 15)
         el.textAlignment = .center
         el.lineBreakMode = .byWordWrapping
@@ -96,30 +152,92 @@ class UploadImageController: UIViewController{
         return el
     }()
     
-    
-    
-    
     override func viewDidLoad(){
         super.viewDidLoad()
         
-        //view.backgroundColor = UIColor(r: 180, g: 119, b: 206)
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
+        view.backgroundColor = UIColor(r: 247, g: 247, b: 247)
+        //view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         view.addSubview(inputsContainerView)
-        view.addSubview(loginRegisterButton)
-        view.addSubview(newAccountButton)
+        view.addSubview(TakePhotoButton)
+        view.addSubview(SelectPhotoButton)
+        
         //view.addSubview(backgroundImage)
         
         
-      
+        setupInputsContainerView()
+        setupTakePhotoButton()
+        setupSelectPhotoButton()
         
-        //setupLabel()
     }
-}
-   
-extension UIColor{
-    convenience init(r: CGFloat, g: CGFloat, b: CGFloat){
-        self.init(red: r/255, green: g/255, blue: b/255, alpha: 1)}
-}
+    
+    func setupInputsContainerView(){
+        //need  x, y, width, height constraints
+        //        print(navigationController?.navigationBar.topAnchor)
+        //        var anch = (navigationController?.navigationBar.topAnchor)!
+        inputsContainerView.topAnchor.constraint(equalTo: view.topAnchor, constant: (navigationController?.navigationBar.frame.height)!).isActive = true
+        //        inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        //        inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, constant: (self.navigationController?.navigationBar.frame.size.height)!).isActive = true
+        //inputsContainerView.backgroundColor = UIColor.black
+        inputsContainerView.addSubview(currentPasswordTextField)
+        //inputsContainerView.addSubview(backgroundImage)
+        currentPasswordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        currentPasswordTextField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 100).isActive = true
+        currentPasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        currentPasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/16).isActive = true
+        
+        inputsContainerView.addSubview(newPasswordTextField)
+        //inputsContainerView.addSubview(backgroundImage)
+        newPasswordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        newPasswordTextField.topAnchor.constraint(equalTo: currentPasswordTextField.bottomAnchor, constant: 15).isActive = true
+        newPasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        newPasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/16).isActive = true
+        
+        inputsContainerView.addSubview(confirmNewPasswordTextField)
+        confirmNewPasswordTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        confirmNewPasswordTextField.topAnchor.constraint(equalTo: newPasswordTextField.bottomAnchor, constant: 15).isActive = true
+        confirmNewPasswordTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        confirmNewPasswordTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/16).isActive = true
+        
+        
+        inputsContainerView.addSubview(uploadItemHeaderLabel)
+        uploadItemHeaderLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        uploadItemHeaderLabel.topAnchor.constraint(equalTo: currentPasswordTextField.bottomAnchor, constant: -120).isActive = true
+        uploadItemHeaderLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        uploadItemHeaderLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        
+        
+        inputsContainerView.addSubview(errorLabel)
+        errorLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        errorLabel.topAnchor.constraint(equalTo: TakePhotoButton.bottomAnchor, constant: 15).isActive = true
+        errorLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        errorLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+    }
+    
+    func setupTakePhotoButton(){
+        TakePhotoButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
+        TakePhotoButton.topAnchor.constraint(equalTo: confirmNewPasswordTextField.bottomAnchor, constant: 30).isActive = true
+        TakePhotoButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 1/2).isActive = true
+        TakePhotoButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
+    
+    func setupSelectPhotoButton(){
+        SelectPhotoButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
+        SelectPhotoButton.topAnchor.constraint(equalTo: confirmNewPasswordTextField.bottomAnchor, constant: 30).isActive = true
+        SelectPhotoButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 1/2).isActive = true
+        SelectPhotoButton.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
     
     
-
+    
+    func setupLabel(){
+        uploadItemHeaderLabel.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
+        
+    }
+    override var preferredStatusBarStyle: UIStatusBarStyle{
+        return .lightContent
+    }
+    
+}
