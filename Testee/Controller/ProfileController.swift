@@ -192,13 +192,13 @@ class ProfileController: UITableViewController {
         print("ss: " + screenString)
         switch screenString {
         case "Edit signature":
-            present(HomeViewController(), animated: true)
+            self.navigationController?.pushViewController(HomeViewController(), animated: true)
         case "Upload ID":
             present(HomeViewController(), animated: true)
         case "Upload Insurance":
             present(HomeViewController(), animated: true)
         case "Change Password":
-            present(HomeViewController(), animated: true)
+            self.navigationController?.pushViewController(ChangePasswordController(), animated: true)
         default:
             print("Table cell not recognized. Is the string correct?")
         }
