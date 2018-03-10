@@ -24,5 +24,30 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Signature View Controller-->
+        <scene sceneID="8Nx-0t-gbg">
+            <objects>
+                <viewController storyboardIdentifier="SignatureViewController" id="jvF-dx-T6s" customClass="SignatureViewController" customModule="Testee" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Og-mS-3eW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wXK-0d-AdT" customClass="YPDrawSignatureView" customModule="Testee" customModuleProvider="target">
+                                <rect key="frame" x="54" y="166" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="AG0-Ye-fb1"/>
+                    </view>
+                    <connections>
+                        <outlet property="signatureView" destination="wXK-0d-AdT" id="SSM-UB-osU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K6P-5c-Ctg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1332" y="100.29985007496252"/>
+        </scene>
     </scenes>
 </document>
