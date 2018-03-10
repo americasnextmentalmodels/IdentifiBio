@@ -31,7 +31,7 @@ class MessagesController: UITableViewController {
         //                                                    action: #selector(handleProfile))
         //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
         //                                                   action: #selector(handleHome))
-        //self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
+        self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
         //self.setNavigationBar()
         
         self.title = "Messages"
@@ -215,7 +215,7 @@ class MessagesController: UITableViewController {
     func showChatControllerForUser(user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
-        //self.navigationController?.pushViewController(chatLogController, animated: true)
+        self.navigationController?.pushViewController(chatLogController, animated: true)
     }
     
     func checkIfUserIsLoggedIn() {
@@ -398,7 +398,7 @@ class MessagesController: UITableViewController {
     func showChatControllerForUser(_ user: User) {
         let chatLogController = ChatLogController(collectionViewLayout: UICollectionViewFlowLayout())
         chatLogController.user = user
-        //navigationController?.pushViewController(chatLogController, animated: true)
+        navigationController?.pushViewController(chatLogController, animated: true)
     }
 }
 
