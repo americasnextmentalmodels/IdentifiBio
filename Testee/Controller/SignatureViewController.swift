@@ -25,18 +25,35 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
     
     let saveButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setTitle("Save", for: .normal)
+        button.setTitle("Save & Finish", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
-        
+        button.backgroundColor = UIColor.clear
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(saveFunc), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    let clearButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Clear", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.backgroundColor = UIColor.clear
+        button.layer.cornerRadius = 5
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        button.addTarget(self, action: #selector(clearFunc), for: .touchUpInside)
         
         return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
+        view.backgroundColor = UIColor.gray
         view.addSubview(inputsContainerView)
         view.addSubview(signatureView)
         setupSaveButton()
@@ -51,7 +68,12 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
     }
     
     @objc func saveFunc(){
+        signatureView.clear()
         dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func clearFunc(){
+        signatureView.clear()
     }
     
     func setupSaveButton() {
@@ -62,10 +84,20 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
         
         inputsContainerView.addSubview(saveButton)
         //inputsContainerView.addSubview(backgroundImage)
+        saveButton.rightAnchor.constraint(equalTo: inputsContainerView.rightAnchor).isActive = true
         saveButton.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        saveButton.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 10).isActive = true
+        saveButton.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 300).isActive = true
         saveButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         saveButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        
+        inputsContainerView.addSubview(clearButton)
+        //inputsContainerView.addSubview(backgroundImage)
+        clearButton.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        clearButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 15).isActive = true
+        clearButton.widthAnchor.constraint(equalTo: saveButton.widthAnchor).isActive = true
+        clearButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        
+        
     }
     
     func didStart() {
