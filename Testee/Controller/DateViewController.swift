@@ -57,7 +57,7 @@ class DateViewController: UIViewController {
     let dateField: UITextField = {
         let tf = UITextField()
         //tf.placeholder = "Name"
-        tf.attributedPlaceholder = NSAttributedString(string: "Click Here", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.attributedPlaceholder = NSAttributedString(string: "Click here to select your appoinment date...", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
         tf.translatesAutoresizingMaskIntoConstraints = false
         tf.layer.borderColor = UIColor.white.cgColor
         tf.layer.borderWidth = 1
@@ -71,6 +71,16 @@ class DateViewController: UIViewController {
         tf.autocapitalizationType = .none
         tf.autocorrectionType = .no
         return tf
+    }()
+    
+    let welcomeLabel: UILabel = {
+        let welcome = UILabel()
+        welcome.translatesAutoresizingMaskIntoConstraints = false
+        welcome.text = "Schedule"
+        welcome.textColor = UIColor.white
+        welcome.font = UIFont(name: welcome.font.fontName, size: 40)
+        welcome.textAlignment = .center
+        return welcome
     }()
     
     override func viewDidLoad() {
@@ -210,11 +220,17 @@ class DateViewController: UIViewController {
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
         inputsContainerView.heightAnchor.constraint(equalToConstant: 500).isActive = true
         
+        inputsContainerView.addSubview(welcomeLabel)
+        welcomeLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        welcomeLabel.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 0).isActive = true
+        welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        welcomeLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
         inputsContainerView.addSubview(dateField)
         dateField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        dateField.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 0).isActive = true
+        dateField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 50).isActive = true
         dateField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        dateField.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        dateField.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
 
 }

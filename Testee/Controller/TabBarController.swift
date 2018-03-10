@@ -17,6 +17,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //handleLogout()
+        
         self.delegate = self
         
         UITabBar.appearance().tintColor = UIColor(r: 145, g: 0, b: 123)
@@ -25,8 +26,10 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
         if freshLaunch == true {
             freshLaunch = false
+            self.selectedIndex = 2
             handleLogout()
         }
     }
