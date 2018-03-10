@@ -201,7 +201,7 @@ class ProfileController: UITableViewController {
         case "Upload Insurance":
             present(HomeViewController(), animated: true)
         case "Change Password":
-            present(HomeViewController(), animated: true)
+            self.navigationController?.pushViewController(ChangePasswordController(), animated: true)
         default:
             print("Table cell not recognized. Is the string correct?")
         }

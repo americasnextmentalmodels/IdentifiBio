@@ -23,6 +23,15 @@
 		6C9575622012DFD6000263E4 /* night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9575612012DFD6000263E4 /* night.png */; };
 		6CCC59C8201FACBA00FE716A /* checkBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC59C7201FACBA00FE716A /* checkBox.swift */; };
 		6CE053CA2050AA29008ACB57 /* ProfileViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053C92050AA29008ACB57 /* ProfileViewCell.swift */; };
+		6CE053DC20524458008ACB57 /* UploadImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053D920524457008ACB57 /* UploadImagesController.swift */; };
+		6CE053DD20524458008ACB57 /* UploadImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053D920524457008ACB57 /* UploadImagesController.swift */; };
+		6CE053DE20524458008ACB57 /* UploadImagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053D920524457008ACB57 /* UploadImagesController.swift */; };
+		6CE053DF20524458008ACB57 /* SignatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053DA20524457008ACB57 /* SignatureController.swift */; };
+		6CE053E020524458008ACB57 /* SignatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053DA20524457008ACB57 /* SignatureController.swift */; };
+		6CE053E120524458008ACB57 /* SignatureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053DA20524457008ACB57 /* SignatureController.swift */; };
+		6CE053E220524458008ACB57 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053DB20524457008ACB57 /* ChangePasswordController.swift */; };
+		6CE053E320524458008ACB57 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053DB20524457008ACB57 /* ChangePasswordController.swift */; };
+		6CE053E420524458008ACB57 /* ChangePasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE053DB20524457008ACB57 /* ChangePasswordController.swift */; };
 		6CEA19672008480F0072E501 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA19662008480F0072E501 /* AppDelegate.swift */; };
 		6CEA19692008480F0072E501 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA19682008480F0072E501 /* MessagesController.swift */; };
 		6CEA196C2008480F0072E501 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CEA196A2008480F0072E501 /* Main.storyboard */; };
@@ -83,6 +92,9 @@
 		6CBA0446201FB6B700456C7D /* checkBox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = checkBox.png; sourceTree = "<group>"; };
 		6CCC59C7201FACBA00FE716A /* checkBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = checkBox.swift; sourceTree = "<group>"; };
 		6CE053C92050AA29008ACB57 /* ProfileViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewCell.swift; sourceTree = "<group>"; };
+		6CE053D920524457008ACB57 /* UploadImagesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UploadImagesController.swift; sourceTree = "<group>"; };
+		6CE053DA20524457008ACB57 /* SignatureController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignatureController.swift; sourceTree = "<group>"; };
+		6CE053DB20524457008ACB57 /* ChangePasswordController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordController.swift; sourceTree = "<group>"; };
 		6CEA19632008480F0072E501 /* Testee.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Testee.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEA19662008480F0072E501 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CEA19682008480F0072E501 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
@@ -188,6 +200,9 @@
 				6CCC59C7201FACBA00FE716A /* checkBox.swift */,
 				6C1814AD202CFE95003423ED /* ChatLogController.swift */,
 				AD3ACFBF20509599005F6E19 /* ProfileController.swift */,
+				6CE053DB20524457008ACB57 /* ChangePasswordController.swift */,
+				6CE053DA20524457008ACB57 /* SignatureController.swift */,
+				6CE053D920524457008ACB57 /* UploadImagesController.swift */,
 				AD3ACFC12050A71B005F6E19 /* HomeViewController.swift */,
 				AD3ACFC32050DF44005F6E19 /* DateViewController.swift */,
 				AD3ACFEF2051F3DF005F6E19 /* TabBarController.swift */,
@@ -582,6 +597,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CE053DC20524458008ACB57 /* UploadImagesController.swift in Sources */,
 				6C1814AE202CFE95003423ED /* ChatLogController.swift in Sources */,
 				6CEA19692008480F0072E501 /* MessagesController.swift in Sources */,
 				6C1FF15C2034F727006AB794 /* ChatMessageCell.swift in Sources */,
@@ -589,6 +605,7 @@
 				AD3ACFF02051F3DF005F6E19 /* TabBarController.swift in Sources */,
 				6C9575582011906F000263E4 /* LoginController.swift in Sources */,
 				6CFD8FA1203E55AF007589C3 /* RecentMessageCell.swift in Sources */,
+				6CE053E220524458008ACB57 /* ChangePasswordController.swift in Sources */,
 				AD3ACFC42050DF44005F6E19 /* DateViewController.swift in Sources */,
 				AD1629E820537146006F72EF /* YPDrawSignatureView.swift in Sources */,
 				6C3EE6A7201419FA00943AE2 /* RegistrationController.swift in Sources */,
@@ -599,6 +616,7 @@
 				6CE053CA2050AA29008ACB57 /* ProfileViewCell.swift in Sources */,
 				6C1A8CF8202695EC004E58BA /* User.swift in Sources */,
 				AD3ACFF220523348005F6E19 /* LogoutViewController.swift in Sources */,
+				6CE053DF20524458008ACB57 /* SignatureController.swift in Sources */,
 				AD3ACFC22050A71B005F6E19 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -607,7 +625,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CE053E320524458008ACB57 /* ChangePasswordController.swift in Sources */,
+				6CE053DD20524458008ACB57 /* UploadImagesController.swift in Sources */,
 				6C1A8CF9202695EC004E58BA /* User.swift in Sources */,
+				6CE053E020524458008ACB57 /* SignatureController.swift in Sources */,
 				6CEA197C200848100072E501 /* TesteeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -616,7 +637,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CE053E420524458008ACB57 /* ChangePasswordController.swift in Sources */,
+				6CE053DE20524458008ACB57 /* UploadImagesController.swift in Sources */,
 				6C1A8CFA202695EC004E58BA /* User.swift in Sources */,
+				6CE053E120524458008ACB57 /* SignatureController.swift in Sources */,
 				6CEA1987200848100072E501 /* TesteeUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
