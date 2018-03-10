@@ -54,7 +54,7 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.gray
+        view.backgroundColor = UIColor.lightGray
         view.addSubview(inputsContainerView)
         view.addSubview(signatureView)
         setupSaveButton()
@@ -74,14 +74,14 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
             // Saving signatureImage from the line above to the Photo Roll.
             // The first time you do this, the app asks for access to your pictures.
             UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
-            uploadImage(signatureImage: signatureImage)
+            //uploadImage(signatureImage: signatureImage)
             // Since the Signature is now saved to the Photo Roll, the View can be cleared anyway.
             self.signatureView.clear()
             dismiss(animated: true, completion: nil)
         }
     }
     
-    func uploadImage(signatureImage: UIImage) {
+    /*func uploadImage(signatureImage: UIImage) {
         print("ui image: ", terminator: "")
         print(signatureImage)
         
@@ -89,15 +89,14 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
             //Handle error here if save failure (also add error handling in uploadTask below uid)
             return
         }
-        
 
-        let storageRef = Storage.storage().reference()
+        //let storageRef = Storage.storage().reference()
         // Data in memory
         var data = Data()
         data = UIImagePNGRepresentation(signatureImage)!
 
         // Create a reference to the file you want to upload
-        let databaseSaveRef = storageRef.child("signatures/" + uid + ".png")
+        //let databaseSaveRef = storageRef.child("signatures/" + uid + ".png")
 
         // Upload the file to the path "images/rivers.jpg"
         let uploadTask = databaseSaveRef.putData(data, metadata: nil) { (metadata, error) in
@@ -111,7 +110,7 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
         
         //Possible to monitor the progress using Firebase if time permits
         
-    }
+    }*/
     @objc func clearFunc(){
         signatureView.clear()
     }
@@ -119,23 +118,25 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
     func setupSaveButton() {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalToConstant: 550).isActive = true
         
         inputsContainerView.addSubview(saveButton)
         //inputsContainerView.addSubview(backgroundImage)
         saveButton.rightAnchor.constraint(equalTo: inputsContainerView.rightAnchor).isActive = true
         saveButton.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        saveButton.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 300).isActive = true
-        saveButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        saveButton.topAnchor.constraint(equalTo: signatureView.bottomAnchor, constant: 20).isActive = true
+        saveButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 1/2).isActive = true
         saveButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        saveButton.centerXAnchor.constraint(equalTo: signatureView.centerXAnchor).isActive = true
         
         inputsContainerView.addSubview(clearButton)
         //inputsContainerView.addSubview(backgroundImage)
         clearButton.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        clearButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 15).isActive = true
+        clearButton.topAnchor.constraint(equalTo: saveButton.bottomAnchor, constant: 20).isActive = true
         clearButton.widthAnchor.constraint(equalTo: saveButton.widthAnchor).isActive = true
         clearButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        clearButton.centerXAnchor.constraint(equalTo: signatureView.centerXAnchor).isActive = true
         
         
     }
