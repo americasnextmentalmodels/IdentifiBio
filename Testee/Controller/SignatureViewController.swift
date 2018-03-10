@@ -68,8 +68,16 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
     }
     
     @objc func saveFunc(){
-        signatureView.clear()
-        dismiss(animated: true, completion: nil)
+        if let signatureImage = self.signatureView.getSignature(scale: 10) {
+            
+            // Saving signatureImage from the line above to the Photo Roll.
+            // The first time you do this, the app asks for access to your pictures.
+            UIImageWriteToSavedPhotosAlbum(signatureImage, nil, nil, nil)
+            
+            // Since the Signature is now saved to the Photo Roll, the View can be cleared anyway.
+            self.signatureView.clear()
+            dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func clearFunc(){
