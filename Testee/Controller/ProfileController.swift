@@ -192,7 +192,10 @@ class ProfileController: UITableViewController {
         print("ss: " + screenString)
         switch screenString {
         case "Edit signature":
-            self.navigationController?.pushViewController(HomeViewController(), animated: true)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let controller = storyboard.instantiateViewController(withIdentifier: "SignatureViewController")
+            self.present(controller, animated: true, completion: nil)
+            //present(SignatureViewController(), animated: true)
         case "Upload ID":
             present(HomeViewController(), animated: true)
         case "Upload Insurance":
