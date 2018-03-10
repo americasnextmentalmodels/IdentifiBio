@@ -57,7 +57,6 @@ class LoginController: UIViewController {
                 self.errorLabel.text = "ERROR: " + (error?.localizedDescription)!
                 return
             }
-            
             //Else login successful
             self.switchToMainScreen();
         }
