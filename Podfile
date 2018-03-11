@@ -9,7 +9,6 @@ target 'Testee' do
   pod 'Firebase/Core'
   pod 'Firebase/Database'
   pod 'Firebase/Auth'
-  pod 'BEMCheckBox'
   pod 'Firebase/Storage'
 
   target 'TesteeTests' do

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		36F4457370B745AC463521CB /* Pods_TesteeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6013A204A4B362D37F943551 /* Pods_TesteeUITests.framework */; };
 		6C1814AE202CFE95003423ED /* ChatLogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1814AD202CFE95003423ED /* ChatLogController.swift */; };
 		6C1A8CEF202536A5004E58BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C1A8CEE202536A5004E58BA /* Assets.xcassets */; };
 		6C1A8CF0202536A5004E58BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C1A8CEE202536A5004E58BA /* Assets.xcassets */; };
@@ -51,6 +52,8 @@
 		AD3ACFFA205237BB005F6E19 /* dateBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFF5205237BB005F6E19 /* dateBtn.png */; };
 		AD3ACFFB205237BB005F6E19 /* homeBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFF6205237BB005F6E19 /* homeBtn.png */; };
 		AD3ACFFC205237BB005F6E19 /* logoutBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFF7205237BB005F6E19 /* logoutBtn.png */; };
+		C3B7BFD77247EE13EDAD43FB /* Pods_TesteeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C47423C5BFBBD88D66086E8 /* Pods_TesteeTests.framework */; };
+		F10964A1E54260E47FFC612A /* Pods_Testee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44659F8E197DB21BC119A47 /* Pods_Testee.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,8 +75,10 @@
 
 /* Begin PBXFileReference section */
 		0AA2C38E43CAF4A74D3598ED /* Pods-Testee.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Testee.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Testee/Pods-Testee.debug.xcconfig"; sourceTree = "<group>"; };
+		1C47423C5BFBBD88D66086E8 /* Pods_TesteeTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesteeTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1EB2A1B7FED7B49F305A929C /* Pods-Testee.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Testee.release.xcconfig"; path = "Pods/Target Support Files/Pods-Testee/Pods-Testee.release.xcconfig"; sourceTree = "<group>"; };
 		4DFF3CCE8DC3EF2656C2E82A /* Pods-TesteeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TesteeUITests/Pods-TesteeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6013A204A4B362D37F943551 /* Pods_TesteeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesteeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C1814AD202CFE95003423ED /* ChatLogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatLogController.swift; sourceTree = "<group>"; };
 		6C1A8CEE202536A5004E58BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6C1A8CF7202695EC004E58BA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -118,6 +123,7 @@
 		AD3ACFF6205237BB005F6E19 /* homeBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeBtn.png; sourceTree = SOURCE_ROOT; };
 		AD3ACFF7205237BB005F6E19 /* logoutBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoutBtn.png; sourceTree = SOURCE_ROOT; };
 		DCB61A0F718AC167D0392174 /* Pods-TesteeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesteeTests/Pods-TesteeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F44659F8E197DB21BC119A47 /* Pods_Testee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Testee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F10964A1E54260E47FFC612A /* Pods_Testee.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3B7BFD77247EE13EDAD43FB /* Pods_TesteeTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,6 +147,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36F4457370B745AC463521CB /* Pods_TesteeUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,6 +157,9 @@
 		26B24C938ACAF5F1009B6184 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F44659F8E197DB21BC119A47 /* Pods_Testee.framework */,
+				1C47423C5BFBBD88D66086E8 /* Pods_TesteeTests.framework */,
+				6013A204A4B362D37F943551 /* Pods_TesteeUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -428,7 +440,6 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Testee/Pods-Testee-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
@@ -436,7 +447,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
@@ -553,19 +563,19 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TesteeTests/Pods-TesteeTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/BEMCheckBox/BEMCheckBox.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BEMCheckBox.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
