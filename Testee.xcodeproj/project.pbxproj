@@ -42,8 +42,6 @@
 		AD1629E820537146006F72EF /* YPDrawSignatureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1629E720537146006F72EF /* YPDrawSignatureView.swift */; };
 		AD1629EA20537197006F72EF /* SignatureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1629E920537197006F72EF /* SignatureViewController.swift */; };
 		AD1629EC2053C322006F72EF /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD1629EB2053C322006F72EF /* ProfileViewController.swift */; };
-		AD35EEAE2053E0A20042D9FF /* identifiLogox20.png in Resources */ = {isa = PBXBuildFile; fileRef = AD35EEAC2053E0A20042D9FF /* identifiLogox20.png */; };
-		AD35EEAF2053E0A20042D9FF /* identifiLogox30.png in Resources */ = {isa = PBXBuildFile; fileRef = AD35EEAD2053E0A20042D9FF /* identifiLogox30.png */; };
 		AD3ACFC020509599005F6E19 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ACFBF20509599005F6E19 /* ProfileController.swift */; };
 		AD3ACFC22050A71B005F6E19 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ACFC12050A71B005F6E19 /* HomeViewController.swift */; };
 		AD3ACFC42050DF44005F6E19 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD3ACFC32050DF44005F6E19 /* DateViewController.swift */; };
@@ -114,8 +112,6 @@
 		AD1629E720537146006F72EF /* YPDrawSignatureView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YPDrawSignatureView.swift; sourceTree = "<group>"; };
 		AD1629E920537197006F72EF /* SignatureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignatureViewController.swift; sourceTree = "<group>"; };
 		AD1629EB2053C322006F72EF /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		AD35EEAC2053E0A20042D9FF /* identifiLogox20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = identifiLogox20.png; sourceTree = SOURCE_ROOT; };
-		AD35EEAD2053E0A20042D9FF /* identifiLogox30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = identifiLogox30.png; sourceTree = SOURCE_ROOT; };
 		AD3ACFBF20509599005F6E19 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		AD3ACFC12050A71B005F6E19 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		AD3ACFC32050DF44005F6E19 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
@@ -196,8 +192,6 @@
 				AD3ACFF6205237BB005F6E19 /* homeBtn.png */,
 				AD3ACFF7205237BB005F6E19 /* logoutBtn.png */,
 				AD3ACFF4205237BB005F6E19 /* profileBtn.png */,
-				AD35EEAC2053E0A20042D9FF /* identifiLogox20.png */,
-				AD35EEAD2053E0A20042D9FF /* identifiLogox30.png */,
 				6C9575572011906F000263E4 /* LoginController.swift */,
 				6C3EE6A6201419FA00943AE2 /* RegistrationController.swift */,
 				6CEA19682008480F0072E501 /* MessagesController.swift */,
@@ -411,10 +405,8 @@
 				6C1A8CEF202536A5004E58BA /* Assets.xcassets in Resources */,
 				AD3ACFF8205237BB005F6E19 /* chatBtn.png in Resources */,
 				AD3ACFFB205237BB005F6E19 /* homeBtn.png in Resources */,
-				AD35EEAF2053E0A20042D9FF /* identifiLogox30.png in Resources */,
 				6C9575622012DFD6000263E4 /* night.png in Resources */,
 				AD3ACFF9205237BB005F6E19 /* profileBtn.png in Resources */,
-				AD35EEAE2053E0A20042D9FF /* identifiLogox20.png in Resources */,
 				6CEA196C2008480F0072E501 /* Main.storyboard in Resources */,
 				AD3ACFFA205237BB005F6E19 /* dateBtn.png in Resources */,
 			);
