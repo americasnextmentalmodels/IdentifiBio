@@ -92,7 +92,8 @@ class ProfileViewController: UIViewController {
     @objc func updateSig(){
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "SignatureViewController")
-        self.present(controller, animated: true, completion: nil)
+        //self.present(controller, animated: true, completion: nil)
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 
     @objc func updateDoc(){
