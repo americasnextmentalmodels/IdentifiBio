@@ -56,6 +56,12 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
         
     }
     
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        navigationItem.backBarButtonItem?.title = "Back"
+    }
+    
     func setupKeyBoardObservers(){
         NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
@@ -64,6 +70,7 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        navigationItem.title = user?.firstName
         
         //Intitally let's not animate the scrolling down
         //when the controller is first loaded since it looks

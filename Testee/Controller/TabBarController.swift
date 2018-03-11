@@ -16,6 +16,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationController?.isNavigationBarHidden = true
         //handleLogout()
         
         self.delegate = self
@@ -34,6 +35,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
@@ -45,7 +47,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabTwo = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
         //self.present(controller, animated: true, completion: nil)
-        //let tabTwo = ProfileViewController()
+        //let tabTwo = ProfileController()
         let tabTwoBarItem = UITabBarItem(title: "Profile",image: UIImage(named: "profileBtn.png"), selectedImage: UIImage(named: "profileBtn.png"))
         tabTwo.tabBarItem = tabTwoBarItem
         

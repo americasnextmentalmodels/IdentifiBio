@@ -99,7 +99,7 @@ class ChangePasswordController: UIViewController{
         tf.textColor = UIColor.gray
         
         //For testing purposes, remove for development build.
-        tf.attributedPlaceholder = NSAttributedString(string: "ConfrimNew Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(r: 230, g: 230, b: 230)])
+        tf.attributedPlaceholder = NSAttributedString(string: "Confirm New Password", attributes: [NSAttributedStringKey.foregroundColor: UIColor(r: 230, g: 230, b: 230)])
         
         return tf
     }()
@@ -183,6 +183,12 @@ class ChangePasswordController: UIViewController{
         setupInputsContainerView()
         setupChangePasswordButton()
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        
     }
     
     func setupInputsContainerView(){

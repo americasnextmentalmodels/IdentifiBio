@@ -24,6 +24,8 @@ class MessagesController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//        self.navigationController?.isNavigationBarHidden = false
+//        self.navigationController?.navigationBar.topItem?.title = "Messages"
         // Do any additional setup after loading the view, typically from a nib.
         //navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Logout", style: .plain, target: self,
         //                                                   action: #selector(handleLogout))
@@ -34,7 +36,6 @@ class MessagesController: UITableViewController {
         self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
         //self.setNavigationBar()
         
-        self.title = "Messages"
         tableView.separatorStyle = .none;
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
 
@@ -49,7 +50,7 @@ class MessagesController: UITableViewController {
         super.viewWillAppear(animated)
         messages.removeAll()
         messagesDictionary.removeAll()
-
+        
         tableView.separatorStyle = .none;
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
 
@@ -60,6 +61,13 @@ class MessagesController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         //////print("cleaning up the existing Auth handle...")
         //Auth.auth().removeStateDidChangeListener(handle!)
+        self.navigationController?.navigationBar.topItem?.title = nil
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.topItem?.title = "Messages"
     }
     
     func observeUserMessages() {
@@ -272,10 +280,7 @@ class MessagesController: UITableViewController {
         present(proController, animated: true, completion: nil)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         //        Auth.auth().removeStateDidChangeListener(handle!)
         //////print("view disappeared")

@@ -19,7 +19,7 @@ class ProfileController: UITableViewController {
     var cells = [ProfileViewCell]()
     let cellId = "profileViewCellID"
     let headerId = "profileViewHeaderID"
-    var names = ["Signature": ["Edit signature"], "Official Documents": ["Upload ID", "Upload Insurance"], "Account": ["Change Password"]]
+    var names = ["Signature": ["Edit signature"], "Official Documents": ["Upload ID", "Upload Insurance"], "Account": ["Change Password", "Logout"]]
     struct Objects {
         
         var sectionName : String!
@@ -82,6 +82,7 @@ class ProfileController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = false
         //self.setNavigationBar()
         self.title = "Profile"
         // Do any additional setup after loading the view in viewDidLoad
@@ -104,6 +105,8 @@ class ProfileController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = false
+
     }
     
     override func didReceiveMemoryWarning() {
@@ -202,6 +205,8 @@ class ProfileController: UITableViewController {
             self.navigationController?.pushViewController(UploadImagesController(), animated: true)
         case "Change Password":
             self.navigationController?.pushViewController(ChangePasswordController(), animated: true)
+        case "Logout":
+            self.handleLogout()
         default:
             print("Table cell not recognized. Is the string correct?")
         }

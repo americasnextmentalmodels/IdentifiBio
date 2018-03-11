@@ -112,7 +112,7 @@ class ProfileViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //called every time the view appears
         super.viewWillAppear(animated)
-        
+        self.navigationController?.isNavigationBarHidden = true
         guard let uid = Auth.auth().currentUser?.uid else {
             //This is called is a fail safe which causes
             //nothing to happen if the uid is not pulled
@@ -134,6 +134,44 @@ class ProfileViewController: UIViewController {
                 
             }
         })
+        downloadSignature()
+    }
+    
+    func downloadSignature(){
+        guard let uid = Auth.auth().currentUser?.uid else {
+            print("UID safeguard, UID is not available.")
+            return
+        }
+        
+        let ref = Storage.storage().reference().child("signatures/" + uid + ".png")
+        
+        //10 * 1024 * 1024 bytes = 10 megabytes
+        
+        let downloadTask = ref.getData(maxSize: 10 * 1024 * 1024) { data, error in
+            if let error = error {
+                // Uh-oh, an error occurred!
+                print("Download failure, filesize may be too big or another issue.")
+                print(error)
+            } else {
+                // Data for "images/island.jpg" is returned
+                print("Download should now be complete and we can load in the image.")
+                self.image.image = UIImage(data: data!)
+                self.image.contentMode = .scaleAspectFit
+            }
+        }
+        
+        downloadTask.observe(.progress) { snapshot in
+            // Download reported progress
+            let percentComplete = 100.0 * Double(snapshot.progress!.completedUnitCount)
+                / Double(snapshot.progress!.totalUnitCount)
+            print("Current download progress: " + String(percentComplete))
+            
+        }
+        
+        downloadTask.observe(.success) { snapshot in
+            // Download completed successfully
+            print("Download complete")
+        }
     }
     
     func setupSaveButton() {

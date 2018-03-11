@@ -107,9 +107,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         //self.setNavigationBar()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
-        
         //circle stuff
-        self.title = "Home"
         let shaperLayer = CAShapeLayer()
         let center = view.center
         let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
@@ -129,6 +127,7 @@ class HomeViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         //called every time the view appears
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         let calendar = NSCalendar.current
         let firstDate = Date()
         let secondDate = Date().tomorrow

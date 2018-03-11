@@ -15,6 +15,7 @@ class RegistrationController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
         handle = Auth.auth().addStateDidChangeListener{(auth, user) in
             print("Auth state changed");
         }
@@ -268,7 +269,7 @@ class RegistrationController: UIViewController {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -10).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 600).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalToConstant: 500).isActive = true
         
         inputsContainerView.addSubview(welcomeLabel)
         welcomeLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
@@ -281,15 +282,15 @@ class RegistrationController: UIViewController {
         //inputsContainerView.addSubview(backgroundImage)
         firstNameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
         firstNameTextField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 15).isActive = true
-        firstNameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        firstNameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: (1/2)*0.95).isActive = true
         firstNameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
         
         
         inputsContainerView.addSubview(lastNameTextField)
         //inputsContainerView.addSubview(backgroundImage)
-        lastNameTextField.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.bottomAnchor, constant: 15).isActive = true
-        lastNameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        lastNameTextField.rightAnchor.constraint(equalTo: inputsContainerView.rightAnchor).isActive = true
+        lastNameTextField.topAnchor.constraint(equalTo: firstNameTextField.topAnchor, constant: 0).isActive = true
+        lastNameTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: (1/2)*0.95).isActive = true
         lastNameTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
         
         inputsContainerView.addSubview(emailTextField)

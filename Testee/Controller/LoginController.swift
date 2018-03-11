@@ -6,6 +6,8 @@
 //  Copyright © 2018 Mental ModelsTwo. All rights reserved.
 //
 
+//find me 1124
+
 import UIKit
 import Firebase
 
@@ -99,7 +101,7 @@ class LoginController: UIViewController {
         tf.textColor = UIColor.white
         
         //For testing purposes, remove for development build.
-        tf.text = "yuda@example.com"
+//        tf.text = "yuda@example.com"
         
         //disable autocapitalization and autocorrect for this text field
         tf.autocapitalizationType = .none
@@ -123,9 +125,9 @@ class LoginController: UIViewController {
         tf.setRightPaddingPoints(20)
         tf.textColor = UIColor.white
         
-        //For testing purposes, remove for development build.
-        tf.text = "qqqqqq"
-        
+//        //For testing purposes, remove for development build.
+//        tf.text = "qqqqqq"
+//
         return tf
     }()
     
@@ -169,6 +171,12 @@ class LoginController: UIViewController {
         setupLoginRegisterButton()
         setupNewAccountButton()
         //setupLabel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        
     }
     
     func setupInputsContainerView(){

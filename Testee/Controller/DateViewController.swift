@@ -85,7 +85,7 @@ class DateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //self.setNavigationBar()
+//        self.navigationController?.isNavigationBarHidden = true
         self.title = "Schedule"
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         view.addSubview(inputsContainerView)
@@ -101,6 +101,8 @@ class DateViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.navigationController?.isNavigationBarHidden = true
+        
     }
     
     func createDatePicker() {

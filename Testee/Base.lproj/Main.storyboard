@@ -35,16 +35,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wXK-0d-AdT" customClass="YPDrawSignatureView" customModule="Testee" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="164" width="375" height="224"/>
+                                <rect key="frame" x="0.0" y="228" width="375" height="129"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="wXK-0d-AdT" firstAttribute="leading" secondItem="4Og-mS-3eW" secondAttribute="leading" id="2AJ-eQ-owz"/>
-                            <constraint firstItem="wXK-0d-AdT" firstAttribute="top" secondItem="AG0-Ye-fb1" secondAttribute="top" constant="144" id="cAr-Vn-J83"/>
-                            <constraint firstAttribute="trailing" secondItem="wXK-0d-AdT" secondAttribute="trailing" id="lVB-SD-yo7"/>
-                            <constraint firstItem="AG0-Ye-fb1" firstAttribute="bottom" secondItem="wXK-0d-AdT" secondAttribute="bottom" constant="279" id="ymr-Ir-hai"/>
+                            <constraint firstItem="wXK-0d-AdT" firstAttribute="leading" secondItem="4Og-mS-3eW" secondAttribute="leading" id="NI5-SL-rCi"/>
+                            <constraint firstItem="wXK-0d-AdT" firstAttribute="top" secondItem="AG0-Ye-fb1" secondAttribute="top" constant="208" id="Ut9-Lj-5TM"/>
+                            <constraint firstItem="AG0-Ye-fb1" firstAttribute="bottom" secondItem="wXK-0d-AdT" secondAttribute="bottom" constant="310" id="cqs-HA-yOz"/>
+                            <constraint firstAttribute="trailing" secondItem="wXK-0d-AdT" secondAttribute="trailing" id="d88-A2-Yot"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AG0-Ye-fb1"/>
                     </view>
