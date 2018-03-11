@@ -130,6 +130,7 @@ class ProfileViewController: UIViewController {
                 name = firstName + " " + lastName
                 self.nameLabel.text = "Name: " + name
                 self.emailLabel.text = "Email: " + email
+                
             }
         })
     }

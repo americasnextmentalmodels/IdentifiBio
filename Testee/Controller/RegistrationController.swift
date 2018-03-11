@@ -14,12 +14,14 @@ var handle: AuthStateDidChangeListenerHandle?
 class RegistrationController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         handle = Auth.auth().addStateDidChangeListener{(auth, user) in
             print("Auth state changed");
         }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         Auth.auth().removeStateDidChangeListener(handle!)
     }
     
@@ -77,7 +79,7 @@ class RegistrationController: UIViewController {
             print("PROBLEM (nick's): The fields are not present for some reason.");
             return //we can't do anything if this is true
         }
-        
+
 //        print(email)
 //        print(password)
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in

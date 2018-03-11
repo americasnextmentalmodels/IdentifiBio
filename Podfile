@@ -14,7 +14,11 @@ target 'Testee' do
 
   target 'TesteeTests' do
     inherit! :search_paths
-    # Pods for testing
+    pod 'Firebase/Core'
+    pod 'Firebase/Database'
+    pod 'Firebase/Auth'
+    pod 'BEMCheckBox'
+    pod 'Firebase/Storage'
   end
 
   target 'TesteeUITests' do

@@ -90,6 +90,7 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
             return
         }
 
+        //Eamon not able to load, trying to figure out why
         let storageRef = Storage.storage().reference()
         // Data in memory
         var data = Data()
