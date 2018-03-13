@@ -158,7 +158,9 @@ class LoginController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
+    
+            
+            
         //view.backgroundColor = UIColor(r: 180, g: 119, b: 206)
         view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         view.addSubview(inputsContainerView)

@@ -47,7 +47,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let tabTwo = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
         //self.present(controller, animated: true, completion: nil)
-        //let tabTwo = ProfileController()
+        //let tabTwo = UpdatedProfileView()
         let tabTwoBarItem = UITabBarItem(title: "Account",image: UIImage(named: "profileBtn.png"), selectedImage: UIImage(named: "profileBtn.png"))
         tabTwo.tabBarItem = tabTwoBarItem
         

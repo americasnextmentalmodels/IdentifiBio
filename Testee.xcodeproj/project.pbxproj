@@ -61,6 +61,9 @@
 		AD9BA65920573B12005B6F22 /* documentPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9BA65820573B12005B6F22 /* documentPlus.png */; };
 		AD9BA65A20573B12005B6F22 /* documentPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9BA65820573B12005B6F22 /* documentPlus.png */; };
 		AD9BA65B20573B12005B6F22 /* documentPlus.png in Resources */ = {isa = PBXBuildFile; fileRef = AD9BA65820573B12005B6F22 /* documentPlus.png */; };
+		AD9BA65D20586B14005B6F22 /* UpdatedProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9BA65C20586B14005B6F22 /* UpdatedProfileView.swift */; };
+		AD9BA65E20586B14005B6F22 /* UpdatedProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9BA65C20586B14005B6F22 /* UpdatedProfileView.swift */; };
+		AD9BA65F20586B14005B6F22 /* UpdatedProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9BA65C20586B14005B6F22 /* UpdatedProfileView.swift */; };
 		C3B7BFD77247EE13EDAD43FB /* Pods_TesteeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C47423C5BFBBD88D66086E8 /* Pods_TesteeTests.framework */; };
 		F10964A1E54260E47FFC612A /* Pods_Testee.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F44659F8E197DB21BC119A47 /* Pods_Testee.framework */; };
 /* End PBXBuildFile section */
@@ -134,6 +137,7 @@
 		AD9BA65020573357005B6F22 /* gradient1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gradient1.jpg; sourceTree = "<group>"; };
 		AD9BA65420573365005B6F22 /* gradient2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gradient2.jpg; sourceTree = "<group>"; };
 		AD9BA65820573B12005B6F22 /* documentPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = documentPlus.png; sourceTree = "<group>"; };
+		AD9BA65C20586B14005B6F22 /* UpdatedProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatedProfileView.swift; sourceTree = "<group>"; };
 		DCB61A0F718AC167D0392174 /* Pods-TesteeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TesteeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TesteeTests/Pods-TesteeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F44659F8E197DB21BC119A47 /* Pods_Testee.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Testee.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -222,6 +226,7 @@
 				AD1629E920537197006F72EF /* SignatureViewController.swift */,
 				AD1629E720537146006F72EF /* YPDrawSignatureView.swift */,
 				AD1629EB2053C322006F72EF /* ProfileViewController.swift */,
+				AD9BA65C20586B14005B6F22 /* UpdatedProfileView.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -636,6 +641,7 @@
 				AD3ACFF02051F3DF005F6E19 /* TabBarController.swift in Sources */,
 				6C9575582011906F000263E4 /* LoginController.swift in Sources */,
 				6CFD8FA1203E55AF007589C3 /* RecentMessageCell.swift in Sources */,
+				AD9BA65D20586B14005B6F22 /* UpdatedProfileView.swift in Sources */,
 				6CE053E220524458008ACB57 /* ChangePasswordController.swift in Sources */,
 				AD3ACFC42050DF44005F6E19 /* DateViewController.swift in Sources */,
 				AD1629E820537146006F72EF /* YPDrawSignatureView.swift in Sources */,
@@ -658,6 +664,7 @@
 			files = (
 				6CE053E320524458008ACB57 /* ChangePasswordController.swift in Sources */,
 				6CE053DD20524458008ACB57 /* UploadImagesController.swift in Sources */,
+				AD9BA65E20586B14005B6F22 /* UpdatedProfileView.swift in Sources */,
 				6C1A8CF9202695EC004E58BA /* User.swift in Sources */,
 				6CEA197C200848100072E501 /* TesteeTests.swift in Sources */,
 			);
@@ -669,6 +676,7 @@
 			files = (
 				6CE053E420524458008ACB57 /* ChangePasswordController.swift in Sources */,
 				6CE053DE20524458008ACB57 /* UploadImagesController.swift in Sources */,
+				AD9BA65F20586B14005B6F22 /* UpdatedProfileView.swift in Sources */,
 				6C1A8CFA202695EC004E58BA /* User.swift in Sources */,
 				6CEA1987200848100072E501 /* TesteeUITests.swift in Sources */,
 			);

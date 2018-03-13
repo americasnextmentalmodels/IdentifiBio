@@ -197,7 +197,7 @@ class HomeViewController: UIViewController {
         //shapeLayer.strokeEnd = 0
         
         //view.layer.addSublayer(shapeLayer)
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
+        //view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         
         view.addSubview(inputsContainerView)
         setupInputsContainerView()
@@ -280,6 +280,12 @@ class HomeViewController: UIViewController {
                     date = "\(diff+1)"
                 }
                 print(diff)
+                if date == "1" {
+                    self.dLabel.text = "day"
+                }
+                else{
+                    self.dLabel.text = "days"
+                }
                 self.daysLabel.text = date
                 self.handleTap(days: diff+1)
             }
