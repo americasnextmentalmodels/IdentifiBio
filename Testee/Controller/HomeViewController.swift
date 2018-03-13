@@ -39,8 +39,71 @@ extension Date {
 
 class HomeViewController: UIViewController {
     
+    var shapeLayer: CAShapeLayer! // main circle path
+    var pulsatingLayer: CAShapeLayer! // pulsating circle path
+    
     var time = Timer()
     var handle: AuthStateDidChangeListenerHandle?
+    
+//    private func setupNotificationObservers() {
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleEnterForeground), name: .UIApplicationWillEnterForeground, object: nil)
+//    }
+//
+//    @objc private func handleEnterForeground() {
+//        animatePulsatingLayer()
+//    }
+    
+    private func createCircleShapeLayer(strokeColor: UIColor, fillColor: UIColor) -> CAShapeLayer {
+        let layer = CAShapeLayer()
+        let circularPath = UIBezierPath(arcCenter: .zero, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        layer.path = circularPath.cgPath
+        layer.strokeColor = strokeColor.cgColor
+        layer.lineWidth = 15
+        layer.fillColor = fillColor.cgColor
+        layer.lineCap = kCALineCapRound
+        layer.position = view.center
+        return layer
+    }
+    
+    private func setupCircleLayers() {
+        // the pulsating circle
+        pulsatingLayer = createCircleShapeLayer(strokeColor: .clear, fillColor: UIColor(r: 135, g: 56, b: 92))
+        pulsatingLayer.opacity = 0.5
+        view.layer.addSublayer(pulsatingLayer)
+        animatePulsatingLayer()
+        
+        // the inner circle
+        // UIColor(r: 244, g: 134, b: 161
+        let trackLayer = createCircleShapeLayer(strokeColor: UIColor(r: 244, g: 134, b: 161)
+, fillColor: UIColor(r: 21, g: 22, b: 33))
+        trackLayer.opacity = 0.5
+        
+        view.layer.addSublayer(trackLayer)
+        
+        // rgb(244, 166, 161)
+        // the progress circle
+        // UIColor(r: 186, g: 29, b: 101
+        shapeLayer = createCircleShapeLayer(strokeColor: UIColor(r: 186, g: 29, b: 101)
+, fillColor: .clear)
+        
+        shapeLayer.transform = CATransform3DMakeRotation(-CGFloat.pi / 2, 0, 0, 1)
+        shapeLayer.strokeEnd = 0
+        //shapeLayer.opacity = 0.5
+        
+        view.layer.addSublayer(shapeLayer)
+    }
+    
+    private func animatePulsatingLayer() {
+        let animation = CABasicAnimation(keyPath: "transform.scale")
+        
+        animation.toValue = 1.35
+        animation.duration = 0.8
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.autoreverses = true
+        animation.repeatCount = Float.infinity
+        
+        pulsatingLayer.add(animation, forKey: "pulsing")
+    }
     
     let inputsContainerView: UIView = {
         let inputsContainerView = UIView()
@@ -56,7 +119,7 @@ class HomeViewController: UIViewController {
         welcome.translatesAutoresizingMaskIntoConstraints = false
         welcome.text = "Hello"
         welcome.textColor = UIColor.white
-        welcome.font = UIFont(name: welcome.font.fontName, size: 20)
+        welcome.font = UIFont(name: welcome.font.fontName, size: 40)
         welcome.textAlignment = .center
         return welcome
     }()
@@ -86,7 +149,7 @@ class HomeViewController: UIViewController {
         until.translatesAutoresizingMaskIntoConstraints = false
         until.text = "Next Appointment In"
         until.textColor = UIColor.white
-        until.font = UIFont(name: until.font.fontName, size: 15)
+        until.font = UIFont(name: "Avenir", size: 15)
         until.textAlignment = .center
         return until
     }()
@@ -108,20 +171,68 @@ class HomeViewController: UIViewController {
         //self.setNavigationBar()
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         //circle stuff
-        let shaperLayer = CAShapeLayer()
-        let center = view.center
-        let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
-        shaperLayer.path = circularPath.cgPath
-        shaperLayer.fillColor = UIColor(red:0/255, green:0/255, blue:0/255, alpha:0.5).cgColor
-            //UIColor.clear.cgColor
-        shaperLayer.strokeColor = UIColor(red:244/255, green:166/255, blue:161/255, alpha:1.0).cgColor
-        shaperLayer.lineWidth = 5
+        //setupNotificationObservers()
+        setupCircleLayers()
         
-        view.layer.addSublayer(shaperLayer)
+        //let shaperLayer = CAShapeLayer()
+        //let center = view.center
+        //let circularPath = UIBezierPath(arcCenter: center, radius: 100, startAngle: 0, endAngle: 2 * CGFloat.pi, clockwise: true)
+        //shaperLayer.path = circularPath.cgPath
+        //shaperLayer.fillColor = UIColor.clear.cgColor
+
+        //shaperLayer.fillColor = UIColor(red:0/255, green:0/255, blue:0/255, alpha:0.5).cgColor
+            //UIColor.clear.cgColor
+        //shaperLayer.strokeColor = UIColor(red:244/255, green:166/255, blue:161/255, alpha:1.0).cgColor
+        //shaperLayer.lineWidth = 10
+        //shaperLayer.lineCap = kCALineCapRound
+        
+        //view.layer.addSublayer(shaperLayer)
+        
+        //shapeLayer.path = circularPath.cgPath
+        //shapeLayer.strokeColor = UIColor.red.cgColor
+        //shapeLayer.lineWidth = 10
+        //shapeLayer.fillColor = UIColor.clear.cgColor
+        //shapeLayer.lineCap = kCALineCapRound
+        
+        //shapeLayer.strokeEnd = 0
+        
+        //view.layer.addSublayer(shapeLayer)
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleTap)))
         
         view.addSubview(inputsContainerView)
         setupInputsContainerView()
         view.bringSubview(toFront: daysLabel)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animatePulsatingLayer()
+    }
+    
+    @objc private func handleTap(days: Int){
+        print("Attempting to animate stroke")
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        
+        if days <= 1 {
+            basicAnimation.toValue = 1
+        }
+        else if days == 2 {
+            basicAnimation.toValue = 0.75
+        }
+        else if days == 3 {
+            basicAnimation.toValue = 0.50
+        }
+        
+        else if days >= 4 {
+            basicAnimation.toValue = 0.25
+        }
+        basicAnimation.duration = 2
+        
+        basicAnimation.fillMode = kCAFillModeForwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "urSoBasic")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -152,7 +263,8 @@ class HomeViewController: UIViewController {
                 let firstName = (dict["firstName"] as? String)!
                 let lastName = (dict["lastName"] as? String)!
                 print(firstName + " " + lastName)
-                name = firstName + " " + lastName
+                name = firstName //+ " " + lastName
+                self.welcomeLabel.numberOfLines = 2
                 self.welcomeLabel.text = "Hello " + name
                 
                 guard let dateEpoch = dict["nextAppointment"] as? Int else {
@@ -160,9 +272,16 @@ class HomeViewController: UIViewController {
                 }
                 let today: Int = Int(Date().timeIntervalSince1970)
                 let diff = Int((dateEpoch - today)/86400)
+                var date = "0"
+                if (diff < 0) {
+                    date = "0"
+                }
+                else{
+                    date = "\(diff+1)"
+                }
                 print(diff)
-                let date = "\(diff)"
                 self.daysLabel.text = date
+                self.handleTap(days: diff+1)
             }
         })
         
@@ -226,6 +345,7 @@ class HomeViewController: UIViewController {
     }
     
     
+    
     func setupInputsContainerView(){
         //need  x, y, width, height constraints
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -237,17 +357,18 @@ class HomeViewController: UIViewController {
         welcomeLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
         welcomeLabel.topAnchor.constraint(equalTo: inputsContainerView.topAnchor, constant: 10).isActive = true
         welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
-        welcomeLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        welcomeLabel.heightAnchor.constraint(equalToConstant: 80).isActive = true
         
         inputsContainerView.addSubview(untilLabel)
         untilLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        untilLabel.topAnchor.constraint(equalTo: welcomeLabel.topAnchor, constant: 70).isActive = true
+        untilLabel.topAnchor.constraint(equalTo: welcomeLabel.topAnchor, constant: 50).isActive = true
         untilLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         untilLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
         inputsContainerView.addSubview(daysLabel)
         daysLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        daysLabel.topAnchor.constraint(equalTo: untilLabel.topAnchor, constant: 110).isActive = true
+        //daysLabel.topAnchor.constraint(equalTo: untilLabel.topAnchor, constant: 110).isActive = true
+        daysLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -25).isActive = true
         daysLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         daysLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         

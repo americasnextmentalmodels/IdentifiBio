@@ -246,6 +246,10 @@ class RegistrationController: UIViewController {
         view.addSubview(loginRegisterButton)
         view.addSubview(returnToLoginButton)
         view.addSubview(agreeTosButton)
+//        let tap = UITapGestureRecognizer(target: self.view, action: #selector(endEditing))
+//        tap.cancelsTouchesInView = false
+//        self.view.addGestureRecognizer(tap)
+        //view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(endEditing)))
         //view.addSubview(backgroundImage)
         
         
@@ -254,6 +258,14 @@ class RegistrationController: UIViewController {
         setupReturnToLoginButton()
         setupTosButton()
         //setupLabel()
+    }
+    
+    @objc func endEditing(){
+        self.view.endEditing(true)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.view.endEditing(true)
     }
     
     func setupInputsContainerView(){

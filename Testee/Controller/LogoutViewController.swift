@@ -39,7 +39,6 @@ class LogoutViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.clear
-        button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
@@ -47,19 +46,18 @@ class LogoutViewController: UIViewController {
         return button
     }()
     
-    let returnButton: UIButton = {
+    /*let returnButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Confirm to Logout", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.clear
-        button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(handleLogout), for: .touchUpInside)
         
         return button
-    }()
+    }()*/
     
     override func viewDidLoad() {
         super.viewDidLoad()

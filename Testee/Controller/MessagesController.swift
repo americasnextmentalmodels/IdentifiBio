@@ -24,6 +24,7 @@ class MessagesController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient1.jpg")!)
 //        self.navigationController?.isNavigationBarHidden = false
 //        self.navigationController?.navigationBar.topItem?.title = "Messages"
         // Do any additional setup after loading the view, typically from a nib.

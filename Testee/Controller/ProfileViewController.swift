@@ -18,8 +18,11 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var image: UIImageView!
     
     @IBOutlet weak var accountLabel: UILabel!
-    @IBOutlet weak var documentLabel: UILabel!
+    @IBOutlet weak var signatureLabel: UILabel!
 
+    @IBOutlet weak var documentLabel: UILabel!
+    
+    
     let inputsContainerView: UIView = {
         let inputsContainerView = UIView()
         
@@ -36,7 +39,6 @@ class ProfileViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.clear
-        button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(updateSig), for: .touchUpInside)
@@ -50,7 +52,6 @@ class ProfileViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.clear
-        button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(changePassword), for: .touchUpInside)
@@ -64,7 +65,6 @@ class ProfileViewController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitleColor(UIColor.white, for: .normal)
         button.backgroundColor = UIColor.clear
-        button.layer.cornerRadius = 5
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.white.cgColor
         button.addTarget(self, action: #selector(updateDoc), for: .touchUpInside)
@@ -74,7 +74,8 @@ class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "Profile"
+        self.title = "Account"
+        //view.backgroundColor = UIColor.white
         self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         view.addSubview(welcomeLabel)
         view.addSubview(emailLabel)
@@ -178,7 +179,7 @@ class ProfileViewController: UIViewController {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: 0).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalToConstant: 550).isActive = true
         
         inputsContainerView.addSubview(updateSigButton)
         //inputsContainerView.addSubview(backgroundImage)
@@ -186,13 +187,13 @@ class ProfileViewController: UIViewController {
         updateSigButton.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
         updateSigButton.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 20).isActive = true
         updateSigButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor, multiplier: 1/2).isActive = true
-        updateSigButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
+        updateSigButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/20).isActive = true
         updateSigButton.centerXAnchor.constraint(equalTo: image.centerXAnchor).isActive = true
         
         inputsContainerView.addSubview(updateDocButton)
         //inputsContainerView.addSubview(backgroundImage)
         updateDocButton.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        updateDocButton.topAnchor.constraint(equalTo: updateSigButton.bottomAnchor, constant: 20).isActive = true
+        updateDocButton.topAnchor.constraint(equalTo: documentLabel.bottomAnchor, constant: 20).isActive = true
         updateDocButton.widthAnchor.constraint(equalTo: updateSigButton.widthAnchor).isActive = true
         updateDocButton.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/8).isActive = true
         updateDocButton.centerXAnchor.constraint(equalTo: image.centerXAnchor).isActive = true

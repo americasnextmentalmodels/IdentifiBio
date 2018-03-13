@@ -80,6 +80,10 @@ class ChatLogController: UICollectionViewController, UITextFieldDelegate, UIColl
 
     }
     
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.view.endEditing(true)
+//    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         

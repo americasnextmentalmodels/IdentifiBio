@@ -44,6 +44,38 @@ class DateViewController: UIViewController {
     
     let picker = UIDatePicker()
     
+    
+    
+    
+    
+    let datePicker: UIDatePicker = {
+        let monthsToAdd = 1
+        //let daysToAdd = 1
+        //let yearsToAdd = 1
+        let currentDate = Date.init()
+        
+        var dateComponent = DateComponents()
+        
+        dateComponent.month = monthsToAdd
+        //dateComponent.day = daysToAdd
+        //dateComponent.year = yearsToAdd
+        let futureDate = Calendar.current.date(byAdding: dateComponent, to: currentDate)
+        
+        let datePicker = UIDatePicker()
+        datePicker.setValue(UIColor.orange, forKeyPath: "textColor")
+        datePicker.translatesAutoresizingMaskIntoConstraints = false
+        datePicker.datePickerMode = .date
+        
+        
+        
+        var minDate = currentDate
+        var maxDate = futureDate
+        datePicker.minimumDate = minDate
+        datePicker.maximumDate = maxDate
+        
+        return datePicker
+    }()
+    
     let inputsContainerView: UIView = {
         let inputsContainerView = UIView()
         
@@ -54,18 +86,33 @@ class DateViewController: UIViewController {
         return inputsContainerView
     }()
     
+    let dateButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = UIColor(r: 112, g: 47, b: 139)
+        button.setTitle("Request Appointment", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.white, for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+        button.addTarget(self, action: #selector(donePressed), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    
     let dateField: UITextField = {
         let tf = UITextField()
         //tf.placeholder = "Name"
-        tf.attributedPlaceholder = NSAttributedString(string: "Click here to select your appoinment date...", attributes: [NSAttributedStringKey.foregroundColor: UIColor.white])
+        tf.attributedPlaceholder = NSAttributedString(string: "Current Appointment ", attributes: [NSAttributedStringKey.foregroundColor: UIColor.black])
         tf.translatesAutoresizingMaskIntoConstraints = false
-        tf.layer.borderColor = UIColor.white.cgColor
-        tf.layer.borderWidth = 1
-        tf.layer.backgroundColor = UIColor.clear.cgColor
+        //tf.layer.borderColor = UIColor.lightGray.cgColor
+        //tf.layer.borderWidth = 1
+        //tf.layer.backgroundColor = UIColor.clear.cgColor
         tf.frame.size.width = tf.intrinsicContentSize.width + 10
+        tf.setBottomBorder()
         tf.setLeftPaddingPoints(20)
         tf.setRightPaddingPoints(20)
-        tf.textColor = UIColor.white
+        tf.textColor = UIColor.black
         
         //disable autocapitalization and autocorrect for this text field
         tf.autocapitalizationType = .none
@@ -76,22 +123,33 @@ class DateViewController: UIViewController {
     let welcomeLabel: UILabel = {
         let welcome = UILabel()
         welcome.translatesAutoresizingMaskIntoConstraints = false
-        welcome.text = "Schedule"
-        welcome.textColor = UIColor.white
+        welcome.text = "Appointment"
+        welcome.textColor = UIColor(r: 145, g: 0, b: 123)
         welcome.font = UIFont(name: welcome.font.fontName, size: 40)
         welcome.textAlignment = .center
         return welcome
+    }()
+    
+    let dateLabel: UILabel = {
+        let date = UILabel()
+        date.translatesAutoresizingMaskIntoConstraints = false
+        date.text = "Select a Date"
+        date.textColor = UIColor(r: 145, g: 0, b: 123)
+        date.font = UIFont(name: "Avenir", size: 15)
+        date.textAlignment = .center
+        return date
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.navigationController?.isNavigationBarHidden = true
         self.title = "Schedule"
-        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
+        self.view.backgroundColor = UIColor(r: 249, g: 249, b: 249)
+        //self.view.backgroundColor = UIColor(patternImage: UIImage(named: "gradient1.jpg")!)
         view.addSubview(inputsContainerView)
         
         setupInputsContainerView()
-        createDatePicker()
+        //createDatePicker()
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,28 +163,30 @@ class DateViewController: UIViewController {
         
     }
     
-    func createDatePicker() {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
-        toolbar.setItems([done], animated: false)
-        
-        dateField.inputAccessoryView = toolbar
-        dateField.inputView =  picker
-        
-        //format picker date
-        picker.datePickerMode = .date
-        
-        toolbar.tintColor = UIColor(r: 145, g: 0, b: 123)
-    }
+    
+    
+//    func createDatePicker() {
+//        let toolbar = UIToolbar()
+//        toolbar.sizeToFit()
+//
+//        let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressed))
+//        toolbar.setItems([done], animated: false)
+//
+//        dateField.inputAccessoryView = toolbar
+//        dateField.inputView =  picker
+//
+//        //format picker date
+//        picker.datePickerMode = .date
+//
+//        toolbar.tintColor = UIColor(r: 145, g: 0, b: 123)
+//    }
     
     @objc func donePressed(){
         //format date
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .none
-        let dateEpoch: Int = Int(picker.date.timeIntervalSince1970)
+        let dateEpoch: Int = Int(datePicker.date.timeIntervalSince1970)
         print(dateEpoch)
         
         guard let uid = Auth.auth().currentUser?.uid else {
@@ -144,10 +204,10 @@ class DateViewController: UIViewController {
         //print(today)
         //let diff = Int((dateEpoch - today)/86400)
         //print(diff)
-        let dateString = formatter.string(from: picker.date)
+        let dateString = formatter.string(from: datePicker.date)
         
         dateField.text = "\(dateString)"
-        self.view.endEditing(true)
+        //self.view.endEditing(true)
     }
     
     /*func setNavigationBar() {
@@ -203,17 +263,7 @@ class DateViewController: UIViewController {
         present(homeController, animated: true, completion: nil)
     }
     
-    @objc func handleLogout() {
-        do {
-            try Auth.auth().signOut()
-        } catch let logoutError {
-            //print(logoutError)
-        }
-        //loginController.messagesController = self
-        let loginController = LoginController()
-        //dismiss(animated: false, completion: nil)
-        present(loginController, animated: true, completion: nil)
-    }
+    
     
     func setupInputsContainerView(){
         //need  x, y, width, height constraints
@@ -233,6 +283,39 @@ class DateViewController: UIViewController {
         dateField.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 50).isActive = true
         dateField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         dateField.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        dateField.isEnabled = false
+        
+        inputsContainerView.addSubview(dateLabel)
+        dateLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        dateLabel.topAnchor.constraint(equalTo: dateField.topAnchor, constant: 80).isActive = true
+        dateLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        dateLabel.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        
+        inputsContainerView.addSubview(datePicker)
+        datePicker.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        datePicker.topAnchor.constraint(equalTo: dateLabel.bottomAnchor, constant: -20).isActive = true
+        datePicker.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        //datePicker.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        datePicker.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        
+        inputsContainerView.addSubview(dateButton)
+        dateButton.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        dateButton.topAnchor.constraint(equalTo: datePicker.bottomAnchor, constant: 20).isActive = true
+        dateButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        dateButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     }
+    
+}
 
+extension UITextField {
+    func setBottomBorder() {
+        self.borderStyle = .none
+        self.layer.backgroundColor = UIColor.white.cgColor
+        
+        self.layer.masksToBounds = false
+        self.layer.shadowColor = UIColor.gray.cgColor
+        self.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+        self.layer.shadowOpacity = 1.0
+        self.layer.shadowRadius = 0.0
+    }
 }
