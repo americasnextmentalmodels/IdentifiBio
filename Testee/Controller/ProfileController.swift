@@ -88,9 +88,10 @@ class ProfileController: UITableViewController {
         // Do any additional setup after loading the view in viewDidLoad
         tableView.register(UserCell.self, forCellReuseIdentifier: cellId)
         tableView.register(HeaderCell.self, forHeaderFooterViewReuseIdentifier: headerId)
-        for (key, value) in names {
-            print("\(key) -> \(value)")
-            objectArray.append(Objects(sectionName: key, sectionObjects: value))
+        let sortedArray = Array(names.keys).sorted(by: >)
+        print(sortedArray)
+        for key in sortedArray {
+            objectArray.append(Objects(sectionName: key, sectionObjects: names[key]))
         }
         self.tableView.tableFooterView = UIView()
 

@@ -30,7 +30,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         if freshLaunch == true {
             freshLaunch = false
-            self.selectedIndex = 0
+            
+            //changed index to 3 for testing new profile screen
+            self.selectedIndex = 3
             handleLogout()
         }
     }
@@ -45,9 +47,9 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
         
         
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let tabTwo = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        //let tabTwo = storyboard.instantiateViewController(withIdentifier: "ProfileViewController")
         //self.present(controller, animated: true, completion: nil)
-        //let tabTwo = UpdatedProfileView()
+        let tabTwo = UpdatedProfileView()
         let tabTwoBarItem = UITabBarItem(title: "Account",image: UIImage(named: "profileBtn.png"), selectedImage: UIImage(named: "profileBtn.png"))
         tabTwo.tabBarItem = tabTwoBarItem
         

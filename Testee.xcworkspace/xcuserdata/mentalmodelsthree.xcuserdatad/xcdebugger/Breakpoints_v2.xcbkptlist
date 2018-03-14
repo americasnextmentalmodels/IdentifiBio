@@ -186,23 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/ProfileController.swift"
-            timestampString = "542605876.039436"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "198"
-            endingLineNumber = "198"
-            landmarkName = "tableView(_:didSelectRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Testee/Controller/ProfileController.swift"
-            timestampString = "542605876.039505"
+            timestampString = "542717083.413386"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
@@ -218,11 +202,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/ProfileController.swift"
-            timestampString = "542605876.039546"
+            timestampString = "542717083.413733"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "200"
             endingLineNumber = "200"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Testee/Controller/ProfileController.swift"
+            timestampString = "542717083.413962"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "tableView(_:didSelectRowAt:)"
             landmarkType = "7">
             <Locations>
@@ -266,13 +266,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/LogoutViewController.swift"
-            timestampString = "542580529.692616"
+            timestampString = "542705378.274308"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "87"
             endingLineNumber = "87"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "handleLogout()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -282,7 +282,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/UploadImagesController.swift"
-            timestampString = "542670973.709379"
+            timestampString = "542712624.960256"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "237"
@@ -298,12 +298,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Testee/Controller/UploadImagesController.swift"
-            timestampString = "542670973.709457"
+            timestampString = "542712624.960706"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "249"
             endingLineNumber = "249"
             landmarkName = "imagePickerController(_:didFinishPickingMediaWithInfo:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Testee/Controller/UpdatedProfileView.swift"
+            timestampString = "542716124.566013"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "addContainerToView(toView:underneathAnchor:numberOfContainers:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

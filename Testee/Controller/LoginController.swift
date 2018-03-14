@@ -49,7 +49,8 @@ class LoginController: UIViewController {
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         
         button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
- 
+        
+
         return button
     }()
     
@@ -158,9 +159,11 @@ class LoginController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
+        
+        //Temporary auto-login for testing purposes
+        handleLogin()
+        
     
-            
-            
         //view.backgroundColor = UIColor(r: 180, g: 119, b: 206)
         view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         view.addSubview(inputsContainerView)
@@ -172,7 +175,7 @@ class LoginController: UIViewController {
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupNewAccountButton()
-        //setupLabel()
+        //setupLabel()f
     }
     
     override func viewWillAppear(_ animated: Bool){
