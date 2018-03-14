@@ -76,6 +76,7 @@ class SignatureViewController: UIViewController, YPSignatureDelegate {
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.topItem?.title = "Change Password"
     }
 
     override func didReceiveMemoryWarning() {

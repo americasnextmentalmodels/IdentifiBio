@@ -34,7 +34,6 @@ class MessagesController: UITableViewController {
         //                                                    action: #selector(handleProfile))
         //navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Home", style: .plain, target: self,
         //                                                   action: #selector(handleHome))
-        self.navigationController?.navigationBar.tintColor = UIColor(r: 145, g: 0, b: 123)
         //self.setNavigationBar()
         
         tableView.separatorStyle = .none;
@@ -63,11 +62,13 @@ class MessagesController: UITableViewController {
         //////print("cleaning up the existing Auth handle...")
         //Auth.auth().removeStateDidChangeListener(handle!)
         self.navigationController?.navigationBar.topItem?.title = nil
+        self.navigationController?.navigationBar.tintColor = UIColor.purple
     }
     
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        self.navigationController?.navigationBar.tintColor = UIColor.purple
         self.navigationController?.navigationBar.topItem?.title = "Messages"
     }
     
@@ -328,6 +329,11 @@ class MessagesController: UITableViewController {
                 if let dictionary = snapshot.value as? [String: AnyObject] {
                     //print("first name is: " + (dictionary["firstName"] as? String)!)
                     cell.textLabel?.text = dictionary["firstName"] as? String
+                    cell.layer.shadowColor = UIColor.lightGray.cgColor
+                    cell.layer.shadowOffset = CGSize(width: 2, height: 2)
+                    cell.layer.shadowOpacity = 0.1
+                    cell.layer.shadowRadius = 4
+                    cell.detailTextLabel?.textColor = UIColor.init(r: 175, g: 175, b: 175)
                     cell.detailTextLabel?.text = message.text
                 }
             }))

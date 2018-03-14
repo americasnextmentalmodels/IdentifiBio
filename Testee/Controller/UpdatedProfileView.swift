@@ -259,7 +259,7 @@ class UpdatedProfileView: UIViewController, UIImagePickerControllerDelegate, UIN
         let imageView: UIImageView = {
             let theImageView = UIImageView()
             theImageView.translatesAutoresizingMaskIntoConstraints = false
-            theImageView.image = UIImage.init(named: "settings.png")
+            theImageView.image = UIImage.init(named: "geary_settings_icon.png")
             theImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleAccountButton)))
             theImageView.isUserInteractionEnabled = true
             

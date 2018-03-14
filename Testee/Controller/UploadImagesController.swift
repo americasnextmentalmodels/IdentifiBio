@@ -45,7 +45,7 @@ class UploadImagesController: UIViewController, UIImagePickerControllerDelegate,
             label.translatesAutoresizingMaskIntoConstraints = false
             label.text = "Document #" + String(number)
             label.numberOfLines = 2
-            label.textColor = UIColor.black
+            label.textColor = UIColor.purple
             label.font = UIFont(name: label.font.fontName, size: 20)
             label.textAlignment = .center
             return label
@@ -55,13 +55,17 @@ class UploadImagesController: UIViewController, UIImagePickerControllerDelegate,
             let theImageView = UIImageView()
             theImageView.translatesAutoresizingMaskIntoConstraints = false
             
-            theImageView.image = UIImage.init(named: "documentPlus.png")
+            theImageView.image = UIImage.init(named: "newDocumentPurple.png")
             
 //            theImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleSelectImage)))
 //            theImageView.isUserInteractionEnabled = true
             let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleSelectImage(tapGestureRecognizer:)))
             theImageView.isUserInteractionEnabled = true
             theImageView.addGestureRecognizer((tapGestureRecognizer))
+            theImageView.layer.shadowColor = UIColor.lightGray.cgColor
+            theImageView.layer.shadowOffset = CGSize(width: 0, height: 4)
+            theImageView.layer.shadowOpacity = 0.8
+            theImageView.layer.shadowRadius = 3
             
             
             return theImageView
@@ -473,7 +477,7 @@ class UploadImagesController: UIViewController, UIImagePickerControllerDelegate,
       
 
         
-        self.title = "Upload Images"
+        self.title = "Upload Documents"
         view.backgroundColor = UIColor(r: 247, g: 247, b: 247)
         //view.backgroundColor = UIColor(patternImage: UIImage(named: "night.png")!)
         
@@ -495,6 +499,7 @@ class UploadImagesController: UIViewController, UIImagePickerControllerDelegate,
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.tintColor = UIColor.purple
         
     }
     

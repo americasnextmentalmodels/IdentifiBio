@@ -111,7 +111,7 @@ class ChangePasswordController: UIViewController{
         welcome.translatesAutoresizingMaskIntoConstraints = false
         welcome.text = "Please enter the details \nbelow to reset your password"
         welcome.numberOfLines = 2
-        welcome.textColor = UIColor(r: 230, g: 230, b: 230)
+        welcome.textColor = UIColor(r: 175, g: 175, b: 175)
         welcome.font = UIFont(name: welcome.font.fontName, size: 15)
         welcome.textAlignment = .center
         return welcome
@@ -188,6 +188,7 @@ class ChangePasswordController: UIViewController{
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.topItem?.title = "Change Password"
         
     }
     
