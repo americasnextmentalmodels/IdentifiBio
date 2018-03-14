@@ -52,6 +52,15 @@
 		AD3ACFFA205237BB005F6E19 /* dateBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFF5205237BB005F6E19 /* dateBtn.png */; };
 		AD3ACFFB205237BB005F6E19 /* homeBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFF6205237BB005F6E19 /* homeBtn.png */; };
 		AD3ACFFC205237BB005F6E19 /* logoutBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = AD3ACFF7205237BB005F6E19 /* logoutBtn.png */; };
+		AD8060492059D12D0093D2BA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8060482059D12C0093D2BA /* settings.png */; };
+		AD80604A2059D12D0093D2BA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8060482059D12C0093D2BA /* settings.png */; };
+		AD80604B2059D12D0093D2BA /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8060482059D12C0093D2BA /* settings.png */; };
+		AD80604D2059D15D0093D2BA /* profileNew.png in Resources */ = {isa = PBXBuildFile; fileRef = AD80604C2059D15D0093D2BA /* profileNew.png */; };
+		AD80604E2059D15D0093D2BA /* profileNew.png in Resources */ = {isa = PBXBuildFile; fileRef = AD80604C2059D15D0093D2BA /* profileNew.png */; };
+		AD80604F2059D15D0093D2BA /* profileNew.png in Resources */ = {isa = PBXBuildFile; fileRef = AD80604C2059D15D0093D2BA /* profileNew.png */; };
+		AD8060512059D1830093D2BA /* profileBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8060502059D1830093D2BA /* profileBackground.png */; };
+		AD8060522059D1830093D2BA /* profileBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8060502059D1830093D2BA /* profileBackground.png */; };
+		AD8060532059D1830093D2BA /* profileBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = AD8060502059D1830093D2BA /* profileBackground.png */; };
 		AD9BA65120573357005B6F22 /* gradient1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BA65020573357005B6F22 /* gradient1.jpg */; };
 		AD9BA65220573357005B6F22 /* gradient1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BA65020573357005B6F22 /* gradient1.jpg */; };
 		AD9BA65320573357005B6F22 /* gradient1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = AD9BA65020573357005B6F22 /* gradient1.jpg */; };
@@ -137,6 +146,9 @@
 		AD3ACFF5205237BB005F6E19 /* dateBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dateBtn.png; sourceTree = SOURCE_ROOT; };
 		AD3ACFF6205237BB005F6E19 /* homeBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = homeBtn.png; sourceTree = SOURCE_ROOT; };
 		AD3ACFF7205237BB005F6E19 /* logoutBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = logoutBtn.png; sourceTree = SOURCE_ROOT; };
+		AD8060482059D12C0093D2BA /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
+		AD80604C2059D15D0093D2BA /* profileNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileNew.png; sourceTree = "<group>"; };
+		AD8060502059D1830093D2BA /* profileBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = profileBackground.png; sourceTree = "<group>"; };
 		AD9BA65020573357005B6F22 /* gradient1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gradient1.jpg; sourceTree = "<group>"; };
 		AD9BA65420573365005B6F22 /* gradient2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = gradient2.jpg; sourceTree = "<group>"; };
 		AD9BA65820573B12005B6F22 /* documentPlus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = documentPlus.png; sourceTree = "<group>"; };
@@ -210,6 +222,9 @@
 				AD3ACFF3205237BB005F6E19 /* chatBtn.png */,
 				AD3ACFF5205237BB005F6E19 /* dateBtn.png */,
 				AD9BA66020592822005B6F22 /* settingsButton.png */,
+				AD8060482059D12C0093D2BA /* settings.png */,
+				AD8060502059D1830093D2BA /* profileBackground.png */,
+				AD80604C2059D15D0093D2BA /* profileNew.png */,
 				AD3ACFF6205237BB005F6E19 /* homeBtn.png */,
 				AD3ACFF7205237BB005F6E19 /* logoutBtn.png */,
 				AD3ACFF4205237BB005F6E19 /* profileBtn.png */,
@@ -423,17 +438,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD8060492059D12D0093D2BA /* settings.png in Resources */,
 				6CEA19712008480F0072E501 /* LaunchScreen.storyboard in Resources */,
 				6CEA1995200849010072E501 /* GoogleService-Info.plist in Resources */,
 				6C484B5B201952A7009BF017 /* UI.storyboard in Resources */,
 				AD9BA65120573357005B6F22 /* gradient1.jpg in Resources */,
 				AD3ACFFC205237BB005F6E19 /* logoutBtn.png in Resources */,
 				AD9BA65520573365005B6F22 /* gradient2.jpg in Resources */,
+				AD80604D2059D15D0093D2BA /* profileNew.png in Resources */,
 				AD9BA65920573B12005B6F22 /* documentPlus.png in Resources */,
 				6C1A8CEF202536A5004E58BA /* Assets.xcassets in Resources */,
 				AD3ACFF8205237BB005F6E19 /* chatBtn.png in Resources */,
 				AD3ACFFB205237BB005F6E19 /* homeBtn.png in Resources */,
 				6C9575622012DFD6000263E4 /* night.png in Resources */,
+				AD8060512059D1830093D2BA /* profileBackground.png in Resources */,
 				AD3ACFF9205237BB005F6E19 /* profileBtn.png in Resources */,
 				AD9BA66120592823005B6F22 /* settingsButton.png in Resources */,
 				6CEA196C2008480F0072E501 /* Main.storyboard in Resources */,
@@ -446,8 +464,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD9BA66220592823005B6F22 /* settingsButton.png in Resources */,
+				AD80604A2059D12D0093D2BA /* settings.png in Resources */,
 				AD9BA65620573365005B6F22 /* gradient2.jpg in Resources */,
 				AD9BA65220573357005B6F22 /* gradient1.jpg in Resources */,
+				AD8060522059D1830093D2BA /* profileBackground.png in Resources */,
+				AD80604E2059D15D0093D2BA /* profileNew.png in Resources */,
 				6CEA1996200849D20072E501 /* GoogleService-Info.plist in Resources */,
 				6C1A8CF0202536A5004E58BA /* Assets.xcassets in Resources */,
 				AD9BA65A20573B12005B6F22 /* documentPlus.png in Resources */,
@@ -459,8 +480,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				AD9BA66320592823005B6F22 /* settingsButton.png in Resources */,
+				AD80604B2059D12D0093D2BA /* settings.png in Resources */,
 				AD9BA65720573365005B6F22 /* gradient2.jpg in Resources */,
 				AD9BA65320573357005B6F22 /* gradient1.jpg in Resources */,
+				AD8060532059D1830093D2BA /* profileBackground.png in Resources */,
+				AD80604F2059D15D0093D2BA /* profileNew.png in Resources */,
 				6CEA1997200849D40072E501 /* GoogleService-Info.plist in Resources */,
 				6C1A8CF1202536A5004E58BA /* Assets.xcassets in Resources */,
 				AD9BA65B20573B12005B6F22 /* documentPlus.png in Resources */,

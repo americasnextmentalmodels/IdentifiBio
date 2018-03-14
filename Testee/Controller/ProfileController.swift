@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-//Checksum 9AMCLASS
+//Checksum 9AMCLAS
 
 class ProfileController: UITableViewController {
     
@@ -198,7 +198,8 @@ class ProfileController: UITableViewController {
         case "Edit signature":
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let controller = storyboard.instantiateViewController(withIdentifier: "SignatureViewController")
-            self.present(controller, animated: true, completion: nil)
+            //self.present(controller, animated: true, completion: nil)
+            self.navigationController?.pushViewController(controller, animated: true)
             //present(SignatureViewController(), animated: true)
         case "Upload ID":
             self.navigationController?.pushViewController(UploadImagesController(), animated: true)

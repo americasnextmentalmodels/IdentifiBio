@@ -102,7 +102,7 @@ class LoginController: UIViewController {
         tf.textColor = UIColor.white
         
         //For testing purposes, remove for development build.
-        tf.text = "yuda@example.com"
+        tf.text = "emil@example.com"
         
         //disable autocapitalization and autocorrect for this text field
         tf.autocapitalizationType = .none
