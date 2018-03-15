@@ -154,6 +154,17 @@ class HomeViewController: UIViewController {
         return until
     }()
     
+    let appointmentLabel : UILabel = {
+        let date = UILabel()
+        date.translatesAutoresizingMaskIntoConstraints = false
+        date.text = ""
+        date.textColor = UIColor.white
+        date.font = UIFont(name: "Avenir", size: 40)
+        date.textAlignment = .center
+        
+        return date
+    }()
+    
     @objc func handleLogout() {
         do {
             try Auth.auth().signOut()
@@ -272,6 +283,7 @@ class HomeViewController: UIViewController {
                 }
                 let today: Int = Int(Date().timeIntervalSince1970)
                 let diff = Int((dateEpoch - today)/86400)
+                let dayDisplay = Date(timeIntervalSince1970: Double(dateEpoch))
                 var date = "0"
                 if (diff < 0) {
                     date = "0"
@@ -286,7 +298,15 @@ class HomeViewController: UIViewController {
                 else{
                     self.dLabel.text = "days"
                 }
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateStyle = .medium
+                dateFormatter.timeStyle = .none
+                dateFormatter.locale = Locale(identifier: "en_US")
+                
+                self.appointmentLabel.text = dateFormatter.string(from: dayDisplay)
                 self.daysLabel.text = date
+                
+                
                 self.handleTap(days: diff+1)
             }
         })
@@ -383,6 +403,13 @@ class HomeViewController: UIViewController {
         dLabel.topAnchor.constraint(equalTo: daysLabel.topAnchor, constant: 50).isActive = true
         dLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         dLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        inputsContainerView.addSubview(appointmentLabel)
+        appointmentLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
+        //appointmentLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 160).isActive = true
+        appointmentLabel.topAnchor.constraint(equalTo: dLabel.bottomAnchor, constant: 100).isActive = true
+        appointmentLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        appointmentLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
         
     }
     

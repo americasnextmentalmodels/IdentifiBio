@@ -207,6 +207,8 @@ class DateViewController: UIViewController {
         let dateString = formatter.string(from: datePicker.date)
         
         dateField.text = "\(dateString)"
+        
+        tabBarController?.selectedIndex = 0
         //self.view.endEditing(true)
     }
     
