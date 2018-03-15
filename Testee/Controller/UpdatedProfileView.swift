@@ -352,7 +352,7 @@ class UpdatedProfileView: UIViewController, UIImagePickerControllerDelegate, UIN
             button.translatesAutoresizingMaskIntoConstraints = false
             button.setTitleColor(UIColor.white, for: .normal)
             button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-            //button.addTarget(self, action: #selector(handleLogin), for: .touchUpInside)
+            button.addTarget(self, action: #selector(handleEmailButton), for: .touchUpInside)
             return button
         }()
 
@@ -389,6 +389,10 @@ class UpdatedProfileView: UIViewController, UIImagePickerControllerDelegate, UIN
 
     @objc func handlePasswordButton(){
         self.navigationController?.pushViewController(ChangePasswordController(), animated: true)
+    }
+    
+    @objc func handleEmailButton(){
+        self.navigationController?.pushViewController(ChangeEmailController(), animated: true)
     }
 
     func setupSignatureView(signatureView: UIView, theImageView: UIImageView) {

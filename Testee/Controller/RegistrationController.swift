@@ -75,17 +75,30 @@ class RegistrationController: UIViewController {
     @objc func handleRegistration() {
         //print("Attempting to handle registration")
         //the guard I don't this is required, but supposedly it's supposed to make the code cleaner
-        guard let email = emailTextField.text, let password = passwordTextField.text, let referralCode = referralCodeTextField.text,
+        guard let email = emailTextField.text, let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text, let referralCode = referralCodeTextField.text,
         let firstName = firstNameTextField.text, let lastName = lastNameTextField.text else {
             print("PROBLEM (nick's): The fields are not present for some reason.");
             return //we can't do anything if this is true
         }
-
+        
+        if password != confirmPassword {
+            errorLabel.text = "ERROR: Passwords do not match."
+            firstNameTextField.text = ""
+            lastNameTextField.text = ""
+            emailTextField.text = ""
+            passwordTextField.text = ""
+            confirmPasswordTextField.text = ""
+            referralCodeTextField.text = ""
+            return
+        } else {
+            //remove this error label if things are OK
+            errorLabel.text = ""
+        }
 //        print(email)
 //        print(password)
         Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
             if (error != nil) {
-                print("Other failure, user account couldn't be created")
+                self.errorLabel.text = "ERROR: Other failure, user account couldn't be created. Is your password at least six characters?"
                 return
             }
             //otherwise, user is created
@@ -237,6 +250,17 @@ class RegistrationController: UIViewController {
         return welcome
     }()
     
+    let errorLabel: UILabel = {
+        let welcome = UILabel()
+        welcome.translatesAutoresizingMaskIntoConstraints = false
+        welcome.text = ""
+        welcome.textColor = UIColor.white
+       welcome.font = UIFont(name: welcome.font.fontName, size: 14)
+        welcome.textAlignment = .center
+        welcome.numberOfLines = 2
+        return welcome
+    }()
+    
     override func viewDidLoad(){
         super.viewDidLoad()
         
@@ -281,7 +305,7 @@ class RegistrationController: UIViewController {
         inputsContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         inputsContainerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -10).isActive = true
         inputsContainerView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -80).isActive = true
-        inputsContainerView.heightAnchor.constraint(equalToConstant: 500).isActive = true
+        inputsContainerView.heightAnchor.constraint(equalToConstant: 600).isActive = true
         
         inputsContainerView.addSubview(welcomeLabel)
         welcomeLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
@@ -333,6 +357,10 @@ class RegistrationController: UIViewController {
         referralCodeTextField.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         referralCodeTextField.heightAnchor.constraint(equalTo: inputsContainerView.heightAnchor, multiplier: 1/10).isActive = true
         
+        ///fdsfkldfksdlf
+        inputsContainerView.addSubview(errorLabel)
+        
+        setupErrorLabel()
 
     }
     
@@ -362,6 +390,13 @@ class RegistrationController: UIViewController {
         //        welcomeLabel.topAnchor.constraint(equalTo: emailTextField.topAnchor, constant: 15).isActive = true
         //        welcomeLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         //        welcomeLabel.heightAnchor.constraint(equalToConstant: 45).isActive = true
+    }
+    
+    func setupErrorLabel() {
+        errorLabel.leftAnchor.constraint(equalTo: loginRegisterButton.leftAnchor, constant: 0).isActive = true
+        errorLabel.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 23).isActive = true
+        errorLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        errorLabel.heightAnchor.constraint(equalToConstant: 60).isActive = true
     }
     override var preferredStatusBarStyle: UIStatusBarStyle{
         //changes the UI bar in iOS to be light instead of dark

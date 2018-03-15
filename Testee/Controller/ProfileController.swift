@@ -37,7 +37,6 @@ class ProfileController: UITableViewController {
             //print(logoutError)
         }
 
-
         //loginController.messagesController = self
         let loginController = LoginController()
         //dismiss(animated: false, completion: nil)

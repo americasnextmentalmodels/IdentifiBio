@@ -161,7 +161,7 @@ class LoginController: UIViewController {
         super.viewDidLoad()
         
         //Temporary auto-login for testing purposes
-        handleLogin()
+        //handleLogin()
         
     
         //view.backgroundColor = UIColor(r: 180, g: 119, b: 206)
@@ -175,7 +175,7 @@ class LoginController: UIViewController {
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupNewAccountButton()
-        //setupLabel()f
+        //setupLabel()
     }
     
     override func viewWillAppear(_ animated: Bool){

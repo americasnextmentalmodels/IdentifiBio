@@ -32,7 +32,7 @@ class TabBarController: UITabBarController, UITabBarControllerDelegate {
             freshLaunch = false
             
             //changed index to 3 for testing new profile screen
-            self.selectedIndex = 3
+            self.selectedIndex = 0
             handleLogout()
         }
     }
