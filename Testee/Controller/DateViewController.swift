@@ -49,7 +49,7 @@ class DateViewController: UIViewController {
     
     
     let datePicker: UIDatePicker = {
-        let monthsToAdd = 1
+        let monthsToAdd = 3
         //let daysToAdd = 1
         //let yearsToAdd = 1
         let currentDate = Date.init()

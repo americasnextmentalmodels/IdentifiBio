@@ -19,7 +19,7 @@ class ProfileController: UITableViewController {
     var cells = [ProfileViewCell]()
     let cellId = "profileViewCellID"
     let headerId = "profileViewHeaderID"
-    var names = ["Signature": ["Edit signature"], "Official Documents": ["Upload ID", "Upload Insurance"], "Account": ["Change Password", "Logout"]]
+    var names = ["Signature": ["Edit signature"], "Official Documents": ["Upload ID", "Upload Insurance"], "Account": ["Change Email", "Change Password", "Logout"]]
     struct Objects {
         
         var sectionName : String!
@@ -206,6 +206,8 @@ class ProfileController: UITableViewController {
             self.navigationController?.pushViewController(UploadImagesController(), animated: true)
         case "Change Password":
             self.navigationController?.pushViewController(ChangePasswordController(), animated: true)
+        case "Change Email":
+            self.navigationController?.pushViewController(ChangeEmailController(), animated: true)
         case "Logout":
             self.handleLogout()
         default:

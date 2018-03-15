@@ -238,7 +238,7 @@ class UpdatedProfileView: UIViewController, UIImagePickerControllerDelegate, UIN
     func drawNameLabel(view: UIView, nameLabel: UILabel){
         
             nameLabel.translatesAutoresizingMaskIntoConstraints = false
-            nameLabel.text = "Yuda"
+            nameLabel.text = ""
             nameLabel.textColor = UIColor.white
             nameLabel.font = UIFont(name: nameLabel.font.fontName, size: 30)
             nameLabel.textAlignment = .center
@@ -409,7 +409,9 @@ class UpdatedProfileView: UIViewController, UIImagePickerControllerDelegate, UIN
         
         
             theImageView.translatesAutoresizingMaskIntoConstraints = false
-            theImageView.image = UIImage.init(named: "documentPlus.png")
+            theImageView.backgroundColor = UIColor.white
+            theImageView.layer.borderWidth = 1
+            theImageView.layer.borderColor = UIColor.black.cgColor
         
 
         let changeSignatureButton: UIButton = {

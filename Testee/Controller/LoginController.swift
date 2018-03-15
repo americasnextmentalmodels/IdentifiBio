@@ -54,6 +54,29 @@ class LoginController: UIViewController {
         return button
     }()
     
+    let resetPasswordButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Forgot your password?", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitleColor(UIColor.white, for: .normal)
+        
+        button.addTarget(self, action: #selector(handleForgotPassword), for: .touchUpInside)
+        
+        return button
+    }()
+    
+    @objc func handleForgotPassword(){
+        Auth.auth().sendPasswordReset(withEmail: emailTextField.text!, completion: { (error) in
+            if (error == nil) {
+                self.errorLabel.text = "Password email sent!"
+            } else {
+                self.errorLabel.text = "Sorry, the password reset email could not be sent."
+            }
+        })
+        
+        
+    }
+    
     @objc func handleLogin() {
         Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (user, error) in
             if (error != nil) {
@@ -145,7 +168,7 @@ class LoginController: UIViewController {
     let errorLabel: UILabel = {
         let el = UILabel()
         el.translatesAutoresizingMaskIntoConstraints = false
-        el.textColor = UIColor.white
+        el.textColor = UIColor.red
         el.font = UIFont(name: el.font.fontName, size: 15)
         el.textAlignment = .center
         el.lineBreakMode = .byWordWrapping
@@ -159,7 +182,9 @@ class LoginController: UIViewController {
     
     override func viewDidLoad(){
         super.viewDidLoad()
-        
+//        Auth.auth().sendPasswordReset(withEmail: "ndigeron@uci.edu", completion: { (error) in
+//            print(error)
+//            })
         //Temporary auto-login for testing purposes
         //handleLogin()
         
@@ -217,9 +242,12 @@ class LoginController: UIViewController {
         
         inputsContainerView.addSubview(errorLabel)
         errorLabel.leftAnchor.constraint(equalTo: inputsContainerView.leftAnchor, constant: 0).isActive = true
-        errorLabel.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 15).isActive = true
+        errorLabel.topAnchor.constraint(equalTo: loginRegisterButton.bottomAnchor, constant: 50).isActive = true
         errorLabel.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         errorLabel.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        
+        inputsContainerView.addSubview(resetPasswordButton)
+        setupResetPasswordButton()
     }
     
     func setupLoginRegisterButton(){
@@ -234,6 +262,13 @@ class LoginController: UIViewController {
         newAccountButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 90).isActive = true
         newAccountButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
         newAccountButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
+    }
+    
+    func setupResetPasswordButton() {
+        resetPasswordButton.centerXAnchor.constraint(equalTo: inputsContainerView.centerXAnchor).isActive = true
+        resetPasswordButton.topAnchor.constraint(equalTo: newAccountButton.bottomAnchor, constant: 20).isActive = true
+        resetPasswordButton.widthAnchor.constraint(equalTo: inputsContainerView.widthAnchor).isActive = true
+        resetPasswordButton.heightAnchor.constraint(equalToConstant: 20).isActive = true
     }
     
     func setupLabel(){
