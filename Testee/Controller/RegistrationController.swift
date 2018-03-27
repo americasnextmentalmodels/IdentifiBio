@@ -11,7 +11,7 @@ import Firebase
 
 var handle: AuthStateDidChangeListenerHandle?
 
-class RegistrationController: UIViewController {
+class RegistrationController: UIViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -71,6 +71,19 @@ class RegistrationController: UIViewController {
         return button
     }()
     
+    func attachDoneButtonsForTextFields(textFields: [UITextField]) {
+        for field in textFields {
+            field.delegate = self //set delegate so the textFieldShouldReturn method works
+            field.returnKeyType = UIReturnKeyType.done //change the button to say "Done"
+        }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //This function is triggered when the done button is pressed.
+        //it should dismiss the keyboard.
+        self.view.endEditing(true)
+        return false
+    }
     
     @objc func handleRegistration() {
         //print("Attempting to handle registration")
@@ -283,7 +296,7 @@ class RegistrationController: UIViewController {
 //        self.view.addGestureRecognizer(tap)
         //view.addGestureRecognizer(UITapGestureRecognizer(target: view, action: #selector(endEditing)))
         //view.addSubview(backgroundImage)
-        
+        attachDoneButtonsForTextFields(textFields: [firstNameTextField, lastNameTextField, emailTextField, passwordTextField, confirmPasswordTextField, referralCodeTextField])
         
         setupInputsContainerView()
         setupLoginRegisterButton()

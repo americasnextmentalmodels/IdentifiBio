@@ -24,7 +24,7 @@ extension UITextField {
     }
 }
 
-class LoginController: UIViewController {
+class LoginController: UIViewController, UITextFieldDelegate {
     
     
     
@@ -177,7 +177,19 @@ class LoginController: UIViewController {
         return el
     }()
     
+    func attachDoneButtonsForTextFields(textFields: [UITextField]) {
+        for field in textFields {
+            field.delegate = self //set delegate so the textFieldShouldReturn method works
+            field.returnKeyType = UIReturnKeyType.done //change the button to say "Done"
+        }
+    }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        //This function is triggered when the done button is pressed.
+        //it should dismiss the keyboard.
+        self.view.endEditing(true)
+        return false
+    }
 
     
     override func viewDidLoad(){
@@ -196,7 +208,7 @@ class LoginController: UIViewController {
         view.addSubview(newAccountButton)
         //view.addSubview(backgroundImage)
         
-        
+        attachDoneButtonsForTextFields(textFields: [emailTextField, passwordTextField])
         setupInputsContainerView()
         setupLoginRegisterButton()
         setupNewAccountButton()
